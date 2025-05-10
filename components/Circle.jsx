@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import Button from "./Button";
 
 export default function Circle() {
   const [cx, setCx] = useState([22]);
@@ -72,6 +73,8 @@ export default function Circle() {
     return () => clearInterval(interval);
   }, [index, path]);
 
+  const textDivClass = "absolute top-60 w-[50rem] h-[100rem]";
+
   const contents = [
     {
       headline: "High-Conversion SaaS Websites That Drive Growth",
@@ -88,29 +91,25 @@ export default function Circle() {
     },
   ];
 
+  const TextComponent = ({ headline, text }) => (
+    <>
+      <div className={textDivClass}>
+        <div className="flex flex-col gap-4 items-start justify-center">
+          <h2 className="hero-gradient-text font-semibold text-5xl">
+            {contents[contentId].headline}
+          </h2>
+          <p className="text-2xl">{contents[contentId].text}</p>
+        </div>
+      </div>
+    </>
+  );
+
   return (
     <div className="absolute top-20 flex items-center justify-center">
-      {contentId === 0 && (
-        <h1 className="absolute text-5xl top-40 w-[100rem] h-[100rem] rounded-full">
-          {contents[0].headline}
-          <br />
-          <span className="text-2xl">{contents[0].text}</span>
-        </h1>
-      )}
-      {contentId === 1 && (
-        <p className="absolute text-5xl top-40 w-[100rem] h-[100rem] rounded-full">
-          {contents[1].headline}
-          <br />
-          <span className="text-2xl">{contents[1].text}</span>
-        </p>
-      )}
-      {contentId === 2 && (
-        <p className="absolute text-5xl top-40 w-[100rem] h-[100rem] rounded-full">
-          {contents[2].headline}
-          <br />
-          <span className="text-2xl">{contents[2].text}</span>
-        </p>
-      )}
+      <TextComponent
+        headline={contents[contentId].headline}
+        text={contents[contentId].text}
+      />
       <svg
         width="100%"
         height="100%"

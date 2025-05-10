@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { FiSearch } from "react-icons/fi";
+import Button from "./Button";
 
 const images = [
   {
@@ -34,7 +35,7 @@ export default function Features() {
   }, []);
 
   return (
-    <section className="p-20 bg-[#f8f8ff]">
+    <section className="p-20 ">
       <div className="max-w-7xl mx-auto flex flex-col gap-16">
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-10">
@@ -49,12 +50,7 @@ export default function Features() {
             </p>
           </div>
 
-          <button className="flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-[#274AFD] to-[#06197D] text-white font-semibold hover:scale-105 transition-transform">
-            <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
-              <FiSearch className="text-[#274AFD] text-lg" />
-            </div>
-            See More
-          </button>
+          <Button label="See More" iconSrc="/assets/NEW BUTTON/search.png" />
         </div>
 
         {/* Featured Work Gallery */}
@@ -67,7 +63,10 @@ export default function Features() {
                 flex: activeIndex === i ? 3 : 1,
                 borderRadius: "24px",
               }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
+              transition={{
+                flex: { duration: 0.3, ease: "linear" }, // Linear easing for flex
+                borderRadius: { duration: 0.3, ease: "easeInOut" }, // EaseInOut for borderRadius
+              }}
             >
               <div className="relative w-full h-full">
                 <Image

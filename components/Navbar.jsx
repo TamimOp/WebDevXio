@@ -12,7 +12,7 @@ export default function Navbar() {
       initial={{ opacity: 0, y: -30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="flex items-center justify-between px-12 py-6 backdrop-blur-md "
+      className="absolute top-0 left-0 right-0 z-50 flex items-center justify-between px-12 py-6 pointer-events-auto"
     >
       <div className="flex items-center space-x-3">
         <Image src="/assets/logo.png" alt="Logo" width={221} height={32.28} />
