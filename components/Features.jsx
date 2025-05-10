@@ -3,22 +3,13 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { FiSearch } from "react-icons/fi";
 import Button from "./Button";
 
 const images = [
-  {
-    src: "/assets/Featured0.png",
-  },
-  {
-    src: "/assets/Featured1.png",
-  },
-  {
-    src: "/assets/Featured2.png",
-  },
-  {
-    src: "/assets/Featured3.png",
-  },
+  { src: "/assets/Featured0.png" },
+  { src: "/assets/Featured1.png" },
+  { src: "/assets/Featured2.png" },
+  { src: "/assets/Featured3.png" },
 ];
 
 const title = "Digital Marketing Website";
@@ -35,16 +26,16 @@ export default function Features() {
   }, []);
 
   return (
-    <section className="p-20 ">
+    <section className="p-6 sm:p-10 md:p-20">
       <div className="max-w-7xl mx-auto flex flex-col gap-16">
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-10">
           <div className="max-w-2xl space-y-4">
             <p className="text-[#274AFF] text-[22px] font-medium">Portfolio</p>
-            <h2 className="text-5xl font-medium text-gray-900">
+            <h2 className="text-4xl sm:text-5xl font-medium text-gray-900">
               Our <span className="text-blue-600">Featured</span> Work
             </h2>
-            <p className="text-[22px] text-[#222222] leading-relaxed">
+            <p className="text-[18px] sm:text-[22px] text-[#222222] leading-relaxed">
               We design and develop stunning, high-performing websites for SaaS
               products to maximize conversions.
             </p>
@@ -58,47 +49,47 @@ export default function Features() {
         </div>
 
         {/* Featured Work Gallery */}
-        <div className="flex gap-4 h-[500px] overflow-hidden">
+        <div className="flex flex-col md:flex-row gap-4 min-h-[400px] md:h-[500px] overflow-hidden">
           {images.map((item, i) => (
             <motion.div
               key={i}
-              className="relative rounded-3xl overflow-hidden cursor-pointer transition-all bg-white shadow-xl"
+              className="relative rounded-3xl overflow-hidden cursor-pointer transition-all bg-white shadow-xl 
+                flex-grow basis-0 w-full md:w-auto"
               animate={{
                 flex: activeIndex === i ? 3 : 1,
                 borderRadius: "24px",
               }}
               transition={{
-                flex: { duration: 0.5, ease: "linear" }, // Linear easing for flex
-                borderRadius: { duration: 0.3, ease: "easeInOut" }, // EaseInOut for borderRadius
+                flex: { duration: 0.5, ease: "linear" },
+                borderRadius: { duration: 0.3, ease: "easeInOut" },
               }}
             >
-              <div className="relative w-full h-full">
+              <div className="relative w-full h-full min-h-[400px] md:min-h-full">
                 <Image
                   src={item.src}
                   alt={`Featured ${i}`}
-                  layout="fill"
-                  objectFit="cover"
-                  className="transition-all duration-500 scale-[0.92] rounded-2xl"
+                  fill
+                  className="transition-all duration-500 scale-[0.92] rounded-2xl object-cover"
                 />
               </div>
 
-              {/* Active Text, Tags, and Arrow Combined */}
+              {/* Overlay */}
               <motion.div
-                className="absolute inset-0 p-8 flex flex-col justify-end z-10 text-white bg-gradient-to-t from-black/80 via-transparent to-transparent"
-                initial={{ opacity: 0, x: -30 }}
+                className="absolute inset-0 p-6 sm:p-8 flex flex-col justify-end z-10 text-white bg-gradient-to-t from-black/80 via-transparent to-transparent"
+                initial={{ opacity: 0, x: -50 }}
                 animate={{
                   opacity: activeIndex === i ? 1 : 0,
-                  x: activeIndex === i ? 0 : -30,
+                  x: activeIndex === i ? 0 : -50,
                 }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
+                transition={{ duration: 0.4, ease: "easeInOut" }}
               >
-                <div className="flex items-end justify-between gap-4">
+                <div className="flex items-end justify-between gap-4 flex-wrap">
                   <div>
                     <motion.h3
-                      className="text-[22px] font-light mb-4 text-gray-300"
-                      initial={{ x: -30, opacity: 0 }}
+                      className="text-[20px] sm:text-[22px] font-light mb-4 text-gray-300"
+                      initial={{ x: -50, opacity: 0 }}
                       animate={{
-                        x: activeIndex === i ? 0 : -30,
+                        x: activeIndex === i ? 0 : -50,
                         opacity: activeIndex === i ? 1 : 0,
                       }}
                       transition={{
@@ -111,9 +102,9 @@ export default function Features() {
                     </motion.h3>
                     <motion.div
                       className="flex gap-3 flex-wrap"
-                      initial={{ x: -30, opacity: 0 }}
+                      initial={{ x: -50, opacity: 0 }}
                       animate={{
-                        x: activeIndex === i ? 0 : -30,
+                        x: activeIndex === i ? 0 : -50,
                         opacity: activeIndex === i ? 1 : 0,
                       }}
                       transition={{
@@ -139,10 +130,13 @@ export default function Features() {
 
                   <motion.div
                     className={`w-10 h-10 rounded-full flex items-center justify-center mb-6
-    ${i === 0 ? "bg-[#2e44ff]/60" : "bg-black/40"}
-    backdrop-blur-md backdrop-saturate-150 bg-opacity-60`}
+                    ${i === 0 ? "bg-[#2e44ff]/60" : "bg-black/40"}
+                    backdrop-blur-md backdrop-saturate-150 bg-opacity-60`}
                     initial={{ x: 30, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
+                    animate={{
+                      x: activeIndex === i ? 0 : 30,
+                      opacity: activeIndex === i ? 1 : 0,
+                    }}
                     transition={{
                       duration: 0.3,
                       ease: "easeInOut",
