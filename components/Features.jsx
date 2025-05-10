@@ -50,7 +50,11 @@ export default function Features() {
             </p>
           </div>
 
-          <Button label="See More" iconSrc="/assets/NEW BUTTON/search.png" />
+          <Button
+            label="See More"
+            iconSrc="/assets/NEW BUTTON/search.png"
+            className=""
+          />
         </div>
 
         {/* Featured Work Gallery */}

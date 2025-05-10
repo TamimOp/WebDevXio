@@ -11,7 +11,7 @@ function Company() {
       <div className="relative w-full h-10 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#E0E6FF] backdrop-blur-md"></div>
       </div>
-      <div className="w-full px-[20%] flex justify-between items-center bg-[#E0E6FF] px-30 py-10 flex-wrap gap-10">
+      <div className="w-full flex justify-between items-center bg-[#E0E6FF] px-30 py-10 flex-wrap gap-10">
         <Image
           src="/assets/Slack.png"
           width={102.1}
