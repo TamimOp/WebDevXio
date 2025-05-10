@@ -1,5 +1,5 @@
 "use client";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import Button from "./Button";
 
@@ -68,12 +68,12 @@ export default function Circle() {
       setCy(path[index].y);
       setIndex((prevIndex) => (prevIndex + 1) % path.length);
       setContentId(contentMap[index + 1]);
-    }, 1500);
+    }, 2500);
 
     return () => clearInterval(interval);
   }, [index, path]);
 
-  const textDivClass = "absolute top-60 w-[876px] h-[288px]";
+  const textDivClass = "absolute top-50 w-[876px] h-[288px] z-50";
 
   const contents = [
     {
@@ -94,15 +94,33 @@ export default function Circle() {
   const TextComponent = ({ headline, text }) => (
     <>
       <div className={textDivClass}>
-        <div className="flex flex-col gap-8 items-start justify-center">
-          <h2 className="hero-gradient-text font-bold text-5xl">
-            {contents[contentId].headline}
-          </h2>
-          <p className="text-[22px] font-medium text-[#222222]">
-            {contents[contentId].text}
-          </p>
+        <div className="flex flex-col gap-8 items-start justify-center h-full relative overflow-hidden">
+          <AnimatePresence mode="wait">
+            <motion.h2
+              key={headline}
+              initial={{ y: -40, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 40, opacity: 0 }}
+              transition={{ duration: 0.6 }}
+              className="hero-gradient-text font-bold text-5xl"
+            >
+              {headline}
+            </motion.h2>
+          </AnimatePresence>
+
+          <motion.p
+            key={text}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-[22px] font-medium text-[#222222]"
+          >
+            {text}
+          </motion.p>
         </div>
       </div>
+
       <div className="absolute top-105 left-175 w-[50rem] h-[100rem] mt-10 z-50">
         <Button label="Book A Call" iconSrc="/assets/NEW BUTTON/calendar.png" />
       </div>
