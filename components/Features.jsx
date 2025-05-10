@@ -26,7 +26,7 @@ export default function Features() {
   }, []);
 
   return (
-    <section className="p-6 sm:p-10 md:p-20">
+    <section className="p-6 sm:p-10 md:p-20 bg-[#F9F8FF]">
       <div className="max-w-7xl mx-auto flex flex-col gap-16">
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-10">
