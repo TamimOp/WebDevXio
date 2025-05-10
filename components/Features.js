@@ -1,27 +1,145 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import { FiSearch } from "react-icons/fi";
 
+const images = [
+  {
+    src: "/assets/Featured0.png",
+  },
+  {
+    src: "/assets/Featured1.png",
+  },
+  {
+    src: "/assets/Featured2.png",
+  },
+  {
+    src: "/assets/Featured3.png",
+  },
+];
+
+const title = "Digital Marketing Website";
+const tags = ["UI/UX Design", "Web Design", "Wireframe"];
+
 export default function Features() {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % images.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <section className="p-30 bg-[#f8f8ff]">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
-        <div className="max-w-2xl space-y-4">
-          <p className="text-blue-600 text-lg font-medium">Portfolio</p>
-          <h2 className="text-5xl font-bold text-gray-900">
-            Our <span className="text-blue-600">Featured</span> Work
-          </h2>
-          <p className="text-lg text-gray-700 leading-relaxed">
-            We design and develop stunning, high-performing websites for SaaS
-            products to maximize conversions.
-          </p>
+    <section className="p-20 bg-[#f8f8ff]">
+      <div className="max-w-7xl mx-auto flex flex-col gap-16">
+        {/* Header */}
+        <div className="flex flex-col md:flex-row justify-between items-center gap-10">
+          <div className="max-w-2xl space-y-4">
+            <p className="text-blue-600 text-lg font-medium">Portfolio</p>
+            <h2 className="text-5xl font-bold text-gray-900">
+              Our <span className="text-blue-600">Featured</span> Work
+            </h2>
+            <p className="text-lg text-gray-700 leading-relaxed">
+              We design and develop stunning, high-performing websites for SaaS
+              products to maximize conversions.
+            </p>
+          </div>
+
+          <button className="flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-[#274AFD] to-[#06197D] text-white font-semibold hover:scale-105 transition-transform">
+            <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
+              <FiSearch className="text-[#274AFD] text-lg" />
+            </div>
+            See More
+          </button>
         </div>
 
-        <button className="flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-[#274AFD] to-[#06197D] text-white font-semibold hover:scale-105 transition-transform">
-          <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
-            <FiSearch className="text-[#274AFD] text-lg" />
-          </div>
-          See More
-        </button>
+        {/* Featured Work Gallery */}
+        <div className="flex gap-4 h-[500px] overflow-hidden">
+          {images.map((item, i) => (
+            <motion.div
+              key={i}
+              className="relative rounded-3xl overflow-hidden cursor-pointer transition-all bg-white shadow-xl"
+              animate={{
+                flex: activeIndex === i ? 3 : 1,
+                borderRadius: "24px",
+              }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+            >
+              <div className="relative w-full h-full">
+                <Image
+                  src={item.src}
+                  alt={`Featured ${i}`}
+                  layout="fill"
+                  objectFit="cover"
+                  className="transition-all duration-500 scale-[0.85] rounded-2xl"
+                />
+              </div>
+
+              {/* Active Text and Arrow */}
+              <motion.div
+                className="absolute inset-0 p-6 flex flex-col justify-end z-10 text-white bg-gradient-to-t from-black/80 via-transparent to-transparent"
+                initial={{ opacity: 0, x: -30 }}
+                animate={{
+                  opacity: activeIndex === i ? 1 : 0,
+                  x: activeIndex === i ? 0 : -30,
+                }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+              >
+                <motion.h3
+                  className="text-xl font-semibold mb-2"
+                  initial={{ x: -30, opacity: 0 }}
+                  animate={{
+                    x: activeIndex === i ? 0 : -30,
+                    opacity: activeIndex === i ? 1 : 0,
+                  }}
+                  transition={{ duration: 0.3, ease: "easeInOut", delay: 0.05 }}
+                >
+                  {title}
+                </motion.h3>
+                <motion.div
+                  className="flex gap-2 flex-wrap"
+                  initial={{ x: -30, opacity: 0 }}
+                  animate={{
+                    x: activeIndex === i ? 0 : -30,
+                    opacity: activeIndex === i ? 1 : 0,
+                  }}
+                  transition={{ duration: 0.3, ease: "easeInOut", delay: 0.1 }}
+                >
+                  {tags.map((tag, idx) => (
+                    <span
+                      key={idx}
+                      className="bg-white text-gray-800 text-sm px-3 py-1 rounded-full"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </motion.div>
+              </motion.div>
+
+              {/* Arrow Icon */}
+              {activeIndex === i && (
+                <motion.div
+                  className="absolute bottom-6 right-6 z-10 w-10 h-10 rounded-full flex items-center justify-center"
+                  initial={{ x: 30, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                  style={{ backgroundColor: i === 0 ? "#2e44ff" : "#000000" }}
+                >
+                  <Image
+                    src="/assets/NEW BUTTON/arrow.png"
+                    width={18}
+                    height={18}
+                    alt="arrow"
+                  />
+                </motion.div>
+              )}
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
