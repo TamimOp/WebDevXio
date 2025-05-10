@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useState, useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import Image from "next/image";
 import { CiSearch } from "react-icons/ci";
 
@@ -17,6 +17,11 @@ const tags = ["UI/UX Design", "Web Design", "Wireframe"];
 
 export default function Features() {
   const [activeIndex, setActiveIndex] = useState(0);
+
+  const headerRef = useRef(null);
+  const galleryRef = useRef(null);
+  const headerInView = useInView(headerRef, { once: true, margin: "-100px" });
+  const galleryInView = useInView(galleryRef, { once: true, margin: "-100px" });
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -45,8 +50,6 @@ export default function Features() {
           <span className="transition-all duration-500 ease-in-out group-hover:-translate-x-1 group-hover:text-white">
             {label}
           </span>
-
-          {/* Optional hover-layer background if needed */}
           <div className="absolute inset-0 rounded-4xl bg-gradient-to-r from-black to-gray-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
         </button>
       </div>
@@ -56,8 +59,14 @@ export default function Features() {
   return (
     <section className="p-8 sm:p-12 md:p-22 bg-[#F9F8FF]">
       <div className="max-w-7xl mx-auto flex flex-col gap-16">
-        {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-center sm:items-end gap-10">
+        {/* Header with scroll animation */}
+        <motion.div
+          ref={headerRef}
+          initial={{ y: -80, opacity: 0 }}
+          animate={headerInView ? { y: 0, opacity: 1 } : {}}
+          transition={{ duration: 1.2, ease: [0.25, 0.8, 0.25, 1] }}
+          className="flex flex-col md:flex-row justify-between items-center sm:items-end gap-10"
+        >
           <div className="max-w-2xl space-y-4">
             <p className="text-[#274AFF] text-[22px] font-medium">Portfolio</p>
             <h2 className="text-4xl sm:text-5xl font-medium text-gray-900">
@@ -70,10 +79,16 @@ export default function Features() {
           </div>
 
           <Button label="See More" Icon={CiSearch} />
-        </div>
+        </motion.div>
 
-        {/* Featured Work Gallery */}
-        <div className="flex flex-col md:flex-row gap-4 min-h-[400px] md:h-[500px] overflow-hidden">
+        {/* Featured Work Gallery with scroll animation */}
+        <motion.div
+          ref={galleryRef}
+          initial={{ y: 80, opacity: 0 }}
+          animate={galleryInView ? { y: 0, opacity: 1 } : {}}
+          transition={{ duration: 1.3, ease: [0.25, 0.8, 0.25, 1], delay: 0.1 }}
+          className="flex flex-col md:flex-row gap-4 min-h-[400px] md:h-[500px] overflow-hidden"
+        >
           {images.map((item, i) => {
             const isActive = activeIndex === i;
             return (
@@ -88,8 +103,8 @@ export default function Features() {
                   borderRadius: "24px",
                 }}
                 transition={{
-                  flex: { duration: 0.5, ease: "linear" },
-                  borderRadius: { duration: 0.3, ease: "easeInOut" },
+                  flex: { duration: 0.8, ease: [0.25, 0.8, 0.25, 1] },
+                  borderRadius: { duration: 0.4, ease: "easeInOut" },
                 }}
               >
                 <div className="relative w-full h-full min-h-[400px] md:min-h-full">
@@ -109,7 +124,7 @@ export default function Features() {
                     opacity: isActive ? 1 : 0,
                     x: isActive ? 0 : -50,
                   }}
-                  transition={{ duration: 0.4, ease: "easeInOut" }}
+                  transition={{ duration: 0.6, ease: "easeInOut" }}
                 >
                   <div className="flex items-end justify-between gap-4 flex-wrap">
                     <div>
@@ -121,7 +136,7 @@ export default function Features() {
                           opacity: isActive ? 1 : 0,
                         }}
                         transition={{
-                          duration: 0.3,
+                          duration: 0.5,
                           ease: "easeInOut",
                           delay: 0.05,
                         }}
@@ -136,7 +151,7 @@ export default function Features() {
                           opacity: isActive ? 1 : 0,
                         }}
                         transition={{
-                          duration: 0.3,
+                          duration: 0.5,
                           ease: "easeInOut",
                           delay: 0.1,
                         }}
@@ -166,7 +181,7 @@ export default function Features() {
                         opacity: isActive ? 1 : 0,
                       }}
                       transition={{
-                        duration: 0.3,
+                        duration: 0.4,
                         ease: "easeInOut",
                         delay: 0.15,
                       }}
@@ -183,7 +198,7 @@ export default function Features() {
               </motion.div>
             );
           })}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
