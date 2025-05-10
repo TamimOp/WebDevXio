@@ -54,10 +54,10 @@ export default function Features() {
   };
 
   return (
-    <section className="p-6 sm:p-10 md:p-20 bg-[#F9F8FF]">
+    <section className="p-8 sm:p-12 md:p-22 bg-[#F9F8FF]">
       <div className="max-w-7xl mx-auto flex flex-col gap-16">
         {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-10">
+        <div className="flex flex-col md:flex-row justify-between items-center sm:items-end gap-10">
           <div className="max-w-2xl space-y-4">
             <p className="text-[#274AFF] text-[22px] font-medium">Portfolio</p>
             <h2 className="text-4xl sm:text-5xl font-medium text-gray-900">

@@ -14,7 +14,7 @@ function Company() {
       </div>
 
       {/* Company Logos */}
-      <div className="w-full bg-[#E0E6FF] py-10 px-6 sm:px-10 md:px-20 flex flex-wrap items-center justify-center md:justify-between gap-10">
+      <div className="w-full bg-[#E0E6FF] py-12 px-10 sm:px-16 md:px-30 flex flex-col sm:flex-row items-center justify-center md:justify-between gap-10">
         <Image
           src="/assets/Slack.png"
           width={102.1}
