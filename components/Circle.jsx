@@ -101,6 +101,9 @@ export default function Circle() {
           <p className="text-2xl">{contents[contentId].text}</p>
         </div>
       </div>
+      <div className="absolute top-105 left-175 w-[50rem] h-[100rem] mt-10 z-50">
+        <Button label="Book A Call" iconSrc="/assets/NEW BUTTON/calendar.png" />
+      </div>
     </>
   );
 
