@@ -73,7 +73,7 @@ export default function Circle() {
     return () => clearInterval(interval);
   }, [index, path]);
 
-  const textDivClass = "absolute top-60 w-[50rem] h-[100rem]";
+  const textDivClass = "absolute top-60 w-[876px] h-[288px]";
 
   const contents = [
     {
@@ -94,11 +94,13 @@ export default function Circle() {
   const TextComponent = ({ headline, text }) => (
     <>
       <div className={textDivClass}>
-        <div className="flex flex-col gap-4 items-start justify-center">
-          <h2 className="hero-gradient-text font-semibold text-5xl">
+        <div className="flex flex-col gap-8 items-start justify-center">
+          <h2 className="hero-gradient-text font-bold text-5xl">
             {contents[contentId].headline}
           </h2>
-          <p className="text-2xl">{contents[contentId].text}</p>
+          <p className="text-[22px] font-medium text-[#222222]">
+            {contents[contentId].text}
+          </p>
         </div>
       </div>
       <div className="absolute top-105 left-175 w-[50rem] h-[100rem] mt-10 z-50">
