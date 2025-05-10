@@ -40,11 +40,11 @@ export default function Features() {
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-10">
           <div className="max-w-2xl space-y-4">
-            <p className="text-blue-600 text-lg font-medium">Portfolio</p>
-            <h2 className="text-5xl font-bold text-gray-900">
+            <p className="text-[#274AFF] text-[22px] font-medium">Portfolio</p>
+            <h2 className="text-5xl font-medium text-gray-900">
               Our <span className="text-blue-600">Featured</span> Work
             </h2>
-            <p className="text-lg text-gray-700 leading-relaxed">
+            <p className="text-[22px] text-[#222222] leading-relaxed">
               We design and develop stunning, high-performing websites for SaaS
               products to maximize conversions.
             </p>
@@ -68,7 +68,7 @@ export default function Features() {
                 borderRadius: "24px",
               }}
               transition={{
-                flex: { duration: 0.3, ease: "linear" }, // Linear easing for flex
+                flex: { duration: 0.5, ease: "linear" }, // Linear easing for flex
                 borderRadius: { duration: 0.3, ease: "easeInOut" }, // EaseInOut for borderRadius
               }}
             >
