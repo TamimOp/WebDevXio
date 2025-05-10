@@ -1,5 +1,62 @@
 @import "tailwindcss";
 
-/* * {
-  background-color: #f8f8ff;
-} */
+@theme {
+  --color-hero-heading-1: #1e1e1e;
+  --color-hero-heading-2: #274aff;
+  --color-hero-arc-dot: rgb(39, 74, 255);
+}
+
+@utility hero-gradient-text {
+  background-image: linear-gradient(
+    90deg,
+    #1e1e1e 0%,
+    #274aff 50.49%,
+    #1e1e1e 100%
+  );
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text; /* For Safari compatibility */
+}
+
+.hero {
+  position: relative;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 20px;
+  overflow: hidden; /* Prevent the pseudo-element from spilling out */
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("/assets/Hero_bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.3;
+  z-index: -1; /* Place it behind the content */
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 150px; /* Adjust height of fade */
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    white
+  ); /* Change white to match your page background */
+  z-index: 1; /* Place it above the content but below any interactive elements */
+  pointer-events: none; /* Allow clicking through the fade overlay */
+}

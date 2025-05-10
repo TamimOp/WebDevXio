@@ -75,13 +75,13 @@ export default function Features() {
                   alt={`Featured ${i}`}
                   layout="fill"
                   objectFit="cover"
-                  className="transition-all duration-500 scale-[0.85] rounded-2xl"
+                  className="transition-all duration-500 scale-[0.92] rounded-2xl"
                 />
               </div>
 
-              {/* Active Text and Arrow */}
+              {/* Active Text, Tags, and Arrow Combined */}
               <motion.div
-                className="absolute inset-0 p-6 flex flex-col justify-end z-10 text-white bg-gradient-to-t from-black/80 via-transparent to-transparent"
+                className="absolute inset-0 p-8 flex flex-col justify-end z-10 text-white bg-gradient-to-t from-black/80 via-transparent to-transparent"
                 initial={{ opacity: 0, x: -30 }}
                 animate={{
                   opacity: activeIndex === i ? 1 : 0,
@@ -89,54 +89,72 @@ export default function Features() {
                 }}
                 transition={{ duration: 0.3, ease: "easeInOut" }}
               >
-                <motion.h3
-                  className="text-xl font-semibold mb-2"
-                  initial={{ x: -30, opacity: 0 }}
-                  animate={{
-                    x: activeIndex === i ? 0 : -30,
-                    opacity: activeIndex === i ? 1 : 0,
-                  }}
-                  transition={{ duration: 0.3, ease: "easeInOut", delay: 0.05 }}
-                >
-                  {title}
-                </motion.h3>
-                <motion.div
-                  className="flex gap-2 flex-wrap"
-                  initial={{ x: -30, opacity: 0 }}
-                  animate={{
-                    x: activeIndex === i ? 0 : -30,
-                    opacity: activeIndex === i ? 1 : 0,
-                  }}
-                  transition={{ duration: 0.3, ease: "easeInOut", delay: 0.1 }}
-                >
-                  {tags.map((tag, idx) => (
-                    <span
-                      key={idx}
-                      className="bg-white text-gray-800 text-sm px-3 py-1 rounded-full"
+                <div className="flex items-end justify-between gap-4">
+                  <div>
+                    <motion.h3
+                      className="text-[22px] font-light mb-4 text-gray-300"
+                      initial={{ x: -30, opacity: 0 }}
+                      animate={{
+                        x: activeIndex === i ? 0 : -30,
+                        opacity: activeIndex === i ? 1 : 0,
+                      }}
+                      transition={{
+                        duration: 0.3,
+                        ease: "easeInOut",
+                        delay: 0.05,
+                      }}
                     >
-                      {tag}
-                    </span>
-                  ))}
-                </motion.div>
-              </motion.div>
+                      {title}
+                    </motion.h3>
+                    <motion.div
+                      className="flex gap-3 flex-wrap"
+                      initial={{ x: -30, opacity: 0 }}
+                      animate={{
+                        x: activeIndex === i ? 0 : -30,
+                        opacity: activeIndex === i ? 1 : 0,
+                      }}
+                      transition={{
+                        duration: 0.3,
+                        ease: "easeInOut",
+                        delay: 0.1,
+                      }}
+                    >
+                      {tags.map((tag, idx) => (
+                        <span
+                          key={idx}
+                          className={`text-[13px] px-4 py-1.5 rounded-full font-medium ${
+                            i === 0
+                              ? "border-blue-600 border-2 bg-blue-600/20 text-gray-50"
+                              : "border-white border-2 text-gray-50"
+                          }`}
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </motion.div>
+                  </div>
 
-              {/* Arrow Icon */}
-              {activeIndex === i && (
-                <motion.div
-                  className="absolute bottom-6 right-6 z-10 w-10 h-10 rounded-full flex items-center justify-center"
-                  initial={{ x: 30, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  transition={{ duration: 0.3, ease: "easeInOut" }}
-                  style={{ backgroundColor: i === 0 ? "#2e44ff" : "#000000" }}
-                >
-                  <Image
-                    src="/assets/NEW BUTTON/arrow.png"
-                    width={18}
-                    height={18}
-                    alt="arrow"
-                  />
-                </motion.div>
-              )}
+                  <motion.div
+                    className={`w-10 h-10 rounded-full flex items-center justify-center mb-6
+    ${i === 0 ? "bg-[#2e44ff]/60" : "bg-black/40"}
+    backdrop-blur-md backdrop-saturate-150 bg-opacity-60`}
+                    initial={{ x: 30, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{
+                      duration: 0.3,
+                      ease: "easeInOut",
+                      delay: 0.15,
+                    }}
+                  >
+                    <Image
+                      src="/assets/NEW BUTTON/arrow.png"
+                      width={18}
+                      height={18}
+                      alt="arrow"
+                    />
+                  </motion.div>
+                </div>
+              </motion.div>
             </motion.div>
           ))}
         </div>
