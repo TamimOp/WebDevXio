@@ -73,7 +73,8 @@ export default function Circle() {
     return () => clearInterval(interval);
   }, [index, path]);
 
-  const textDivClass = "absolute top-50 w-[876px] h-[288px] z-50";
+  const textDivClass =
+    "absolute top-50 w-full max-w-[876px] px-4 md:px-0 h-[288px] z-50";
 
   const contents = [
     {
@@ -94,7 +95,7 @@ export default function Circle() {
   const TextComponent = ({ headline, text }) => (
     <>
       <div className={textDivClass}>
-        <div className="flex flex-col gap-8 items-start justify-center h-full relative overflow-hidden">
+        <div className="flex flex-col gap-6 md:gap-8 items-start justify-center h-full relative overflow-hidden">
           <AnimatePresence mode="wait">
             <motion.h2
               key={headline}
@@ -102,7 +103,7 @@ export default function Circle() {
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: 40, opacity: 0 }}
               transition={{ duration: 0.6 }}
-              className="hero-gradient-text font-bold text-5xl"
+              className="hero-gradient-text font-bold text-[clamp(1.5rem,5vw,3rem)] leading-tight"
             >
               {headline}
             </motion.h2>
@@ -114,21 +115,21 @@ export default function Circle() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-[22px] font-medium text-[#222222]"
+            className="text-[clamp(1rem,2.5vw,1.375rem)] font-medium text-[#222222]"
           >
             {text}
           </motion.p>
         </div>
       </div>
 
-      <div className="absolute top-105 left-175 w-[50rem] h-[100rem] mt-10 z-50">
+      <div className="absolute top-105 left-1/2 transform -translate-x-1/2 w-full max-w-[800px] mt-10 z-50 px-4 md:px-0">
         <Button label="Book A Call" iconSrc="/assets/NEW BUTTON/calendar.png" />
       </div>
     </>
   );
 
   return (
-    <div className="absolute top-20 flex items-center justify-center">
+    <div className="absolute top-20 flex items-center justify-center w-full">
       <TextComponent
         headline={contents[contentId].headline}
         text={contents[contentId].text}
@@ -161,7 +162,6 @@ export default function Circle() {
           strokeWidth="2"
         />
 
-        {/* Replacing static circle with motion.circle */}
         <motion.circle
           id="bigger-dot"
           r="4"
@@ -177,13 +177,8 @@ export default function Circle() {
           }}
         />
 
-        {/* Left bottom dot */}
         <circle cx="22" cy="110" r="2.5" fill="#274aff" fillOpacity="0.3" />
-
-        {/* Right bottom dot */}
         <circle cx="378" cy="110" r="2.5" fill="#274aff" fillOpacity="0.3" />
-
-        {/* Top center dot */}
         <circle cx="200" cy="1" r="2.5" fill="#274aff" fillOpacity="0.3" />
       </svg>
 

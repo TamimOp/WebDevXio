@@ -50,110 +50,115 @@ export default function Features() {
 
         {/* Featured Work Gallery */}
         <div className="flex flex-col md:flex-row gap-4 min-h-[400px] md:h-[500px] overflow-hidden">
-          {images.map((item, i) => (
-            <motion.div
-              key={i}
-              className="relative rounded-3xl overflow-hidden cursor-pointer transition-all bg-white shadow-xl 
-                flex-grow basis-0 w-full md:w-auto"
-              animate={{
-                flex: activeIndex === i ? 3 : 1,
-                borderRadius: "24px",
-              }}
-              transition={{
-                flex: { duration: 0.5, ease: "linear" },
-                borderRadius: { duration: 0.3, ease: "easeInOut" },
-              }}
-            >
-              <div className="relative w-full h-full min-h-[400px] md:min-h-full">
-                <Image
-                  src={item.src}
-                  alt={`Featured ${i}`}
-                  fill
-                  className="transition-all duration-500 scale-[0.92] rounded-2xl object-cover"
-                />
-              </div>
-
-              {/* Overlay */}
+          {images.map((item, i) => {
+            const isActive = activeIndex === i;
+            return (
               <motion.div
-                className="absolute inset-0 p-6 sm:p-8 flex flex-col justify-end z-10 text-white bg-gradient-to-t from-black/80 via-transparent to-transparent"
-                initial={{ opacity: 0, x: -50 }}
+                key={i}
+                className={`relative rounded-3xl overflow-hidden cursor-pointer transition-all bg-white shadow-xl 
+                  w-full md:flex-grow md:basis-0
+                  ${isActive ? "max-h-[500px]" : "max-h-[80px]"} 
+                  md:max-h-full`}
                 animate={{
-                  opacity: activeIndex === i ? 1 : 0,
-                  x: activeIndex === i ? 0 : -50,
+                  flex: isActive ? 3 : 1,
+                  borderRadius: "24px",
                 }}
-                transition={{ duration: 0.4, ease: "easeInOut" }}
+                transition={{
+                  flex: { duration: 0.5, ease: "linear" },
+                  borderRadius: { duration: 0.3, ease: "easeInOut" },
+                }}
               >
-                <div className="flex items-end justify-between gap-4 flex-wrap">
-                  <div>
-                    <motion.h3
-                      className="text-[20px] sm:text-[22px] font-light mb-4 text-gray-300"
-                      initial={{ x: -50, opacity: 0 }}
-                      animate={{
-                        x: activeIndex === i ? 0 : -50,
-                        opacity: activeIndex === i ? 1 : 0,
-                      }}
-                      transition={{
-                        duration: 0.3,
-                        ease: "easeInOut",
-                        delay: 0.05,
-                      }}
-                    >
-                      {title}
-                    </motion.h3>
+                <div className="relative w-full h-full min-h-[400px] md:min-h-full">
+                  <Image
+                    src={item.src}
+                    alt={`Featured ${i}`}
+                    fill
+                    className="transition-all duration-500 scale-[0.92] rounded-2xl object-cover"
+                  />
+                </div>
+
+                {/* Overlay */}
+                <motion.div
+                  className="absolute inset-0 p-6 sm:p-8 flex flex-col justify-end z-10 text-white bg-gradient-to-t from-black/80 via-transparent to-transparent"
+                  initial={{ opacity: 0, x: -50 }}
+                  animate={{
+                    opacity: isActive ? 1 : 0,
+                    x: isActive ? 0 : -50,
+                  }}
+                  transition={{ duration: 0.4, ease: "easeInOut" }}
+                >
+                  <div className="flex items-end justify-between gap-4 flex-wrap">
+                    <div>
+                      <motion.h3
+                        className="text-[20px] sm:text-[22px] font-light mb-4 text-gray-300"
+                        initial={{ x: -50, opacity: 0 }}
+                        animate={{
+                          x: isActive ? 0 : -50,
+                          opacity: isActive ? 1 : 0,
+                        }}
+                        transition={{
+                          duration: 0.3,
+                          ease: "easeInOut",
+                          delay: 0.05,
+                        }}
+                      >
+                        {title}
+                      </motion.h3>
+                      <motion.div
+                        className="flex gap-3 flex-wrap"
+                        initial={{ x: -50, opacity: 0 }}
+                        animate={{
+                          x: isActive ? 0 : -50,
+                          opacity: isActive ? 1 : 0,
+                        }}
+                        transition={{
+                          duration: 0.3,
+                          ease: "easeInOut",
+                          delay: 0.1,
+                        }}
+                      >
+                        {tags.map((tag, idx) => (
+                          <span
+                            key={idx}
+                            className={`text-[13px] px-4 py-1.5 rounded-full font-medium ${
+                              i === 0
+                                ? "border-blue-600 border-2 bg-blue-600/20 text-gray-50"
+                                : "border-white border-2 text-gray-50"
+                            }`}
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </motion.div>
+                    </div>
+
                     <motion.div
-                      className="flex gap-3 flex-wrap"
-                      initial={{ x: -50, opacity: 0 }}
+                      className={`w-10 h-10 rounded-full flex items-center justify-center mb-6
+                        ${i === 0 ? "bg-[#2e44ff]/60" : "bg-black/40"}
+                        backdrop-blur-md backdrop-saturate-150 bg-opacity-60`}
+                      initial={{ x: 30, opacity: 0 }}
                       animate={{
-                        x: activeIndex === i ? 0 : -50,
-                        opacity: activeIndex === i ? 1 : 0,
+                        x: isActive ? 0 : 30,
+                        opacity: isActive ? 1 : 0,
                       }}
                       transition={{
                         duration: 0.3,
                         ease: "easeInOut",
-                        delay: 0.1,
+                        delay: 0.15,
                       }}
                     >
-                      {tags.map((tag, idx) => (
-                        <span
-                          key={idx}
-                          className={`text-[13px] px-4 py-1.5 rounded-full font-medium ${
-                            i === 0
-                              ? "border-blue-600 border-2 bg-blue-600/20 text-gray-50"
-                              : "border-white border-2 text-gray-50"
-                          }`}
-                        >
-                          {tag}
-                        </span>
-                      ))}
+                      <Image
+                        src="/assets/NEW BUTTON/arrow.png"
+                        width={18}
+                        height={18}
+                        alt="arrow"
+                      />
                     </motion.div>
                   </div>
-
-                  <motion.div
-                    className={`w-10 h-10 rounded-full flex items-center justify-center mb-6
-                    ${i === 0 ? "bg-[#2e44ff]/60" : "bg-black/40"}
-                    backdrop-blur-md backdrop-saturate-150 bg-opacity-60`}
-                    initial={{ x: 30, opacity: 0 }}
-                    animate={{
-                      x: activeIndex === i ? 0 : 30,
-                      opacity: activeIndex === i ? 1 : 0,
-                    }}
-                    transition={{
-                      duration: 0.3,
-                      ease: "easeInOut",
-                      delay: 0.15,
-                    }}
-                  >
-                    <Image
-                      src="/assets/NEW BUTTON/arrow.png"
-                      width={18}
-                      height={18}
-                      alt="arrow"
-                    />
-                  </motion.div>
-                </div>
+                </motion.div>
               </motion.div>
-            </motion.div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
