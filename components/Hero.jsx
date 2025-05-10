@@ -4,7 +4,7 @@ import Company from "./Company";
 
 export default function HeroNew() {
   return (
-    <section className="w-full flex flex-col gap-5">
+    <section className="w-full flex flex-col gap-10">
       <div className="hero">
         <Circle />
       </div>
