@@ -72,21 +72,43 @@ export default function Circle() {
     return () => clearInterval(interval);
   }, [index, path]);
 
+  const contents = [
+    {
+      headline: "High-Conversion SaaS Websites That Drive Growth",
+      text: "We design and develop stunning, high-performing websites for SaaS products to maximize conversions.",
+    },
+    {
+      headline: "Pixel–Perfect UI/UX Design for a Seamless User Experience",
+      text: "We create stunning, user-friendly designs that enhance usability and boost conversions.",
+    },
+    {
+      headline:
+        "Custom WordPress Websites – Flexible, Scalable & SEO-Optimized",
+      text: "We build high-quality WordPress websites tailored for SaaS, startups, and businesses that need a powerful online presence.",
+    },
+  ];
+
   return (
     <div className="absolute top-20 flex items-center justify-center">
       {contentId === 0 && (
-        <p className="absolute text-5xl top-40 w-[100rem] h-[100rem] rounded-full">
-          Content 1
-        </p>
+        <h1 className="absolute text-5xl top-40 w-[100rem] h-[100rem] rounded-full">
+          {contents[0].headline}
+          <br />
+          <span className="text-2xl">{contents[0].text}</span>
+        </h1>
       )}
       {contentId === 1 && (
         <p className="absolute text-5xl top-40 w-[100rem] h-[100rem] rounded-full">
-          Content 2
+          {contents[1].headline}
+          <br />
+          <span className="text-2xl">{contents[1].text}</span>
         </p>
       )}
       {contentId === 2 && (
         <p className="absolute text-5xl top-40 w-[100rem] h-[100rem] rounded-full">
-          Content 3
+          {contents[2].headline}
+          <br />
+          <span className="text-2xl">{contents[2].text}</span>
         </p>
       )}
       <svg
