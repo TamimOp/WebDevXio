@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import Button from "./Button";
+import { CiSearch } from "react-icons/ci";
 
 const images = [
   { src: "/assets/Featured0.png" },
@@ -25,6 +25,20 @@ export default function Features() {
     return () => clearInterval(interval);
   }, []);
 
+  const Button = ({ label, Icon, onClick }) => {
+    return (
+      <div className="w-[200px] h-[55px] bg-gradient-to-r from-[#0634FF] to-[#B2ACFF] shadow-lg shadow-[#B2ACFF] flex items-center justify-center rounded-4xl">
+        <button className="bg-gradient-to-r cursor-pointer hover:from-black hover:to-gray-500 hover:flex-row-reverse transition-all duration-500 flex group justify-center items-center gap-3 text-[22px] font-semibold text-white w-[195px] h-[50px] from-[#06197d] to-[#274afd] px-4 rounded-4xl ">
+          <Icon
+            className="bg-white group-hover:bg-transparent group-hover:border group-hover:text-white border-white text-[#274afd] p-1.5 rounded-full"
+            size={33}
+          />
+          {label}
+        </button>
+      </div>
+    );
+  };
+
   return (
     <section className="p-6 sm:p-10 md:p-20 bg-[#F9F8FF]">
       <div className="max-w-7xl mx-auto flex flex-col gap-16">
@@ -41,11 +55,7 @@ export default function Features() {
             </p>
           </div>
 
-          <Button
-            label="See More"
-            iconSrc="/assets/NEW BUTTON/search.png"
-            className=""
-          />
+          <Button label="See More" Icon={CiSearch} />
         </div>
 
         {/* Featured Work Gallery */}

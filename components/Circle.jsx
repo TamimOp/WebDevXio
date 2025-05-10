@@ -1,7 +1,7 @@
 "use client";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
-import Button from "./Button";
+import { CiCalendar } from "react-icons/ci";
 
 export default function Circle() {
   const [cx, setCx] = useState([22]);
@@ -73,8 +73,7 @@ export default function Circle() {
     return () => clearInterval(interval);
   }, [index, path]);
 
-  const textDivClass =
-    "absolute top-50 w-full max-w-[876px] px-4 md:px-0 h-[288px] z-50";
+  const textDivClass = "absolute top-50 w-[876px] h-[288px] z-50";
 
   const contents = [
     {
@@ -92,10 +91,24 @@ export default function Circle() {
     },
   ];
 
+  const Button = ({ label, Icon, onClick }) => {
+    return (
+      <div className="w-[200px] h-[55px] bg-gradient-to-r from-[#0634FF] to-[#B2ACFF] shadow-lg shadow-[#B2ACFF] flex items-center justify-center rounded-4xl">
+        <button className="bg-gradient-to-r cursor-pointer hover:from-black hover:to-gray-500 hover:flex-row-reverse transition-all duration-500 flex group justify-center items-center gap-3 text-xl font-semibold text-white w-[195px] h-[50px] from-[#06197d] to-[#274afd] px-4 rounded-4xl ">
+          <Icon
+            className="bg-white group-hover:bg-transparent group-hover:border group-hover:text-white border-white text-[#274afd] p-1.5 rounded-full"
+            size={33}
+          />
+          {label}
+        </button>
+      </div>
+    );
+  };
+
   const TextComponent = ({ headline, text }) => (
     <>
       <div className={textDivClass}>
-        <div className="flex flex-col gap-6 md:gap-8 items-start justify-center h-full relative overflow-hidden">
+        <div className="flex flex-col gap-8 items-start justify-center h-full relative overflow-hidden">
           <AnimatePresence mode="wait">
             <motion.h2
               key={headline}
@@ -103,7 +116,7 @@ export default function Circle() {
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: 40, opacity: 0 }}
               transition={{ duration: 0.6 }}
-              className="hero-gradient-text font-bold text-[clamp(1.5rem,5vw,3rem)] leading-tight"
+              className="hero-gradient-text font-bold text-5xl"
             >
               {headline}
             </motion.h2>
@@ -115,21 +128,21 @@ export default function Circle() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-[clamp(1rem,2.5vw,1.375rem)] font-medium text-[#222222]"
+            className="text-[22px] font-medium text-[#222222]"
           >
             {text}
           </motion.p>
         </div>
       </div>
 
-      <div className="absolute top-105 left-1/2 transform -translate-x-1/2 w-full max-w-[800px] mt-10 z-50 px-4 md:px-0">
-        <Button label="Book A Call" iconSrc="/assets/NEW BUTTON/calendar.png" />
+      <div className="absolute top-105 mx-auto mt-10 z-50">
+        <Button label="Book A Call" Icon={CiCalendar} />
       </div>
     </>
   );
 
   return (
-    <div className="absolute top-20 flex items-center justify-center w-full">
+    <div className="absolute top-25 flex items-center justify-center">
       <TextComponent
         headline={contents[contentId].headline}
         text={contents[contentId].text}
@@ -162,6 +175,7 @@ export default function Circle() {
           strokeWidth="2"
         />
 
+        {/* Replacing static circle with motion.circle */}
         <motion.circle
           id="bigger-dot"
           r="4"
@@ -177,8 +191,13 @@ export default function Circle() {
           }}
         />
 
+        {/* Left bottom dot */}
         <circle cx="22" cy="110" r="2.5" fill="#274aff" fillOpacity="0.3" />
+
+        {/* Right bottom dot */}
         <circle cx="378" cy="110" r="2.5" fill="#274aff" fillOpacity="0.3" />
+
+        {/* Top center dot */}
         <circle cx="200" cy="1" r="2.5" fill="#274aff" fillOpacity="0.3" />
       </svg>
 
