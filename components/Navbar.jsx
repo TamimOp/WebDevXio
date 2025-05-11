@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FiMenu, FiX } from "react-icons/fi";
 import Button from "./Button";
+import Logo from "@/public/assets/Logo.png";
 
 const navItems = ["Home", "Services", "Work", "About Us"];
 
@@ -19,7 +20,7 @@ export default function Navbar() {
       className="absolute top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-12 py-6 pointer-events-auto"
     >
       <div className="flex items-center space-x-3">
-        <Image src="/assets/logo.png" alt="Logo" width={221} height={32.28} />
+        <Image src={Logo} alt="Logo" width={221} height={32.28} />
       </div>
 
       <ul className="hidden md:flex items-center gap-8">
