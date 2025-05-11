@@ -111,7 +111,7 @@ export default function Circle() {
           <svg
             width="100%"
             height="100%"
-            viewBox="0 -5 400 400"
+            viewBox="0 -10 400 400"
             preserveAspectRatio="xMidYMid meet"
             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full scale-150"
           >
