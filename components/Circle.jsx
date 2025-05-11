@@ -1,6 +1,6 @@
 "use client";
-import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import { CiCalendar } from "react-icons/ci";
 
 export default function Circle() {
@@ -57,6 +57,14 @@ export default function Circle() {
     },
   ];
 
+  const contentMap = {
+    0: 0,
+    1: 1,
+    2: 2,
+    3: 1,
+    4: 0,
+  };
+
   const contents = [
     {
       headline: "High-Conversion SaaS Websites That Drive Growth",
@@ -82,7 +90,7 @@ export default function Circle() {
       setCy(path[index].y);
       setIndex((prevIndex) => (prevIndex + 1) % path.length);
       setPosition((prev) => (prev + 1) % 4);
-      setContentId((prev) => (prev + 1) % 3);
+      setContentId(contentMap[index + 1]);
     }, 2500);
 
     return () => clearInterval(interval);
