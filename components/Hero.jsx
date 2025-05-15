@@ -1,4 +1,3 @@
-"use client";
 import Circle from "./Circle";
 import Company from "./Company";
 

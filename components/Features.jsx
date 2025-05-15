@@ -138,7 +138,7 @@ export default function Features() {
                         transition={{
                           duration: 0.5,
                           ease: "easeInOut",
-                          delay: 0.05,
+                          delay: 0.5,
                         }}
                       >
                         {title}
@@ -153,7 +153,7 @@ export default function Features() {
                         transition={{
                           duration: 0.5,
                           ease: "easeInOut",
-                          delay: 0.1,
+                          delay: 0.5,
                         }}
                       >
                         {tags.map((tag, idx) => (
