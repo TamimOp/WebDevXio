@@ -112,6 +112,7 @@ export default function Features() {
                     src={item.src}
                     alt={`Featured ${i}`}
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="transition-all duration-500 scale-[0.92] rounded-2xl object-cover"
                   />
                 </div>

@@ -1,7 +1,9 @@
-import React from "react";
+"use client";
+import React, { useRef } from "react";
 import Image from "next/image";
 import AboutUsImage from "@/public/assets/AboutUs.svg";
 import { CiCalendar } from "react-icons/ci";
+import { motion, useInView } from "framer-motion";
 
 const stats = [
   { value: "2k+", label: "SaaS Projects Delivered" },
@@ -10,6 +12,27 @@ const stats = [
 ];
 
 const About = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  const slideFromLeft = {
+    hidden: { opacity: 0, x: -100 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 1.2, ease: "linear" },
+    },
+  };
+
+  const slideFromRight = {
+    hidden: { opacity: 0, x: 100 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 1.2, ease: "linear" },
+    },
+  };
+
   const Button = ({ label, Icon }) => (
     <div className="w-[200px] h-[55px] bg-gradient-to-r from-[#0634FF] to-[#B2ACFF] shadow-lg shadow-[#B2ACFF] flex items-center justify-center rounded-[32px]">
       <button className="relative overflow-hidden bg-gradient-to-r cursor-pointer flex group justify-center items-center gap-3 text-lg md:text-xl font-semibold text-white w-[195px] h-[50px] from-[#06197d] to-[#274afd] px-4 rounded-[30px] hover:from-black hover:to-gray-500 hover:flex-row-reverse transition-all duration-500 ease-in-out">
@@ -26,19 +49,27 @@ const About = () => {
   );
 
   return (
-    <section className="bg-[#f7f7fb] px-6 md:px-10 lg:px-28 py-16 flex flex-col lg:flex-row items-center justify-between gap-12">
-      {/* Image */}
-      <div className="w-full lg:w-[40%]">
-        <Image
-          src={AboutUsImage}
-          alt="About Us"
-          className="object-cover w-full h-auto rounded-tl-[50px]"
-          priority
-        />
-      </div>
+    <section
+      ref={ref}
+      className="bg-[#f7f7fb] px-6 md:px-10 lg:px-28 py-16 flex flex-col lg:flex-row items-center justify-between gap-12 overflow-hidden"
+    >
+      {/* Image Animation */}
+      <motion.div
+        className="w-full lg:w-[40%]"
+        variants={slideFromLeft}
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+      >
+        <Image src={AboutUsImage} alt="About Us" height={442} width={482} />
+      </motion.div>
 
-      {/* Content */}
-      <div className="flex flex-col gap-4 w-full lg:w-[60%] text-center lg:text-left">
+      {/* Content Animation */}
+      <motion.div
+        className="flex flex-col gap-4 w-full lg:w-[60%] text-center lg:text-left"
+        variants={slideFromRight}
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+      >
         <p className="text-blue-600 font-medium text-lg md:text-xl">
           —About Us
         </p>
@@ -70,7 +101,7 @@ const About = () => {
         <div className="mt-6 flex justify-center lg:justify-start">
           <Button label="Book A Call" Icon={CiCalendar} />
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };
