@@ -16,16 +16,16 @@ const Toolbox = () => {
     <section className="bg-[#f7f7fb] py-20 px-4 text-center">
       <div className="flex flex-col gap-2 items-center">
         <h4 className="text-blue-600 font-medium text-[22px] mb-2">Tools</h4>
-        <h2 className="text-5xl font-medium mb-4">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium mb-4">
           Our <span className="text-blue-600">Toolbox</span> For Excellence
         </h2>
-        <p className="text-gray-700 max-w-2xl mx-auto mb-12 text-[22px]">
+        <p className="text-gray-700 max-w-2xl mx-auto mb-12 text-[16px] sm:text-[18px] md:text-[22px]">
           We design and develop stunning, high-performing websites for SaaS
           products to maximize conversions.
         </p>
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 max-w-6xl mx-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
         {tools.map((tool, index) => (
           <div
             key={index}
@@ -39,8 +39,12 @@ const Toolbox = () => {
               <Image src={tool.icon} alt={tool.name} width={40} height={40} />
             </div>
             <div className="text-left">
-              <h3 className="font-medium text-[22px]">{tool.name}</h3>
-              <p className="text-[13px] text-gray-600">{tool.desc}</p>
+              <h3 className="font-medium text-[18px] sm:text-[20px] md:text-[22px]">
+                {tool.name}
+              </h3>
+              <p className="text-[12px] sm:text-[13px] text-gray-600">
+                {tool.desc}
+              </p>
             </div>
           </div>
         ))}
