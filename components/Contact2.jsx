@@ -1,10 +1,21 @@
+"use client";
+
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import Image from "next/image";
 import Button from "./Button";
 
 const Contact2 = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
   return (
     <section className="w-full py-16 bg-[#f7f7fb] flex justify-center items-center px-6 md:px-12">
-      <div
+      <motion.div
+        ref={ref}
+        initial={{ opacity: 0, y: 100 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.8, ease: "easeOut" }}
         className="w-full max-w-[1261px] h-auto md:h-[563px] rounded-[19px] p-6 md:p-16 relative overflow-hidden"
         style={{
           boxShadow: "0px 0px 85.9px -7px #00000030",
@@ -33,7 +44,7 @@ const Contact2 = () => {
         <div className="relative z-10 flex flex-col md:flex-row items-center justify-center gap-10 md:gap-12 w-full h-full">
           {/* Left - Images */}
           <div className="flex flex-col items-center gap-3 w-full max-w-[430px]">
-            <div className="rounded-full border-[3px] md:border-[5px] border-[#274AFF] overflow-hidden w-full aspect-[2.3/1] shadow-md">
+            <div className="rounded-full border-[3px] md:border-[5px] border-[#274AFF] overflow-hidden w-full aspect-[2.3/1] shadow-xl/30">
               <Image
                 src="/assets/ContactBg1.jpg"
                 alt="Team Working"
@@ -43,7 +54,7 @@ const Contact2 = () => {
               />
             </div>
             <div className="flex gap-3 w-[90%] aspect-[3/1]">
-              <div className="rounded-l-[163.5px] rounded-r-[17px] border-[2px] md:border-[3px] border-[#274AFF] overflow-hidden w-1/2 shadow-md">
+              <div className="rounded-l-[163.5px] rounded-r-[17px] border-[2px] md:border-[3px] border-[#274AFF] overflow-hidden w-1/2 shadow-xl/30">
                 <Image
                   src="/assets/ContactBg2.jpg"
                   alt="Team Meeting"
@@ -52,7 +63,7 @@ const Contact2 = () => {
                   className="object-cover w-full h-full"
                 />
               </div>
-              <div className="rounded-r-[163.5px] rounded-l-[17px] border-[2px] md:border-[3px] border-[#274AFF] overflow-hidden w-1/2 shadow-md">
+              <div className="rounded-r-[163.5px] rounded-l-[17px] border-[2px] md:border-[3px] border-[#274AFF] overflow-hidden w-1/2 shadow-xl/30">
                 <Image
                   src="/assets/ContactBg3.png"
                   alt="Team Planning"
@@ -79,7 +90,7 @@ const Contact2 = () => {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };
