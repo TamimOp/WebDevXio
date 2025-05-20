@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 
 export const metadata = {
   title: "WebDevXio",
-  description: "Task1",
+  description: "Under Development",
 };
 
 const dmSans = DM_Sans({ subsets: ["latin"], weight: ["400", "500", "700"] });
