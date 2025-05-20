@@ -5,12 +5,21 @@ const Contact2 = () => {
   return (
     <section className="w-full py-16 bg-[#f7f7fb] flex justify-center items-center px-6 md:px-12">
       <div
-        className="w-full max-w-7xl rounded-[32px] p-8 md:p-16 relative overflow-hidden"
+        className="w-[1261px] h-[563px] max-w-7xl rounded-[19px] p-8 md:p-16 relative overflow-hidden"
         style={{
-          backgroundImage: "url('/assets/ContactBg.png')",
           boxShadow: "0px 0px 85.9px -7px #00000030",
         }}
       >
+        {/* Background Image with 35% opacity */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/assets/ContactBg.png"
+            alt="Background"
+            fill
+            className="opacity-[35%]"
+          />
+        </div>
+
         {/* Gradient Overlay */}
         <div
           className="absolute inset-0 z-0"
@@ -20,11 +29,11 @@ const Contact2 = () => {
           }}
         ></div>
 
-        {/* Content - Stacked above overlay */}
-        <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-12 w-full">
+        {/* Content */}
+        <div className="relative z-10 flex flex-col md:flex-row items-center justify-center gap-12 w-full h-full">
           {/* Left - Images */}
-          <div className="flex flex-col items-center gap-4 md:gap-6 md:w-1/2">
-            <div className="rounded-full border-[3px] border-[#4563ff] overflow-hidden w-[300px] h-[150px] md:w-[350px] md:h-[180px] shadow-md">
+          <div className="flex flex-col items-center gap-3 w-[430px] h-[326px]">
+            <div className="rounded-full border-[5px] border-[#274AFF] overflow-hidden w-[430px] h-[186px] shadow-md">
               <Image
                 src="/assets/ContactBg1.jpg"
                 alt="Team Working"
@@ -33,8 +42,8 @@ const Contact2 = () => {
                 className="object-cover w-full h-full"
               />
             </div>
-            <div className="flex gap-4 md:gap-6">
-              <div className="rounded-l-full border-[3px] border-[#4563ff] overflow-hidden w-[140px] h-[100px] shadow-md">
+            <div className="flex gap-3 w-[390px] h-[128px]">
+              <div className="rounded-l-[163.5px] rounded-r-[17px] border-[3px] border-[#274AFF] overflow-hidden w-[189px] h-[128px] shadow-md">
                 <Image
                   src="/assets/ContactBg2.jpg"
                   alt="Team Meeting"
@@ -43,7 +52,7 @@ const Contact2 = () => {
                   className="object-cover w-full h-full"
                 />
               </div>
-              <div className="rounded-r-full border-[3px] border-[#4563ff] overflow-hidden w-[140px] h-[100px] shadow-md">
+              <div className="rounded-r-[163.5px] rounded-l-[17px] border-[3px] border-[#274AFF] overflow-hidden w-[189px] h-[128px] shadow-md">
                 <Image
                   src="/assets/ContactBg3.png"
                   alt="Team Planning"
@@ -57,11 +66,11 @@ const Contact2 = () => {
 
           {/* Right - Text Content */}
           <div className="flex flex-col gap-4 md:w-1/2 text-center md:text-left">
-            <h2 className="text-3xl md:text-5xl font-semibold leading-tight">
+            <h2 className="text-3xl md:text-5xl font-medium leading-tight">
               Transform the Way Your{" "}
-              <span className="text-[#4563ff]">SaaS Website</span> Converts
+              <span className="gradient-text">SaaS Website</span> Converts
             </h2>
-            <p className="text-lg text-gray-600 border-l-4 border-[#4563ff] pl-4 mt-2">
+            <p className="text-[22px] text-gray-600 border-l-4 border-blue-700 pl-4 mt-2 font-medium">
               We craft high-converting, user-friendly SaaS websites that drive
               engagement and growth.
             </p>
