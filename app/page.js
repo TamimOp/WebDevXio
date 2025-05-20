@@ -1,4 +1,5 @@
 import About from "@/components/About";
+import Contact2 from "@/components/Contact2";
 import Features from "@/components/Features";
 import Hero from "@/components/Hero";
 import Info from "@/components/Info";
@@ -12,6 +13,7 @@ export default function Home() {
       <Info />
       <Toolbox />
       <Features />
+      <Contact2 />
     </main>
   );
 }
