@@ -61,7 +61,7 @@ const Card = ({ title, description, icon, bg, isMain }) => {
           </h3>
           <p
             className={`text-[15px] font-medium leading-[124%] ${
-              isMain ? "text-white" : "text-[#6B6B6B]"
+              isMain ? "text-[#D7D7D7]" : "text-[#6B6B6B]"
             }`}
           >
             {description}
