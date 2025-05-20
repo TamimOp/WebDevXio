@@ -16,7 +16,7 @@ const infoCards = [
     description:
       "Fully functional, high-performance SaaS websites built with modern technologies.",
     icon: "/assets/SaaS.png",
-    bg: "linear-gradient(109.98deg, rgba(69, 99, 255, 0.1) 2.71%, rgba(19, 38, 99, 0.1) 96.63%)",
+    bg: "linear-gradient(to right, #4563ff 0%, #132663 100%)",
     isMain: true,
   },
   {
@@ -41,7 +41,7 @@ const Card = ({ title, description, icon, bg, isMain }) => {
   const baseStyles =
     "flex flex-col justify-between p-8 w-[392.25px] h-[258.93px] rounded-3xl shadow-lg";
 
-  const mainCardClasses = isMain ? "text-black" : "bg-white text-black";
+  const mainCardClasses = isMain ? "text-white" : "bg-white text-black";
 
   const customBgStyle = isMain
     ? { background: bg }
@@ -59,7 +59,11 @@ const Card = ({ title, description, icon, bg, isMain }) => {
           <h3 className="text-[25px] font-medium mb-2 leading-[106%]">
             {title}
           </h3>
-          <p className="text-[15px] font-medium text-[#6B6B6B] leading-[124%]">
+          <p
+            className={`text-[15px] font-medium leading-[124%] ${
+              isMain ? "text-white" : "text-[#6B6B6B]"
+            }`}
+          >
             {description}
           </p>
         </div>
