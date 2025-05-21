@@ -185,7 +185,7 @@ export default function Features() {
                           <span
                             key={idx}
                             className={`text-xs sm:text-sm px-3 py-1 rounded-full font-medium ${
-                              i === 0
+                              isActive
                                 ? "border-blue-600 border bg-blue-600/20 text-gray-50"
                                 : "border-white border text-gray-50"
                             }`}
@@ -198,7 +198,7 @@ export default function Features() {
 
                     <motion.div
                       className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center mb-2 sm:mb-6
-        ${i === 0 ? "bg-[#2e44ff]/60" : "bg-black/40"}
+        ${isActive ? "bg-[#2e44ff]/60" : "bg-black/40"}
         backdrop-blur-md backdrop-saturate-150 bg-opacity-60`}
                       initial={{ x: 30, opacity: 0 }}
                       animate={{
