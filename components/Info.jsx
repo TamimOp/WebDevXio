@@ -39,7 +39,7 @@ const infoCards = [
 
 const Card = ({ title, description, icon, bg, isMain }) => {
   const baseStyles =
-    "flex flex-col justify-between p-8 w-[335px] h-[244.66px] sm:w-[392.25px] sm:h-[258.93px] rounded-3xl shadow-lg";
+    "flex flex-col justify-between p-8 w-[335px] sm:w-[392.25px] h-[244.66px] sm:h-[258.93px] rounded-3xl shadow-lg";
 
   const mainCardClasses = isMain ? "text-white" : "bg-white text-black";
 
@@ -94,30 +94,45 @@ const Info = () => {
         </p>
       </motion.div>
 
-      {/* Cards */}
-      <div className="flex flex-col gap-10 md:gap-8">
-        {/* First row from left */}
+      {/* ✅ Responsive layout for mobile & tablet */}
+      <div className="flex flex-wrap justify-center gap-10 lg:hidden">
+        {infoCards.map((card, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "linear" }}
+            viewport={{ once: true }}
+          >
+            <Card {...card} />
+          </motion.div>
+        ))}
+      </div>
+
+      {/* ✅ Custom staggered layout only on large screens */}
+      <div className="hidden lg:flex flex-col gap-10">
+        {/* Row 1 */}
         <motion.div
-          className="flex flex-col md:flex-row gap-10 md:gap-8 justify-between items-start"
+          className="flex flex-row gap-8 justify-between items-start"
           initial={{ opacity: 0, x: -100 }}
           whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.8, ease: "linear" }}
           viewport={{ once: true }}
         >
           <Card {...infoCards[0]} />
           <Card {...infoCards[1]} />
-          <div className="hidden md:block w-[392.25px] h-[258.93px]"></div>
+          <div className="hidden xl:block w-[392.25px] h-[258.93px]"></div>
         </motion.div>
 
-        {/* Second row from right */}
+        {/* Row 2 */}
         <motion.div
-          className="flex flex-col md:flex-row gap-10 md:gap-8 justify-between items-end"
+          className="flex flex-row gap-8 justify-between items-end"
           initial={{ opacity: 0, x: 100 }}
           whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.8, ease: "linear" }}
           viewport={{ once: true }}
         >
-          <div className="hidden md:block w-[392.25px] h-[258.93px]"></div>
+          <div className="hidden xl:block w-[392.25px] h-[258.93px]"></div>
           <Card {...infoCards[2]} />
           <Card {...infoCards[3]} />
         </motion.div>
