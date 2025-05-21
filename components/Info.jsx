@@ -39,7 +39,7 @@ const infoCards = [
 
 const Card = ({ title, description, icon, bg, isMain }) => {
   const baseStyles =
-    "flex flex-col justify-between p-8 w-[392.25px] h-[258.93px] rounded-3xl shadow-lg";
+    "flex flex-col justify-between p-8 w-[335px] h-[244.66px] sm:w-[392.25px] sm:h-[258.93px] rounded-3xl shadow-lg";
 
   const mainCardClasses = isMain ? "text-white" : "bg-white text-black";
 
@@ -54,13 +54,15 @@ const Card = ({ title, description, icon, bg, isMain }) => {
   return (
     <div className={`${baseStyles} ${mainCardClasses}`} style={customBgStyle}>
       <div className="flex flex-col items-start gap-2">
-        <Image src={icon} alt="icon" width={47.6} height={43.83} />
+        <div className="w-[40.65px] h-[41.44px] md:w-[47.6px] md:h-[43.86px] relative">
+          <Image src={icon} alt="icon" fill className="object-contain" />
+        </div>
         <div>
-          <h3 className="text-[25px] font-medium mb-2 leading-[106%]">
+          <h3 className="text-xl sm:text-[25px] font-medium mb-2 leading-[106%]">
             {title}
           </h3>
           <p
-            className={`text-[15px] font-medium leading-[124%] ${
+            className={`text-[13px] sm:text-[15px] font-medium leading-[124%] ${
               isMain ? "text-[#D7D7D7]" : "text-[#6B6B6B]"
             }`}
           >
@@ -83,10 +85,10 @@ const Info = () => {
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
       >
-        <h2 className="text-4xl md:text-5xl font-medium mb-4 text-center">
+        <h2 className="text-[26px] md:text-5xl font-medium mb-4 text-center">
           What We Do
         </h2>
-        <p className="text-lg md:text-[22px] text-gray-700 max-w-2xl text-center mb-12">
+        <p className="text-sm md:text-[22px] text-gray-700 max-w-2xl text-center mb-12">
           We design and develop stunning, high-performing websites for SaaS
           products to maximize conversions.
         </p>
