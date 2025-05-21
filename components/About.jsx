@@ -55,12 +55,17 @@ const About = () => {
     >
       {/* Image Animation */}
       <motion.div
-        className="w-full lg:w-[40%]"
+        className="w-full lg:w-[40%] flex justify-center lg:justify-start"
         variants={slideFromLeft}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
       >
-        <Image src={AboutUsImage} alt="About Us" height={442} width={482} />
+        <Image
+          src={AboutUsImage}
+          alt="About Us"
+          className="w-[229px] h-[210px] md:w-[482px] md:h-[442px]"
+          priority
+        />
       </motion.div>
 
       {/* Content Animation */}
@@ -70,19 +75,19 @@ const About = () => {
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
       >
-        <p className="text-blue-600 font-medium text-lg md:text-xl">
+        <p className="text-blue-600 font-medium text-sm md:text-[22px]">
           —About Us
         </p>
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium">
+        <h2 className="text-[26px] md:text-4xl lg:text-5xl font-medium">
           Who We Are & <span className="text-blue-600">Why Choose Us</span>
         </h2>
-        <p className="text-gray-700 text-base md:text-lg lg:text-xl font-medium leading-relaxed">
+        <p className="text-gray-700 text-[13px] md:text-xl lg:text-[22px] font-medium leading-relaxed">
           At UX Recharge, we specialize in creating modern, user-friendly
           websites tailored for SaaS companies. Our designs are
           conversion-focused, fast, and fully optimized for mobile and SEO.
         </p>
 
-        <div className="flex flex-wrap gap-6 justify-center lg:justify-start mt-4">
+        <div className="flex gap-6 justify-center lg:justify-start mt-4">
           {stats.map((stat, index) => (
             <div
               key={index}
