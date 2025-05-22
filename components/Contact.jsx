@@ -71,15 +71,15 @@ const Contact = () => {
             </p>
           </div>
 
-          <div className="relative mt-10">
+          <div className="w-full sm:w-[361px] sm:h-[164px] relative mt-10">
             <Image
               src="/assets/ContactBg3.png"
               alt="Quote Background"
               fill
-              className="absolute top-0 left-0 w-full h-full object-cover rounded-xl opacity-40"
+              className="absolute top-0 left-0 w-full h-full object-cover rounded-xl opacity-30"
             />
-            <div className="relative border border-white rounded-xl p-6 backdrop-blur-sm">
-              <p className="text-[15px] md:text-[16px] font-semibold">
+            <div className="relative border border-white rounded-xl p-6">
+              <p className="text-[15px] md:text-[16px] font-medium">
                 Let’s build something amazing together! 🚀 Whether you need a
                 stunning SaaS website or a complete redesign, we’re here to
                 help. Drop us a message.
