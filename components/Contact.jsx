@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import { CiMail } from "react-icons/ci";
 import {
@@ -6,38 +7,42 @@ import {
   FaTwitter,
   FaLinkedinIn,
 } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 const Contact = () => {
-  const Button = ({ label, Icon, onClick }) => {
-    return (
-      <div className="w-[215px] h-[55px] bg-gradient-to-r from-[#0634FF] to-[#B2ACFF] shadow-lg shadow-[#B2ACFF] flex items-center justify-center rounded-4xl">
-        <button
-          onClick={onClick}
-          className="relative overflow-hidden bg-gradient-to-r cursor-pointer 
-          flex group justify-center items-center gap-2 text-xl font-medium text-white 
-          w-[210px] h-[50px] from-[#06197d] to-[#274afd] px-4 rounded-4xl 
-          hover:from-black hover:to-gray-500 hover:flex-row-reverse 
-          transition-all duration-500 ease-in-out"
-        >
-          <Icon
-            className="transition-all duration-500 ease-in-out 
-            bg-white group-hover:bg-transparent group-hover:border group-hover:text-white 
-            border-white text-[#274afd] p-1.5 rounded-full"
-            size={33}
-          />
-          <span className="transition-all duration-500 ease-in-out group-hover:-translate-x-1 group-hover:text-white">
-            {label}
-          </span>
-          <div className="absolute inset-0 rounded-4xl bg-gradient-to-r from-black to-gray-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
-        </button>
-      </div>
-    );
-  };
+  const Button = ({ label, Icon, onClick }) => (
+    <div className="w-[215px] h-[55px] bg-gradient-to-r from-[#0634FF] to-[#B2ACFF] shadow-lg shadow-[#B2ACFF] flex items-center justify-center rounded-4xl">
+      <button
+        onClick={onClick}
+        className="relative overflow-hidden bg-gradient-to-r cursor-pointer 
+        flex group justify-center items-center gap-2 text-xl font-medium text-white 
+        w-[210px] h-[50px] from-[#06197d] to-[#274afd] px-4 rounded-4xl 
+        hover:from-black hover:to-gray-500 hover:flex-row-reverse 
+        transition-all duration-500 ease-in-out"
+      >
+        <Icon
+          className="transition-all duration-500 ease-in-out 
+          bg-white group-hover:bg-transparent group-hover:border group-hover:text-white 
+          border-white text-[#274afd] p-1.5 rounded-full"
+          size={33}
+        />
+        <span className="transition-all duration-500 ease-in-out group-hover:-translate-x-1 group-hover:text-white">
+          {label}
+        </span>
+        <div className="absolute inset-0 rounded-4xl bg-gradient-to-r from-black to-gray-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
+      </button>
+    </div>
+  );
+
   return (
     <section className="w-full bg-[#F7F8FC] py-16 px-6 md:px-12 lg:px-20">
       <div className="flex flex-col lg:flex-row justify-between gap-10">
         {/* Left Side */}
-        <div
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1 }}
           className="relative w-full max-w-[453px] h-auto rounded-3xl p-8 text-white flex flex-col justify-between"
           style={{
             background: "linear-gradient(180deg, #132663 0%, #000F3F 100%)",
@@ -98,10 +103,16 @@ const Contact = () => {
               <FaLinkedinIn className="hover:text-blue-700 cursor-pointer" />
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Right Side */}
-        <div className="flex flex-col gap-5 w-full max-w-[750px]">
+        <motion.div
+          initial={{ opacity: 0, x: 50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="flex flex-col gap-5 w-full max-w-[750px]"
+        >
           <h4 className="text-[20px] md:text-[22px] font-medium text-blue-600 mb-2">
             —Contact Us
           </h4>
@@ -154,7 +165,7 @@ const Contact = () => {
               <Button label="Send Message" Icon={CiMail} />
             </div>
           </form>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
