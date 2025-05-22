@@ -76,14 +76,23 @@ const Contact = () => {
             </p>
           </div>
 
-          <div className="w-full sm:w-[361px] sm:h-[164px] relative mt-10">
+          {/* Quote Box with Floating Image */}
+          <Image
+            src="/assets/quote.png"
+            alt="Quote Icon"
+            width={50}
+            height={50}
+            className="absolute top-66 left-3 sm:top-75 sm:left-5 z-50"
+          />
+          <div className="w-full sm:w-[361px] sm:h-[164px] relative mt-10 border border-white rounded-xl overflow-hidden">
             <Image
               src="/assets/ContactBg3.png"
               alt="Quote Background"
               fill
-              className="absolute top-0 left-0 w-full h-full object-cover rounded-xl opacity-30"
+              className="absolute top-0 left-0 w-full h-full object-cover opacity-30"
             />
-            <div className="relative border border-white rounded-xl p-6">
+
+            <div className="relative z-10 p-6">
               <p className="text-[15px] md:text-[16px] font-medium">
                 Let’s build something amazing together! 🚀 Whether you need a
                 stunning SaaS website or a complete redesign, we’re here to
