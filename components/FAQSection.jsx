@@ -1,9 +1,9 @@
 import Image from "next/image";
-import { FiArrowUpRight, FiArrowDownRight } from "react-icons/fi";
+import { FiArrowUpRight, FiArrowDownRight, FiPhoneCall } from "react-icons/fi";
 
 export default function FAQSection() {
   return (
-    <section className="w-full relative bg-[#f9f9fb] py-24 px-6 md:px-20 overflow-hidden">
+    <section className="w-full min-h-[781.17px] relative py-24 px-6 md:px-20 overflow-hidden">
       {/* Background 3D Image */}
       <div className="absolute -top-10 -left-10 md:-top-30 md:-left-55 w-52 h-52 md:w-[478px] md:h-93 z-0 opacity-80">
         <Image
@@ -29,7 +29,7 @@ export default function FAQSection() {
 
         <div className="grid md:grid-cols-3 gap-6 items-start">
           {/* Left side questions */}
-          <div className="md:col-span-2 space-y-4">
+          <div className="w-[739px] h-[135px] md:col-span-2 space-y-4">
             {[
               {
                 id: "01",
@@ -58,17 +58,25 @@ export default function FAQSection() {
                     ? "bg-white border border-blue-500 shadow-md"
                     : "bg-white hover:shadow-md border border-transparent"
                 }`}
+                style={{
+                  background:
+                    "linear-gradient(180deg, rgba(255, 255, 255, 0.054) 0%, rgba(0, 61, 255, 0.108) 100%)",
+                }}
               >
-                <div>
-                  <p className="text-base md:text-lg font-semibold">
-                    <span className="text-blue-600 mr-3">{item.id}</span>
-                    {item.question}
-                  </p>
-                  {item.answer && (
-                    <p className="mt-2 text-gray-500 text-sm max-w-xl">
-                      {item.answer}
+                <div className="flex items-center gap-4">
+                  <span className="text-blue-600 mr-3 text-4xl font-medium">
+                    {item.id}
+                  </span>
+                  <div>
+                    <p className="text-base md:text-[22px] font-medium">
+                      {item.question}
                     </p>
-                  )}
+                    {item.answer && (
+                      <p className="mt-2 text-[#828282] text-[15px] font-medium max-w-xl">
+                        {item.answer}
+                      </p>
+                    )}
+                  </div>
                 </div>
                 <div
                   className={`rounded-full p-3 text-xl ${
@@ -107,20 +115,7 @@ export default function FAQSection() {
 
             <div className="bg-white p-6 rounded-2xl shadow-md flex items-center gap-4">
               <div className="bg-blue-100 p-3 rounded-full">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="w-6 h-6 text-blue-600"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M2.25 6.75C2.25 6.33579 2.58579 6 3 6h1.25c.41421 0 .75.33579.75.75v.75A3.75 3.75 0 008.75 11.25h.75c.41421 0 .75.33579.75.75V13a6 6 0 006 6h.75c.4142 0 .75.3358.75.75V21c0 .4142-.3358.75-.75.75H3a.75.75 0 01-.75-.75V6.75z"
-                  />
-                </svg>
+                <FiPhoneCall className="text-blue-600" size={24} />
               </div>
               <div>
                 <p className="text-gray-500 text-sm">
