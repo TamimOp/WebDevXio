@@ -35,10 +35,10 @@ const Contact = () => {
   };
   return (
     <section className="w-full bg-[#F7F8FC] py-16 px-6 md:px-12 lg:px-20">
-      <div className="flex justify-around">
+      <div className="flex flex-col lg:flex-row justify-between gap-10">
         {/* Left Side */}
         <div
-          className="relative w-[453px] h-[632px] rounded-3xl p-10 text-white flex flex-col justify-between"
+          className="relative w-full max-w-[453px] h-auto rounded-3xl p-8 text-white flex flex-col justify-between"
           style={{
             background: "linear-gradient(180deg, #132663 0%, #000F3F 100%)",
           }}
@@ -52,17 +52,21 @@ const Contact = () => {
             priority
           />
           <div className="relative z-10">
-            <h3 className="text-[28px] font-bold mb-4">Address</h3>
-            <p className="text-[15px] font-medium text-[#A9ADB5] mb-6">
+            <h3 className="text-[24px] md:text-[28px] font-bold mb-4">
+              Address
+            </h3>
+            <p className="text-[14px] md:text-[15px] font-medium text-[#A9ADB5] mb-6">
               3400 Cottage Way, Suite G2 #26176
               <br />
               Sacramento, CA 95825, USA
             </p>
-            <h3 className="text-[28px] font-bold mb-4">Contact</h3>
-            <p className="text-[15px] font-medium text-[#A9ADB5] mb-1">
+            <h3 className="text-[24px] md:text-[28px] font-bold mb-4">
+              Contact
+            </h3>
+            <p className="text-[14px] md:text-[15px] font-medium text-[#A9ADB5] mb-1">
               Phone: +(000)000000000
             </p>
-            <p className="text-[15px] font-medium text-[#A9ADB5]">
+            <p className="text-[14px] md:text-[15px] font-medium text-[#A9ADB5]">
               Email: contact@webdevxio.com
             </p>
           </div>
@@ -75,7 +79,7 @@ const Contact = () => {
               className="absolute top-0 left-0 w-full h-full object-cover rounded-xl opacity-40"
             />
             <div className="relative border border-white rounded-xl p-6 backdrop-blur-sm">
-              <p className="text-[16px] font-semibold">
+              <p className="text-[15px] md:text-[16px] font-semibold">
                 Let’s build something amazing together! 🚀 Whether you need a
                 stunning SaaS website or a complete redesign, we’re here to
                 help. Drop us a message.
@@ -84,7 +88,9 @@ const Contact = () => {
           </div>
 
           <div className="mt-10">
-            <h3 className="text-[22px] font-medium mb-4">Stay Connected</h3>
+            <h3 className="text-[20px] md:text-[22px] font-medium mb-4">
+              Stay Connected
+            </h3>
             <div className="flex gap-4 text-xl">
               <FaFacebookF className="hover:text-blue-500 cursor-pointer" />
               <FaInstagram className="hover:text-pink-500 cursor-pointer" />
@@ -95,11 +101,11 @@ const Contact = () => {
         </div>
 
         {/* Right Side */}
-        <div className="flex flex-col gap-5 w-[696px] h-[748px] ">
-          <h4 className="text-[22px] font-medium text-blue-600 mb-2">
+        <div className="flex flex-col gap-5 w-full max-w-[750px]">
+          <h4 className="text-[20px] md:text-[22px] font-medium text-blue-600 mb-2">
             —Contact Us
           </h4>
-          <h2 className="text-4xl md:text-5xl font-medium mb-8">
+          <h2 className="text-3xl md:text-5xl font-medium mb-8 leading-snug">
             Get Your <span className="text-blue-600">Free Quote</span> Today!
           </h2>
           <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
