@@ -38,12 +38,20 @@ const Contact = () => {
       <div className="flex justify-around">
         {/* Left Side */}
         <div
-          className="w-[453px] h-[632px] rounded-3xl p-10 text-white flex flex-col justify-between"
+          className="relative w-[453px] h-[632px] rounded-3xl p-10 text-white flex flex-col justify-between"
           style={{
             background: "linear-gradient(180deg, #132663 0%, #000F3F 100%)",
           }}
         >
-          <div>
+          <Image
+            src="/assets/ContactUsBG.png"
+            alt="Overlay BG"
+            fill
+            className="absolute top-0 left-0 w-full h-full object-cover z-0 opacity-5"
+            unoptimized
+            priority
+          />
+          <div className="relative z-10">
             <h3 className="text-[28px] font-bold mb-4">Address</h3>
             <p className="text-[15px] font-medium text-[#A9ADB5] mb-6">
               3400 Cottage Way, Suite G2 #26176
@@ -61,10 +69,10 @@ const Contact = () => {
 
           <div className="relative mt-10">
             <Image
-              src="/ContactBg3.png"
+              src="/assets/ContactBg3.png"
               alt="Quote Background"
               fill
-              className="absolute top-0 left-0 w-full h-full object-cover rounded-xl opacity-20"
+              className="absolute top-0 left-0 w-full h-full object-cover rounded-xl opacity-40"
             />
             <div className="relative border border-white rounded-xl p-6 backdrop-blur-sm">
               <p className="text-[16px] font-semibold">
