@@ -67,7 +67,13 @@ export default function Circle() {
 
   const contents = [
     {
-      headline: "High-Conversion SaaS Websites That Drive Growth",
+      headline: (
+        <>
+          High-Conversion SaaS Websites
+          <br />
+          That Drive Growth
+        </>
+      ),
       text: "We design and develop stunning, high-performing websites for SaaS products to maximize conversions.",
       label: "SaaS Website",
     },
