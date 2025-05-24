@@ -93,7 +93,7 @@ export default function FAQSection() {
                         <p className="text-base md:text-[22px] font-medium">
                           {item.question}
                         </p>
-                        <p className="mt-2 text-[#828282] text-[15px] font-medium max-w-xl hidden group-hover:block transition-opacity duration-300">
+                        <p className="mt-2 text-[#828282] text-[15px] font-medium max-w-xl block sm:hidden group-hover:block transition-opacity duration-300">
                           {item.answer}
                         </p>
                       </div>
