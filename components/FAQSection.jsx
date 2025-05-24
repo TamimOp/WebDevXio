@@ -70,26 +70,21 @@ export default function FAQSection() {
               {faqItems.map((item) => (
                 <div
                   key={item.id}
-                  className="group relative overflow-hidden rounded-2xl transition-all duration-500"
-                  style={{
-                    background:
-                      "linear-gradient(180deg, rgba(255, 255, 255, 0.054) 0%, rgba(0, 61, 255, 0.108) 100%)",
-                  }}
+                  className="group relative rounded-2xl overflow-hidden transition-all duration-500"
                 >
-                  {/* Hover border layer */}
-                  <div
-                    className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-2xl"
-                    style={{
-                      borderWidth: "2px",
-                      borderStyle: "solid",
-                      borderImageSource:
-                        "linear-gradient(90deg, #274AFF 0%, #7389FF 100%)",
-                      borderImageSlice: 1,
-                    }}
-                  />
+                  {/* Fake Gradient Border Layer */}
+                  <div className="absolute inset-0 rounded-2xl p-[2px] opacity-0 group-hover:opacity-100 transition-all duration-500 bg-gradient-to-r from-[#274AFF] to-[#7389FF]">
+                    <div className="w-full h-full rounded-[14px] bg-white bg-opacity-90"></div>
+                  </div>
 
-                  {/* Content */}
-                  <div className="relative z-10 flex justify-between items-center px-6 py-5 md:py-6">
+                  {/* Actual Content (Above Border Layer) */}
+                  <div
+                    className="relative z-10 flex justify-between items-center px-6 py-5 md:py-6 rounded-2xl transition-all duration-300 bg-white hover:shadow-md"
+                    style={{
+                      background:
+                        "linear-gradient(180deg, rgba(255, 255, 255, 0.054) 0%, rgba(0, 61, 255, 0.108) 100%)",
+                    }}
+                  >
                     <div className="flex items-center gap-4">
                       <span className="text-blue-600 mr-3 text-4xl font-medium">
                         {item.id}
