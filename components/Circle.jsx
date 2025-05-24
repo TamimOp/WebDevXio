@@ -120,7 +120,7 @@ export default function Circle() {
   return (
     <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden my-20">
       {/* Arc Container */}
-      <div className="absolute inset-0 flex items-center justify-center top-25 sm:top-210 sm:mt-10">
+      <div className="absolute inset-0 items-center justify-center top-25 sm:top-210 sm:mt-10 hidden sm:flex">
         <div className="relative w-[1500px] h-[900px]">
           <svg
             width="100%"
