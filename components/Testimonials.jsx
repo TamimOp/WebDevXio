@@ -61,18 +61,21 @@ const testimonials = [
   },
 ];
 
-// Reusable Tag Row
 const TagRow = () => (
-  <div className="w-full text-white text-sm bg-[#2A40F8] py-2 flex justify-center items-center gap-4 flex-wrap">
-    {tagItems.map((item, idx) => (
-      <div
-        key={idx}
-        className="flex items-center gap-2 px-4 border-x border-white/30"
-      >
-        <span className="text-xl">✴</span>
-        {item}
-      </div>
-    ))}
+  <div className="w-full text-white text-sm bg-[#2A40F8] py-2 flex justify-center items-center flex-wrap gap-10 md:gap-50">
+    {tagItems.map((item, idx) => {
+      const isHiddenOnMobile = idx > 1;
+      return (
+        <div
+          key={idx}
+          className={`flex items-center gap-2 px-4 border-x border-white/30 
+            ${isHiddenOnMobile ? "hidden sm:flex" : "flex"}`}
+        >
+          <span className="text-xl">✴</span>
+          {item}
+        </div>
+      );
+    })}
   </div>
 );
 
