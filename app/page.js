@@ -5,6 +5,7 @@ import FAQSection from "@/components/FAQSection";
 import Features from "@/components/Features";
 import Hero from "@/components/Hero";
 import Info from "@/components/Info";
+import Testimonials from "@/components/Testimonials";
 import Toolbox from "@/components/Toolbox";
 
 export default function Home() {
@@ -16,6 +17,7 @@ export default function Home() {
       <Toolbox />
       <Features />
       <FAQSection />
+      <Testimonials />
       <Contact />
       <Contact2 />
     </main>
