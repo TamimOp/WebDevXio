@@ -63,7 +63,7 @@ const testimonials = [
 
 // Reusable Tag Row
 const TagRow = () => (
-  <div className="w-full text-white text-sm bg-[#2A40F8] py-2 flex justify-center items-center gap-50 flex-wrap">
+  <div className="w-full text-white text-sm bg-[#2A40F8] py-2 flex justify-center items-center gap-4 flex-wrap">
     {tagItems.map((item, idx) => (
       <div
         key={idx}
@@ -80,7 +80,6 @@ const Testimonials = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const scrollRef = useRef(null);
 
-  // Scroll to the card based on activeIndex
   useEffect(() => {
     const container = scrollRef.current;
     if (container) {
@@ -93,15 +92,14 @@ const Testimonials = () => {
   }, [activeIndex]);
 
   return (
-    <div className="bg-[#0B1C4A] text-white py-16 px-4 relative overflow-hidden">
+    <div className="bg-[#0B1C4A] text-white relative overflow-hidden">
       {/* Top Tag Row */}
-      <div className="absolute top-0 left-0 right-0 z-10">
+      <div className="mb-10">
         <TagRow />
       </div>
 
       {/* Main Content */}
-      <div className="max-w-6xl mx-auto text-center mt-20">
-        {/* Heading */}
+      <div className="max-w-6xl mx-auto text-center">
         <p className="text-[22px] leading-[116%] font-medium text-[#FDFEFF] mb-2">
           —Testimonials
         </p>
@@ -109,7 +107,7 @@ const Testimonials = () => {
           Testimonials:{" "}
           <span className="text-[#4D6BFF]">Trusted by Our Clients</span>
         </h2>
-        <p className="max-w-2xl text-[22px] mx-auto text-[#E9E9E9] mt-4">
+        <p className="max-w-2xl text-[18px] md:text-[22px] mx-auto text-[#E9E9E9] mt-4">
           At UX Recharge, we specialize in creating modern, user-friendly
           websites tailored for SaaS companies. Our designs are
           conversion-focused, fast, and fully optimized for mobile and SEO.
@@ -118,7 +116,7 @@ const Testimonials = () => {
         {/* Testimonial Cards */}
         <div
           ref={scrollRef}
-          className="mt-12 flex justify-start gap-6 overflow-x-auto scrollbar-hide scroll-smooth"
+          className="mt-10 flex justify-start gap-6 overflow-x-auto scrollbar-hide scroll-smooth px-1"
         >
           {testimonials.map((item, index) => (
             <motion.div
@@ -128,12 +126,10 @@ const Testimonials = () => {
               transition={{ delay: index * 0.2 }}
               className="bg-[#14275F] relative rounded-xl p-6 w-[300px] min-w-[300px] shadow-xl text-left shrink-0"
             >
-              {/* Quote icon */}
               <div className="absolute top-4 right-4 text-6xl text-[#4D6BFF]/30">
                 <span className="blur-sm">“</span>
               </div>
 
-              {/* Stars */}
               <div className="flex gap-2 text-yellow-400 mb-3">
                 {Array(5)
                   .fill(0)
@@ -142,13 +138,11 @@ const Testimonials = () => {
                   ))}
               </div>
 
-              {/* Content */}
-              <h3 className="text-[25px] font-medium mb-2">{item.heading}</h3>
+              <h3 className="text-[22px] font-medium mb-2">{item.heading}</h3>
               <p className="text-[15px] font-medium text-[#E9E9E9] mb-4">
                 {item.review}
               </p>
 
-              {/* Author */}
               <div className="flex items-center gap-3">
                 <Image
                   src={item.image}
@@ -183,7 +177,7 @@ const Testimonials = () => {
       </div>
 
       {/* Bottom Tag Row */}
-      <div className="absolute bottom-0 left-0 right-0 z-10">
+      <div className="mt-10">
         <TagRow />
       </div>
     </div>
