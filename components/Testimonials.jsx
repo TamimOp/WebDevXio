@@ -63,7 +63,7 @@ const testimonials = [
 
 // Reusable Tag Row
 const TagRow = () => (
-  <div className="w-full text-white text-sm bg-[#2A40F8] py-2 flex justify-center items-center gap-4 flex-wrap">
+  <div className="w-full text-white text-sm bg-[#2A40F8] py-2 flex justify-center items-center gap-50 flex-wrap">
     {tagItems.map((item, idx) => (
       <div
         key={idx}
@@ -102,12 +102,14 @@ const Testimonials = () => {
       {/* Main Content */}
       <div className="max-w-6xl mx-auto text-center mt-20">
         {/* Heading */}
-        <p className="text-sm text-white/80 mb-2">—Testimonials</p>
-        <h2 className="text-3xl md:text-4xl font-semibold">
+        <p className="text-[22px] leading-[116%] font-medium text-[#FDFEFF] mb-2">
+          —Testimonials
+        </p>
+        <h2 className="text-3xl md:text-5xl font-semibold">
           Testimonials:{" "}
           <span className="text-[#4D6BFF]">Trusted by Our Clients</span>
         </h2>
-        <p className="max-w-2xl mx-auto text-white/70 mt-4">
+        <p className="max-w-2xl text-[22px] mx-auto text-[#E9E9E9] mt-4">
           At UX Recharge, we specialize in creating modern, user-friendly
           websites tailored for SaaS companies. Our designs are
           conversion-focused, fast, and fully optimized for mobile and SEO.
@@ -132,7 +134,7 @@ const Testimonials = () => {
               </div>
 
               {/* Stars */}
-              <div className="flex gap-1 text-yellow-400 mb-3">
+              <div className="flex gap-2 text-yellow-400 mb-3">
                 {Array(5)
                   .fill(0)
                   .map((_, i) => (
@@ -141,8 +143,10 @@ const Testimonials = () => {
               </div>
 
               {/* Content */}
-              <h3 className="text-lg font-semibold mb-2">{item.heading}</h3>
-              <p className="text-sm text-white/80 mb-4">{item.review}</p>
+              <h3 className="text-[25px] font-medium mb-2">{item.heading}</h3>
+              <p className="text-[15px] font-medium text-[#E9E9E9] mb-4">
+                {item.review}
+              </p>
 
               {/* Author */}
               <div className="flex items-center gap-3">
