@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { FaStar } from "react-icons/fa";
 import Image from "next/image";
 
+// Tag list
 const tagItems = [
   "Saas Website",
   "UX/UI Design",
@@ -11,6 +12,7 @@ const tagItems = [
   "UX/UI Design",
 ];
 
+// Testimonial list
 const testimonials = [
   {
     id: 1,
@@ -58,6 +60,8 @@ const testimonials = [
       "Working with them has been a pleasure. Always on time and always ready to help.",
   },
 ];
+
+// Reusable Tag Row
 const TagRow = () => (
   <div className="w-full text-white text-sm bg-[#2A40F8] py-2 flex justify-center items-center gap-4 flex-wrap">
     {tagItems.map((item, idx) => (
@@ -76,7 +80,7 @@ const Testimonials = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const scrollRef = useRef(null);
 
-  // Scroll to active index
+  // Scroll to the card based on activeIndex
   useEffect(() => {
     const container = scrollRef.current;
     if (container) {
@@ -90,13 +94,14 @@ const Testimonials = () => {
 
   return (
     <div className="bg-[#0B1C4A] text-white py-16 px-4 relative overflow-hidden">
-      {/* Top Static Tag Row */}
+      {/* Top Tag Row */}
       <div className="absolute top-0 left-0 right-0 z-10">
         <TagRow />
       </div>
 
       {/* Main Content */}
       <div className="max-w-6xl mx-auto text-center mt-20">
+        {/* Heading */}
         <p className="text-sm text-white/80 mb-2">—Testimonials</p>
         <h2 className="text-3xl md:text-4xl font-semibold">
           Testimonials:{" "}
@@ -108,7 +113,7 @@ const Testimonials = () => {
           conversion-focused, fast, and fully optimized for mobile and SEO.
         </p>
 
-        {/* Cards Container with Scroll */}
+        {/* Testimonial Cards */}
         <div
           ref={scrollRef}
           className="mt-12 flex justify-start gap-6 overflow-x-auto scrollbar-hide scroll-smooth"
@@ -121,11 +126,12 @@ const Testimonials = () => {
               transition={{ delay: index * 0.2 }}
               className="bg-[#14275F] relative rounded-xl p-6 w-[300px] min-w-[300px] shadow-xl text-left shrink-0"
             >
-              {/* Quotation Blur */}
+              {/* Quote icon */}
               <div className="absolute top-4 right-4 text-6xl text-[#4D6BFF]/30">
                 <span className="blur-sm">“</span>
               </div>
 
+              {/* Stars */}
               <div className="flex gap-1 text-yellow-400 mb-3">
                 {Array(5)
                   .fill(0)
@@ -134,9 +140,11 @@ const Testimonials = () => {
                   ))}
               </div>
 
+              {/* Content */}
               <h3 className="text-lg font-semibold mb-2">{item.heading}</h3>
               <p className="text-sm text-white/80 mb-4">{item.review}</p>
 
+              {/* Author */}
               <div className="flex items-center gap-3">
                 <Image
                   src={item.image}
@@ -154,7 +162,7 @@ const Testimonials = () => {
           ))}
         </div>
 
-        {/* Dash Pagination */}
+        {/* Pagination Dashes */}
         <div className="flex justify-center gap-2 mt-6">
           {testimonials.map((_, idx) => (
             <button
@@ -170,7 +178,7 @@ const Testimonials = () => {
         </div>
       </div>
 
-      {/* Bottom Static Tag Row */}
+      {/* Bottom Tag Row */}
       <div className="absolute bottom-0 left-0 right-0 z-10">
         <TagRow />
       </div>
