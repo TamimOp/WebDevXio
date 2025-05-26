@@ -84,6 +84,7 @@ const TagRow = () => (
 const Testimonials = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const scrollRef = useRef(null);
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     const container = scrollRef.current;
@@ -95,6 +96,18 @@ const Testimonials = () => {
       });
     }
   }, [activeIndex]);
+
+  useEffect(() => {
+    if (isHovered) return;
+
+    const interval = setInterval(() => {
+      setActiveIndex((prev) =>
+        prev === testimonials.length - 1 ? 0 : prev + 1
+      );
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, [isHovered]);
 
   return (
     <div className="bg-[#0B1C4A] text-white relative overflow-hidden">
@@ -123,6 +136,8 @@ const Testimonials = () => {
         {/* Testimonial Cards */}
         <div
           ref={scrollRef}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
           className="mt-10 flex justify-start gap-6 overflow-x-auto scrollbar-hide scroll-smooth px-1"
         >
           {testimonials.map((item, index) => (
