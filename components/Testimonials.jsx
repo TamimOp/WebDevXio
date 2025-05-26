@@ -63,7 +63,7 @@ const testimonials = [
 
 // Responsive Tag Row
 const TagRow = () => (
-  <div className="w-full text-white text-sm bg-[#2A40F8] py-2 flex justify-center items-center flex-wrap gap-4 md:gap-12">
+  <div className="w-full text-white text-sm bg-[#2A40F8] py-2 flex justify-center items-center flex-wrap gap-4 md:gap-50">
     {tagItems.map((item, idx) => {
       const isHiddenOnMobile = idx > 1;
       return (
