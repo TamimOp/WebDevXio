@@ -12,7 +12,7 @@ const tagItems = [
   "UX/UI Design",
 ];
 
-// Testimonial list
+// Testimonials data
 const testimonials = [
   {
     id: 1,
@@ -61,15 +61,17 @@ const testimonials = [
   },
 ];
 
+// Responsive Tag Row
 const TagRow = () => (
-  <div className="w-full text-white text-sm bg-[#2A40F8] py-2 flex justify-center items-center flex-wrap gap-10 md:gap-50">
+  <div className="w-full text-white text-sm bg-[#2A40F8] py-2 flex justify-center items-center flex-wrap gap-4 md:gap-12">
     {tagItems.map((item, idx) => {
       const isHiddenOnMobile = idx > 1;
       return (
         <div
           key={idx}
-          className={`flex items-center gap-2 px-4 border-x border-white/30 
-            ${isHiddenOnMobile ? "hidden sm:flex" : "flex"}`}
+          className={`flex items-center gap-2 px-4 border-x border-white/30 ${
+            isHiddenOnMobile ? "hidden sm:flex" : "flex"
+          }`}
         >
           <span className="text-xl">✴</span>
           {item}
@@ -102,12 +104,12 @@ const Testimonials = () => {
       </div>
 
       {/* Main Content */}
-      <div className="max-w-6xl mx-auto text-center px-3 py-6">
-        <div className="w-[696px] h-[262px] text-center flex flex-col justify-center items-center mx-auto gap-3">
+      <div className="max-w-6xl mx-auto text-center px-4 sm:px-6 md:px-10 py-6">
+        <div className="w-full max-w-[696px] text-center flex flex-col justify-center items-center mx-auto gap-3">
           <p className="text-[22px] leading-[116%] font-medium text-[#FDFEFF] mb-2">
             —Testimonials
           </p>
-          <h2 className="text-3xl md:text-5xl font-semibold">
+          <h2 className="text-3xl md:text-5xl font-medium">
             Testimonials:{" "}
             <span className="text-[#4D6BFF]">Trusted by Our Clients</span>
           </h2>
@@ -129,7 +131,7 @@ const Testimonials = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.2 }}
-              className="bg-[#14275F] relative rounded-xl p-6 w-[489.93px] h-[329.58px] min-w-[300px] shadow-xl text-left shrink-0"
+              className="bg-[#14275F] relative rounded-xl p-6 w-full max-w-[490px] min-w-[300px] h-auto shadow-xl text-left shrink-0"
             >
               <div className="absolute top-4 right-4 text-6xl text-[#4D6BFF]/30">
                 <span className="blur-sm">“</span>
@@ -139,12 +141,17 @@ const Testimonials = () => {
                   {Array(5)
                     .fill(0)
                     .map((_, i) => (
-                      <FaStar key={i} className="w-[33px] h-[33px]" />
+                      <FaStar
+                        key={i}
+                        className="w-[22px] h-[22px] sm:w-[33px] sm:h-[33px]"
+                      />
                     ))}
                 </div>
 
-                <h3 className="text-[25px] font-medium mb-2">{item.heading}</h3>
-                <p className="text-[15px] font-medium text-[#E9E9E9] mb-4">
+                <h3 className="text-[20px] sm:text-[25px] font-medium mb-2">
+                  {item.heading}
+                </h3>
+                <p className="text-[14px] sm:text-[15px] font-medium text-[#E9E9E9] mb-4">
                   {item.review}
                 </p>
 
@@ -157,10 +164,12 @@ const Testimonials = () => {
                     className="rounded-full"
                   />
                   <div>
-                    <p className="font-medium text-[#FCFCFC] text-[22px]">
+                    <p className="font-medium text-[#FCFCFC] text-[18px] sm:text-[22px]">
                       {item.name}
                     </p>
-                    <p className="text-[15px] text-[#E9E9E9]">{item.title}</p>
+                    <p className="text-[14px] sm:text-[15px] text-[#E9E9E9]">
+                      {item.title}
+                    </p>
                   </div>
                 </div>
               </div>
