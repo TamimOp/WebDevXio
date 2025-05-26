@@ -1,5 +1,5 @@
 "use client";
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { FaStar } from "react-icons/fa";
 import Image from "next/image";
@@ -61,7 +61,6 @@ const testimonials = [
   },
 ];
 
-// Responsive Tag Row
 const TagRow = () => (
   <div className="w-full text-white text-sm bg-[#2A40F8] py-2 flex justify-center items-center flex-wrap gap-4 md:gap-50">
     {tagItems.map((item, idx) => {
@@ -84,7 +83,14 @@ const TagRow = () => (
 const Testimonials = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const scrollRef = useRef(null);
-  const [isHovered, setIsHovered] = useState(false);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % testimonials.length);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     const container = scrollRef.current;
@@ -96,18 +102,6 @@ const Testimonials = () => {
       });
     }
   }, [activeIndex]);
-
-  useEffect(() => {
-    if (isHovered) return;
-
-    const interval = setInterval(() => {
-      setActiveIndex((prev) =>
-        prev === testimonials.length - 1 ? 0 : prev + 1
-      );
-    }, 2000);
-
-    return () => clearInterval(interval);
-  }, [isHovered]);
 
   return (
     <div className="bg-[#0B1C4A] text-white relative overflow-hidden">
@@ -136,9 +130,7 @@ const Testimonials = () => {
         {/* Testimonial Cards */}
         <div
           ref={scrollRef}
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-          className="mt-10 flex justify-start gap-6 overflow-x-auto scrollbar-hide scroll-smooth px-1"
+          className="mt-10 flex justify-start gap-6 overflow-x-auto px-1 scroll-smooth scrollbar-hide"
         >
           {testimonials.map((item, index) => (
             <motion.div
@@ -212,6 +204,17 @@ const Testimonials = () => {
       <div className="mt-10">
         <TagRow />
       </div>
+
+      {/* HIDE SCROLLBAR STYLE */}
+      <style jsx global>{`
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}</style>
     </div>
   );
 };
