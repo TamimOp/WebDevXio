@@ -102,19 +102,21 @@ const Testimonials = () => {
       </div>
 
       {/* Main Content */}
-      <div className="max-w-6xl mx-auto text-center">
-        <p className="text-[22px] leading-[116%] font-medium text-[#FDFEFF] mb-2">
-          —Testimonials
-        </p>
-        <h2 className="text-3xl md:text-5xl font-semibold">
-          Testimonials:{" "}
-          <span className="text-[#4D6BFF]">Trusted by Our Clients</span>
-        </h2>
-        <p className="max-w-2xl text-[18px] md:text-[22px] mx-auto text-[#E9E9E9] mt-4">
-          At UX Recharge, we specialize in creating modern, user-friendly
-          websites tailored for SaaS companies. Our designs are
-          conversion-focused, fast, and fully optimized for mobile and SEO.
-        </p>
+      <div className="max-w-6xl mx-auto text-center px-3 py-6">
+        <div className="w-[696px] h-[262px] text-center flex flex-col justify-center items-center mx-auto gap-3">
+          <p className="text-[22px] leading-[116%] font-medium text-[#FDFEFF] mb-2">
+            —Testimonials
+          </p>
+          <h2 className="text-3xl md:text-5xl font-semibold">
+            Testimonials:{" "}
+            <span className="text-[#4D6BFF]">Trusted by Our Clients</span>
+          </h2>
+          <p className="max-w-2xl text-[18px] md:text-[22px] mx-auto text-[#E9E9E9] mt-4">
+            At UX Recharge, we specialize in creating modern, user-friendly
+            websites tailored for SaaS companies. Our designs are
+            conversion-focused, fast, and fully optimized for mobile and SEO.
+          </p>
+        </div>
 
         {/* Testimonial Cards */}
         <div
@@ -127,36 +129,39 @@ const Testimonials = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.2 }}
-              className="bg-[#14275F] relative rounded-xl p-6 w-[300px] min-w-[300px] shadow-xl text-left shrink-0"
+              className="bg-[#14275F] relative rounded-xl p-6 w-[489.93px] h-[329.58px] min-w-[300px] shadow-xl text-left shrink-0"
             >
               <div className="absolute top-4 right-4 text-6xl text-[#4D6BFF]/30">
                 <span className="blur-sm">“</span>
               </div>
+              <div className="flex flex-col items-start gap-2 p-2">
+                <div className="flex gap-2 text-yellow-400 mb-3">
+                  {Array(5)
+                    .fill(0)
+                    .map((_, i) => (
+                      <FaStar key={i} className="w-[33px] h-[33px]" />
+                    ))}
+                </div>
 
-              <div className="flex gap-2 text-yellow-400 mb-3">
-                {Array(5)
-                  .fill(0)
-                  .map((_, i) => (
-                    <FaStar key={i} />
-                  ))}
-              </div>
+                <h3 className="text-[25px] font-medium mb-2">{item.heading}</h3>
+                <p className="text-[15px] font-medium text-[#E9E9E9] mb-4">
+                  {item.review}
+                </p>
 
-              <h3 className="text-[22px] font-medium mb-2">{item.heading}</h3>
-              <p className="text-[15px] font-medium text-[#E9E9E9] mb-4">
-                {item.review}
-              </p>
-
-              <div className="flex items-center gap-3">
-                <Image
-                  src={item.image}
-                  alt={item.name}
-                  width={40}
-                  height={40}
-                  className="rounded-full"
-                />
-                <div>
-                  <p className="font-medium text-sm">{item.name}</p>
-                  <p className="text-xs text-white/60">{item.title}</p>
+                <div className="flex items-center gap-3">
+                  <Image
+                    src={item.image}
+                    alt={item.name}
+                    width={48}
+                    height={48}
+                    className="rounded-full"
+                  />
+                  <div>
+                    <p className="font-medium text-[#FCFCFC] text-[22px]">
+                      {item.name}
+                    </p>
+                    <p className="text-[15px] text-[#E9E9E9]">{item.title}</p>
+                  </div>
                 </div>
               </div>
             </motion.div>
