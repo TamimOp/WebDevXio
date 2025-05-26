@@ -30,7 +30,7 @@ const testimonials = [
     image: "/assets/heftiba2.jpg",
     heading: "WordPress Website Design",
     review:
-      "Their WordPress designs were modern, responsive, and SEO-ready. The results were immediate and measurable.",
+      "Their WordPress designs were modern, responsive, and SEO-ready, built with best practices in mind. The results were immediate and measurable, boosting our site's visibility.",
   },
   {
     id: 3,
@@ -39,7 +39,7 @@ const testimonials = [
     image: "/assets/heftiba1.jpg",
     heading: "Fast Turnaround",
     review:
-      "Our full-screen site went live within days. These developers are incredibly fast and efficient.",
+      "Our full-screen site went live within days without a hitch. These developers are incredibly fast, efficient, and detail-oriented.",
   },
   {
     id: 4,
@@ -48,7 +48,7 @@ const testimonials = [
     image: "/assets/heftiba2.jpg",
     heading: "Mobile-First Magic",
     review:
-      "Everything is mobile-optimized with top performance scores. They truly understand modern web design.",
+      "Everything is mobile-optimized with top performance scores across tools like Lighthouse. They truly understand modern web design and user experience.",
   },
   {
     id: 5,
@@ -57,7 +57,7 @@ const testimonials = [
     image: "/assets/heftiba1.jpg",
     heading: "Reliable Team!",
     review:
-      "Working with them has been a pleasure. Always on time and always ready to help.",
+      "Working with them has been a pleasure from start to finish. They are always on time, professional, and ready to help at a moment’s notice.",
   },
 ];
 
@@ -134,7 +134,7 @@ const Testimonials = () => {
               <div className="absolute top-4 right-4 text-6xl text-[#4D6BFF]/30">
                 <span className="blur-sm">“</span>
               </div>
-              <div className="flex flex-col items-start gap-2 p-2">
+              <div className="flex flex-col items-start gap-1 p-2">
                 <div className="flex gap-2 text-yellow-400 mb-3">
                   {Array(5)
                     .fill(0)
