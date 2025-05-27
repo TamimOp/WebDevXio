@@ -15,7 +15,7 @@ const Button = ({
       <div className="group-hover:opacity-0 transition-all duration-300 bg-gradient-blue rounded-full p-2 flex items-center justify-center">
         <Image src={iconSrc} width={19} height={19} alt="icon" />
       </div>
-      <p className="gradient-text text-xl font-semibold transition-all duration-500 group-hover:text-white group-hover:translate-x-[-50px]">
+      <p className="gradient-text text-sm md:text-[22px] font-semibold transition-all duration-500 group-hover:text-white group-hover:translate-x-[-50px]">
         {label}
       </p>
       <div className="absolute right-6 opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0 transition-all duration-500 border border-white rounded-full p-2">
