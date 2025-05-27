@@ -121,7 +121,7 @@ export default function Circle() {
     <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden my-20">
       {/* Arc Container */}
       <div className="absolute inset-0 items-center justify-center top-25 sm:top-210 sm:mt-10 hidden sm:flex">
-        <div className="relative w-[1500px] h-[900px]">
+        <div className="relative w-[1500px] h-[900px] 2xl:w-[1800px] 2xl:h-[1000px]">
           <svg
             width="100%"
             height="100%"
@@ -218,7 +218,7 @@ export default function Circle() {
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: -20, opacity: 0 }}
                 transition={{ duration: 0.5 }}
-                className="text-3xl md:text-4xl lg:text-5xl font-bold text-center bg-gradient-to-r from-[#1E2B4D] to-[#274AFF] bg-clip-text text-transparent leading-tight"
+                className="text-3xl md:text-4xl lg:text-5xl xl:text-[6xl] 2xl:text-[64px] font-bold text-center bg-gradient-to-r from-[#1E2B4D] to-[#274AFF] bg-clip-text text-transparent leading-tight"
               >
                 {contents[contentId].headline}
               </motion.h1>
