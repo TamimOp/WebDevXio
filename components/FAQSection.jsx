@@ -79,26 +79,26 @@ export default function FAQSection() {
 
                   {/* Content */}
                   <div
-                    className="relative z-10 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-6 px-6 py-5 md:py-6 rounded-2xl transition-all duration-300 bg-white hover:shadow-md"
+                    className="relative z-10 flex justify-between items-center gap-4 sm:gap-6 px-6 py-5 md:py-6 rounded-2xl transition-all duration-300 bg-white hover:shadow-md"
                     style={{
                       background:
                         "linear-gradient(180deg, rgba(255, 255, 255, 0.054) 0%, rgba(0, 61, 255, 0.108) 100%)",
                     }}
                   >
-                    <div className="flex items-start gap-4">
-                      <span className="gradient-text mr-3 text-3xl sm:text-4xl font-medium">
+                    <div className="flex items-center gap-4">
+                      <span className="gradient-text mr-3 text-[13px] sm:text-2xl md:text-4xl font-medium">
                         {item.id}
                       </span>
                       <div>
-                        <p className="text-base md:text-[22px] font-medium">
+                        <p className="text-[13px] md:text-[22px] font-medium">
                           {item.question}
                         </p>
-                        <p className="mt-2 text-[#828282] text-[15px] font-medium max-w-xl block sm:hidden group-hover:block transition-opacity duration-300">
+                        <p className="mt-2 text-[#828282] text-[7px] sm:text-[15px] font-medium max-w-xl block sm:hidden group-hover:block transition-opacity duration-300">
                           {item.answer}
                         </p>
                       </div>
                     </div>
-                    <div className="rounded-full p-3 text-xl bg-gradient-to-br from-black to-gray-700 text-white group-hover:from-[#274afd] group-hover:to-[#06197d] transition-all duration-300 self-start sm:self-center">
+                    <div className="rounded-full p-3 text-[10px] sm:text-xl bg-gradient-to-br from-black to-[#828282] text-white group-hover:from-[#274afd] group-hover:to-[#06197d] transition-all duration-300">
                       <span className="block group-hover:hidden">
                         <FiArrowDownRight />
                       </span>
@@ -136,10 +136,10 @@ export default function FAQSection() {
                 width={88.74}
                 height={93.33}
               />
-              <h3 className="text-[24px] sm:text-[28px] font-bold mb-2 text-center">
+              <h3 className="text-[17.65px] sm:text-[28px] font-bold mb-2 text-center">
                 You have different question?
               </h3>
-              <p className="text-[15px] text-[#A9ADB5] mb-4 text-center">
+              <p className="text-[9.45px] sm:text-[15px] text-[#A9ADB5] mb-4 text-center">
                 Our team will answer all your question. <br />
                 We ensure a quick response.
               </p>
@@ -152,13 +152,13 @@ export default function FAQSection() {
                 <FiPhoneCall className="text-blue-600" size={24} />
               </div>
               <div>
-                <p className="text-[#6B6B6B] text-[15px] font-medium mb-1">
+                <p className="text-[#6B6B6B] text-[9.45px] sm:text-[15px] font-medium mb-1">
                   Your comfort our priority
                 </p>
-                <p className="text-[22px] sm:text-[28px] font-bold">
+                <p className="text-[17.65px] sm:text-[28px] font-bold">
                   24/7 Service
                 </p>
-                <p className="text-[15px] text-[#6B6B6B] font-medium">
+                <p className="text-[9.45px] sm:text-[15px] text-[#6B6B6B] font-medium">
                   +(000)000000000
                 </p>
               </div>
