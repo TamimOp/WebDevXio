@@ -33,7 +33,7 @@ export default function FAQSection() {
   ];
 
   return (
-    <section className="w-full min-h-[781.17px] relative py-24 px-6 md:px-20 overflow-hidden">
+    <section className="w-full h-[912px] min-h-[781.17px] relative py-24 px-6 md:px-20 overflow-hidden">
       {/* Background */}
       <div className="absolute -top-10 -left-10 md:-top-30 md:-left-55 w-52 h-52 md:w-[478px] md:h-93 z-0 opacity-80">
         <Image
@@ -50,7 +50,7 @@ export default function FAQSection() {
           —FAQ
         </p>
 
-        <div className="flex flex-col md:flex-row gap-10 items-start">
+        <div className="flex flex-col md:flex-row gap-14 items-start">
           {/* Left Side: FAQ List */}
           <motion.div
             initial={{ opacity: 0, x: -100 }}
