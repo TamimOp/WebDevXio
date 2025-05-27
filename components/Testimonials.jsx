@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { FaStar } from "react-icons/fa";
 import Image from "next/image";
 
-// Tag list
 const tagItems = [
   "Saas Website",
   "UX/UI Design",
@@ -12,7 +11,6 @@ const tagItems = [
   "UX/UI Design",
 ];
 
-// Testimonials data
 const testimonials = [
   {
     id: 1,
@@ -62,17 +60,11 @@ const testimonials = [
 ];
 
 const TagRow = () => (
-  <div className="w-full text-white text-sm bg-[#2A40F8] py-2 flex justify-center items-center flex-wrap gap-4 md:gap-50">
+  <div className="w-full text-white text-[7.98px] md:text-[30px] bg-[#2A40F8] flex justify-center md:justify-between items-center">
     {tagItems.map((item, idx) => {
-      const isHiddenOnMobile = idx > 1;
       return (
-        <div
-          key={idx}
-          className={`flex items-center gap-2 px-4 border-x border-white/30 ${
-            isHiddenOnMobile ? "hidden sm:flex" : "flex"
-          }`}
-        >
-          <span className="text-xl">✴</span>
+        <div key={idx} className="flex items-center gap-2 px-4">
+          <span className="text-[13.52px] md:text-6xl">✴</span>
           {item}
         </div>
       );
@@ -113,14 +105,14 @@ const Testimonials = () => {
       {/* Main Content */}
       <div className="max-w-6xl mx-auto text-center px-4 sm:px-6 md:px-10 py-6">
         <div className="w-full max-w-[696px] text-center flex flex-col justify-center items-center mx-auto gap-3">
-          <p className="text-[22px] leading-[116%] font-medium text-[#FDFEFF] mb-2">
+          <p className="text-[10px] md:text-[22px] leading-[116%] font-bold text-[#FDFEFF] mb-2">
             —Testimonials
           </p>
-          <h2 className="text-3xl md:text-5xl font-medium">
+          <h2 className="text-[22px] md:text-5xl font-medium">
             Testimonials:{" "}
             <span className="text-[#4D6BFF]">Trusted by Our Clients</span>
           </h2>
-          <p className="max-w-2xl text-[18px] md:text-[22px] mx-auto text-[#E9E9E9] mt-4">
+          <p className="max-w-2xl text-[13px] sm:text-lg md:text-[22px] mx-auto text-[#E9E9E9] mt-4">
             At UX Recharge, we specialize in creating modern, user-friendly
             websites tailored for SaaS companies. Our designs are
             conversion-focused, fast, and fully optimized for mobile and SEO.
