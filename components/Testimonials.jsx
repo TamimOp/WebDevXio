@@ -60,12 +60,12 @@ const testimonials = [
 ];
 
 const TagRow = () => (
-  <div className="w-full text-white text-[7.98px] md:text-[30px] bg-[#2A40F8] flex justify-center md:justify-between items-center">
+  <div className="w-full text-white text-[7.98px] md:text-[30px] bg-[#2A40F8] flex justify-between items-center">
     {tagItems.map((item, idx) => {
       return (
-        <div key={idx} className="flex items-center gap-2 px-4">
+        <div key={idx} className="flex items-center gap-0 md:gap-10 px-4">
           <span className="text-[13.52px] md:text-6xl">✴</span>
-          {item}
+          <span>{item}</span>
         </div>
       );
     })}
