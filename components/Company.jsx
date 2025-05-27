@@ -28,8 +28,8 @@ export default function Company() {
   return (
     <div className="w-full flex flex-col items-center justify-center mt-5">
       <p className="text-3xl lg:text-5xl text-center font-medium pb-10">
-        Already <span className="text-blue-600">Chosen</span> by the{" "}
-        <span className="text-blue-600">leaders</span>
+        Already <span className="text-[#274AFF]">Chosen</span> by the{" "}
+        <span className="text-[#274AFF]">leaders</span>
       </p>
 
       {/* Blur effect separator */}
