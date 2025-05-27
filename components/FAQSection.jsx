@@ -46,7 +46,7 @@ export default function FAQSection() {
 
       {/* Content Wrapper */}
       <div className="relative z-10 w-full max-w-screen-xl mx-auto">
-        <p className="text-blue-600 text-[18px] sm:text-[20px] md:text-[22px] font-medium mb-4">
+        <p className="text-blue-600 text-[13px] sm:text-[18px] md:text-[22px] font-medium mb-4">
           —FAQ
         </p>
 
@@ -60,9 +60,9 @@ export default function FAQSection() {
             className="w-full md:w-2/3"
           >
             <div className="mb-10">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium mb-6 leading-snug">
-                Got <span className="text-blue-600">question?</span> We’ve got{" "}
-                <span className="text-blue-600">answer</span>.
+              <h2 className="text-2xl sm:text-4xl md:text-5xl font-medium mb-6 leading-snug">
+                Got <span className="text-[#274AFF]">question?</span> We’ve got{" "}
+                <span className="text-[#274AFF]">answer</span>.
               </h2>
             </div>
 
@@ -86,7 +86,7 @@ export default function FAQSection() {
                     }}
                   >
                     <div className="flex items-start gap-4">
-                      <span className="text-blue-600 mr-3 text-3xl sm:text-4xl font-medium">
+                      <span className="gradient-text mr-3 text-3xl sm:text-4xl font-medium">
                         {item.id}
                       </span>
                       <div>
@@ -98,7 +98,7 @@ export default function FAQSection() {
                         </p>
                       </div>
                     </div>
-                    <div className="rounded-full p-3 text-xl bg-gradient-to-br from-black to-gray-700 text-white group-hover:from-blue-500 group-hover:to-blue-700 transition-all duration-300 self-start sm:self-center">
+                    <div className="rounded-full p-3 text-xl bg-gradient-to-br from-black to-gray-700 text-white group-hover:from-[#274afd] group-hover:to-[#06197d] transition-all duration-300 self-start sm:self-center">
                       <span className="block group-hover:hidden">
                         <FiArrowDownRight />
                       </span>
