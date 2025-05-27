@@ -133,7 +133,13 @@ const Testimonials = () => {
               className="bg-[#14275F] relative rounded-xl p-6 w-full max-w-[490px] min-w-[300px] h-auto shadow-xl text-left shrink-0"
             >
               <div className="absolute top-4 right-4 text-6xl text-[#4D6BFF]/30">
-                <span className="blur-sm">“</span>
+                <Image
+                  src="/assets/quote.png"
+                  alt="Quote Icon"
+                  width={48}
+                  height={48}
+                  className="w-[48px] h-[48px] sm:w-[128.73px] sm:h-[131px] blur-sm"
+                />
               </div>
               <div className="flex flex-col items-start gap-1 p-2">
                 <div className="flex gap-2 text-yellow-400 mb-3">
