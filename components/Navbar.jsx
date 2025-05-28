@@ -23,6 +23,7 @@ export default function Navbar() {
         <Image src={Logo} alt="Logo" width={221} height={32.28} />
       </div>
 
+      {/* Desktop Nav */}
       <ul className="hidden md:flex items-center gap-8">
         {navItems.map((item, i) => (
           <li key={i} className="relative group text-sm font-medium text-black">
@@ -33,46 +34,68 @@ export default function Navbar() {
               }`}
             >
               {item}
-
               {item === "Home" && (
-                <>
-                  <div className="absolute inset-0 -z-10 blur-sm rounded-full bg-[#2E44FF] opacity-40" />
-                  <span className="absolute right-[-10px] top-1/2 transform -translate-y-1/2 w-1 h-1 bg-[#2E44FF] rounded-full" />
-                </>
-              )}
-              {item !== "Home" && (
-                <span className="absolute right-[-10px] top-1/2 transform -translate-y-1/2 w-1 h-1 bg-[#C2C2FF] rounded-full" />
+                <div className="absolute inset-0 -z-10 blur-lg rounded-full bg-[#2E44FF] opacity-40" />
               )}
             </Link>
           </li>
         ))}
       </ul>
 
+      {/* Desktop Contact Button */}
       <div className="hidden md:block">
         <Button />
       </div>
 
-      <div className="md:hidden">
+      {/* Hamburger Icon */}
+      <div className="md:hidden z-50">
         <button onClick={() => setIsOpen(!isOpen)}>
-          {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+          {isOpen ? <FiX size={28} /> : <FiMenu size={28} />}
         </button>
       </div>
 
+      {/* Mobile Menu */}
       {isOpen && (
-        <div className="absolute top-full left-0 w-full bg-white shadow-md md:hidden flex flex-col items-start gap-4 px-6 py-4 z-50">
-          {navItems.map((item, i) => (
-            <Link
-              key={i}
-              href="#"
-              className={`w-full text-[15px] ${
-                item === "Home" ? "font-semibold text-black" : "text-gray-700"
-              }`}
-              onClick={() => setIsOpen(false)}
-            >
-              {item}
-            </Link>
-          ))}
-          <Button />
+        <div className="fixed inset-0 z-40 bg-black/30 flex justify-center items-start pt-24 px-4">
+          <div className="relative w-full max-w-md bg-white rounded-2xl shadow-2xl p-6">
+            {/* Nav Links */}
+            <ul className="space-y-4 mt-2">
+              {navItems.map((item, i) => (
+                <li key={i} className="border-b pb-2 last:border-none">
+                  <Link
+                    href="#"
+                    className="flex items-center justify-between text-lg font-medium text-black"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {item}
+                    {item === "Home" && (
+                      <span className="bg-black text-white rounded-full p-2">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="h-4 w-4"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M17 8l4 4m0 0l-4 4m4-4H3"
+                          />
+                        </svg>
+                      </span>
+                    )}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+
+            {/* Contact Button */}
+            <div className="mt-6">
+              <Button />
+            </div>
+          </div>
         </div>
       )}
     </motion.nav>
