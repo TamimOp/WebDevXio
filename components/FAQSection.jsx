@@ -1,10 +1,13 @@
 "use client";
 import Image from "next/image";
 import { FiArrowUpRight, FiArrowDownRight, FiPhoneCall } from "react-icons/fi";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 import Button from "./Button";
 
 export default function FAQSection() {
+  const [hoveredIndex, setHoveredIndex] = useState(null);
+
   const faqItems = [
     {
       id: "01",
@@ -67,10 +70,12 @@ export default function FAQSection() {
             </div>
 
             <div className="w-full space-y-4">
-              {faqItems.map((item) => (
+              {faqItems.map((item, index) => (
                 <div
                   key={item.id}
                   className="group relative rounded-2xl overflow-hidden transition-all duration-500"
+                  onMouseEnter={() => setHoveredIndex(index)}
+                  onMouseLeave={() => setHoveredIndex(null)}
                 >
                   {/* Gradient Border on Hover */}
                   <div className="absolute inset-0 rounded-2xl p-[2px] opacity-0 group-hover:opacity-100 transition-all duration-500 bg-gradient-to-r from-[#274AFF] to-[#7389FF]">
@@ -85,17 +90,27 @@ export default function FAQSection() {
                         "linear-gradient(180deg, rgba(255, 255, 255, 0.054) 0%, rgba(0, 61, 255, 0.108) 100%)",
                     }}
                   >
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-4 w-full">
                       <span className="gradient-text mr-3 text-[13px] sm:text-2xl md:text-4xl font-medium">
                         {item.id}
                       </span>
-                      <div>
+                      <div className="w-full">
                         <p className="text-[13px] md:text-[22px] font-medium">
                           {item.question}
                         </p>
-                        <p className="mt-2 text-[#828282] text-[7px] sm:text-[15px] font-medium max-w-xl block sm:hidden group-hover:block transition-opacity duration-300">
-                          {item.answer}
-                        </p>
+                        <AnimatePresence>
+                          {hoveredIndex === index && (
+                            <motion.p
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: "auto" }}
+                              exit={{ opacity: 0, height: 0 }}
+                              transition={{ duration: 0.4, ease: "easeInOut" }}
+                              className="mt-2 text-[#828282] text-[7px] sm:text-[15px] font-medium max-w-xl overflow-hidden"
+                            >
+                              {item.answer}
+                            </motion.p>
+                          )}
+                        </AnimatePresence>
                       </div>
                     </div>
                     <div className="rounded-full p-3 text-[10px] sm:text-xl bg-gradient-to-br from-black to-[#828282] text-white group-hover:from-[#274afd] group-hover:to-[#06197d] transition-all duration-300">
