@@ -106,10 +106,19 @@ const Contact = () => {
               Stay Connected
             </h3>
             <div className="flex gap-4 text-xl">
-              <FaFacebookF className="hover:text-blue-500 cursor-pointer" />
-              <FaInstagram className="hover:text-pink-500 cursor-pointer" />
-              <FaTwitter className="hover:text-sky-400 cursor-pointer" />
-              <FaLinkedinIn className="hover:text-blue-700 cursor-pointer" />
+              {[
+                { icon: FaFacebookF, hoverColor: "hover:text-blue-500" },
+                { icon: FaInstagram, hoverColor: "hover:text-pink-500" },
+                { icon: FaTwitter, hoverColor: "hover:text-sky-400" },
+                { icon: FaLinkedinIn, hoverColor: "hover:text-blue-700" },
+              ].map(({ icon: Icon, hoverColor }, idx) => (
+                <div
+                  key={idx}
+                  className={`p-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 cursor-pointer transition duration-300 hover:scale-105 ${hoverColor}`}
+                >
+                  <Icon size={22} />
+                </div>
+              ))}
             </div>
           </div>
         </motion.div>
