@@ -75,13 +75,13 @@ const About = () => {
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
       >
-        <p className="text-[#274AFF] font-medium text-sm md:text-[22px]">
+        <p className="text-[#274AFF] font-medium text-base md:text-[22px]">
           —About Us
         </p>
-        <h2 className="text-[26px] md:text-4xl lg:text-5xl font-medium">
+        <h2 className="text-[28px] md:text-4xl lg:text-5xl font-medium">
           Who We Are & <span className="text-[#274AFF]">Why Choose Us</span>
         </h2>
-        <p className="text-[#222222] text-[13px] md:text-xl lg:text-[22px] font-medium leading-relaxed">
+        <p className="text-[#222222] text-sm md:text-xl lg:text-[22px] font-medium leading-relaxed">
           At UX Recharge, we specialize in creating modern, user-friendly
           websites tailored for SaaS companies. Our designs are
           conversion-focused, fast, and fully optimized for mobile and SEO.
@@ -96,7 +96,7 @@ const About = () => {
               <p className="text-3xl md:text-5xl font-semibold text-[#274AFF]">
                 {stat.value}
               </p>
-              <p className="text-[12px] md:text-[13px] font-medium text-[#0E0E0E]">
+              <p className="text-[13px] md:text-sm font-medium text-[#0E0E0E]">
                 {stat.label}
               </p>
             </div>

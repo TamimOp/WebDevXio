@@ -27,7 +27,7 @@ const logos = [
 export default function Company() {
   return (
     <div className="w-full flex flex-col items-center justify-center mt-5">
-      <p className="text-3xl lg:text-5xl text-center font-medium pb-10">
+      <p className="text-xl md:text-3xl lg:text-5xl text-center font-bold pb-10">
         Already <span className="text-[#274AFF]">Chosen</span> by the{" "}
         <span className="text-[#274AFF]">leaders</span>
       </p>

@@ -60,11 +60,11 @@ const testimonials = [
 ];
 
 const TagRow = () => (
-  <div className="w-full text-white text-[7.98px] md:text-[30px] bg-[#2A40F8] flex justify-between items-center">
+  <div className="w-full text-white text-[14px] md:text-[30px] bg-[#2A40F8] flex justify-between items-center">
     {tagItems.map((item, idx) => {
       return (
-        <div key={idx} className="flex items-center gap-0 md:gap-10 px-4">
-          <span className="text-[13.52px] md:text-6xl">✴</span>
+        <div key={idx} className="flex items-center gap-2 md:gap-10 px-4">
+          <span className="text-[15px] md:text-6xl">✴</span>
           <span>{item}</span>
         </div>
       );
@@ -105,14 +105,14 @@ const Testimonials = () => {
       {/* Main Content */}
       <div className="max-w-6xl mx-auto text-center px-4 sm:px-6 md:px-10 py-6">
         <div className="w-full max-w-[696px] text-center flex flex-col justify-center items-center mx-auto gap-3">
-          <p className="text-[10px] md:text-[22px] leading-[116%] font-bold text-[#FDFEFF] mb-2">
+          <p className="text-[12px] md:text-[22px] leading-[116%] font-bold text-[#FDFEFF] mb-2">
             —Testimonials
           </p>
-          <h2 className="text-[22px] md:text-5xl font-medium">
+          <h2 className="text-[24px] md:text-5xl font-medium">
             Testimonials:{" "}
             <span className="text-[#4D6BFF]">Trusted by Our Clients</span>
           </h2>
-          <p className="max-w-2xl text-[13px] sm:text-lg md:text-[22px] mx-auto text-[#E9E9E9] mt-4">
+          <p className="max-w-2xl text-[14px] sm:text-lg md:text-[22px] mx-auto text-[#E9E9E9] mt-4">
             At UX Recharge, we specialize in creating modern, user-friendly
             websites tailored for SaaS companies. Our designs are
             conversion-focused, fast, and fully optimized for mobile and SEO.
@@ -134,10 +134,11 @@ const Testimonials = () => {
           ))}
         </div>
       </div>
+
       {/* Testimonial Cards */}
       <div
         ref={scrollRef}
-        className="mt-10 flex justify-start gap-6 overflow-x-auto px-4 scroll-smooth scrollbar-hide w-full"
+        className="mt-10 flex justify-start gap-6 overflow-x-auto px-4 scroll-smooth scrollbar-hide w-full pb-6 md:pb-10"
       >
         {testimonials.map((item, index) => (
           <motion.div
@@ -151,9 +152,9 @@ const Testimonials = () => {
               <Image
                 src="/assets/quote.png"
                 alt="Quote Icon"
-                width={48}
-                height={48}
-                className="w-[48px] h-[48px] sm:w-[128.73px] sm:h-[131px] blur-sm"
+                width={58}
+                height={58}
+                className="w-[58px] h-[58px] sm:w-[128.73px] sm:h-[131px] blur-sm"
               />
             </div>
             <div className="flex flex-col items-start gap-1 p-2">
@@ -163,15 +164,15 @@ const Testimonials = () => {
                   .map((_, i) => (
                     <FaStar
                       key={i}
-                      className="w-[22px] h-[22px] sm:w-[33px] sm:h-[33px]"
+                      className="w-[26px] h-[26px] sm:w-[33px] sm:h-[33px]"
                     />
                   ))}
               </div>
 
-              <h3 className="text-[20px] sm:text-[25px] font-medium mb-2">
+              <h3 className="text-[22px] sm:text-[25px] font-medium mb-2">
                 {item.heading}
               </h3>
-              <p className="text-[14px] sm:text-[15px] font-medium text-[#E9E9E9] mb-4">
+              <p className="text-[15px] sm:text-[15px] font-medium text-[#E9E9E9] mb-4">
                 {item.review}
               </p>
 
@@ -184,10 +185,10 @@ const Testimonials = () => {
                   className="rounded-full"
                 />
                 <div>
-                  <p className="font-medium text-[#FCFCFC] text-[18px] sm:text-[22px]">
+                  <p className="font-medium text-[#FCFCFC] text-[20px] sm:text-[22px]">
                     {item.name}
                   </p>
-                  <p className="text-[14px] sm:text-[15px] text-[#E9E9E9]">
+                  <p className="text-[15px] sm:text-[15px] text-[#E9E9E9]">
                     {item.title}
                   </p>
                 </div>

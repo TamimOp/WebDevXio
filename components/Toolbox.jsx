@@ -26,13 +26,13 @@ const Toolbox = () => {
           transition={{ duration: 0.7, ease: "easeOut" }}
           viewport={{ once: true, amount: 0.3 }}
         >
-          <h4 className="text-[#274AFF] font-medium text-[13px] sm:text-[18px] md:text-[22px] mb-2">
+          <h4 className="text-[#274AFF] font-medium text-[15px] sm:text-[18px] md:text-[22px] mb-2">
             Tools
           </h4>
-          <h2 className="text-[26px] sm:text-4xl md:text-5xl font-medium mb-4">
+          <h2 className="text-[30px] sm:text-4xl md:text-5xl font-medium mb-4">
             Our <span className="text-[#274AFF]">Toolbox</span> For Excellence
           </h2>
-          <p className="text-[#222222] max-w-2xl mx-auto mb-8 text-[13px] sm:text-[16px] md:text-[22px]">
+          <p className="text-[#222222] max-w-2xl mx-auto mb-8 text-[15px] sm:text-[16px] md:text-[22px]">
             We design and develop stunning, high-performing websites for SaaS
             products to maximize conversions.
           </p>
@@ -57,7 +57,7 @@ const Toolbox = () => {
               }}
               viewport={{ once: true, amount: 0.2 }}
             >
-              <div className="w-6 h-5 sm:w-12 sm:h-10 relative">
+              <div className="w-8 h-6 sm:w-12 sm:h-10 relative">
                 <Image
                   src={tool.icon}
                   alt={tool.name}
@@ -66,10 +66,10 @@ const Toolbox = () => {
                 />
               </div>
               <div className="text-left">
-                <h3 className="font-medium text-[10px] sm:text-[16px] md:text-[20px]">
+                <h3 className="font-medium text-[13px] sm:text-[16px] md:text-[20px]">
                   {tool.name}
                 </h3>
-                <p className="text-[6px] sm:text-[12px] md:text-[14px] text-gray-600">
+                <p className="text-[10px] sm:text-[12px] md:text-[14px] text-gray-600">
                   {tool.desc}
                 </p>
               </div>
@@ -98,7 +98,7 @@ const Toolbox = () => {
                 }}
                 viewport={{ once: true, amount: 0.2 }}
               >
-                <div className="w-6 h-5 sm:w-12 sm:h-10 relative">
+                <div className="w-8 h-6 sm:w-12 sm:h-10 relative">
                   <Image
                     src={tool.icon}
                     alt={tool.name}
@@ -107,10 +107,10 @@ const Toolbox = () => {
                   />
                 </div>
                 <div className="text-left">
-                  <h3 className="font-medium text-[10px] sm:text-[16px] md:text-[20px]">
+                  <h3 className="font-medium text-[13px] sm:text-[16px] md:text-[20px]">
                     {tool.name}
                   </h3>
-                  <p className="text-[6px] sm:text-[12px] md:text-[14px] text-gray-600">
+                  <p className="text-[10px] sm:text-[12px] md:text-[14px] text-gray-600">
                     {tool.desc}
                   </p>
                 </div>

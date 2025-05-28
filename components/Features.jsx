@@ -82,13 +82,13 @@ export default function Features() {
           className="flex flex-col md:flex-row justify-between items-center sm:items-end gap-10"
         >
           <div className="max-w-2xl space-y-4">
-            <p className="text-[#274AFF] text-[13px] md:text-[22px] font-medium">
+            <p className="text-[#274AFF] text-base md:text-[22px] font-medium">
               Portfolio
             </p>
-            <h2 className="text-[26px] sm:text-4xl md:text-5xl font-medium text-gray-900">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium text-gray-900">
               Our <span className="text-[#274AFF]">Featured</span> Work
             </h2>
-            <p className="text-[13px] sm:text-lg md:text-[22px] text-[#222222] leading-relaxed">
+            <p className="text-base sm:text-lg md:text-[22px] text-[#222222] leading-relaxed">
               We design and develop stunning, high-performing websites for SaaS
               products to maximize conversions.
             </p>
