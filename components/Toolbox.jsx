@@ -16,7 +16,7 @@ const tools = [
 
 const Toolbox = () => {
   return (
-    <section className="bg-[#f7f7fb] sm:py-5 px-4 text-center flex justify-center">
+    <section className="bg-[#f7f7fb] sm:py-5 px-4 text-center flex justify-center overflow-x-hidden">
       <div className="w-[343px] h-[710px] sm:w-[1232px] sm:h-[494px] px-4 sm:px-8 flex flex-col justify-center">
         {/* Header Section */}
         <motion.div
