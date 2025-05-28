@@ -119,69 +119,6 @@ const Testimonials = () => {
           </p>
         </div>
 
-        {/* Testimonial Cards */}
-        <div
-          ref={scrollRef}
-          className="mt-10 flex justify-start gap-6 overflow-x-auto px-1 scroll-smooth scrollbar-hide"
-        >
-          {testimonials.map((item, index) => (
-            <motion.div
-              key={item.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.2 }}
-              className="bg-[#14275F] relative rounded-xl p-6 w-full max-w-[490px] min-w-[300px] h-auto shadow-xl text-left shrink-0"
-            >
-              <div className="absolute top-4 right-4 text-6xl text-[#4D6BFF]/30">
-                <Image
-                  src="/assets/quote.png"
-                  alt="Quote Icon"
-                  width={48}
-                  height={48}
-                  className="w-[48px] h-[48px] sm:w-[128.73px] sm:h-[131px] blur-sm"
-                />
-              </div>
-              <div className="flex flex-col items-start gap-1 p-2">
-                <div className="flex gap-2 text-yellow-400 mb-3">
-                  {Array(5)
-                    .fill(0)
-                    .map((_, i) => (
-                      <FaStar
-                        key={i}
-                        className="w-[22px] h-[22px] sm:w-[33px] sm:h-[33px]"
-                      />
-                    ))}
-                </div>
-
-                <h3 className="text-[20px] sm:text-[25px] font-medium mb-2">
-                  {item.heading}
-                </h3>
-                <p className="text-[14px] sm:text-[15px] font-medium text-[#E9E9E9] mb-4">
-                  {item.review}
-                </p>
-
-                <div className="flex items-center gap-3">
-                  <Image
-                    src={item.image}
-                    alt={item.name}
-                    width={48}
-                    height={48}
-                    className="rounded-full"
-                  />
-                  <div>
-                    <p className="font-medium text-[#FCFCFC] text-[18px] sm:text-[22px]">
-                      {item.name}
-                    </p>
-                    <p className="text-[14px] sm:text-[15px] text-[#E9E9E9]">
-                      {item.title}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
         {/* Pagination Dashes */}
         <div className="flex justify-center gap-2 mt-6">
           {testimonials.map((_, idx) => (
@@ -196,6 +133,68 @@ const Testimonials = () => {
             </button>
           ))}
         </div>
+      </div>
+      {/* Testimonial Cards */}
+      <div
+        ref={scrollRef}
+        className="mt-10 flex justify-start gap-6 overflow-x-auto px-4 scroll-smooth scrollbar-hide w-full"
+      >
+        {testimonials.map((item, index) => (
+          <motion.div
+            key={item.id}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.2 }}
+            className="bg-[#14275F] relative rounded-xl p-6 w-full max-w-[490px] min-w-[300px] h-auto shadow-xl text-left shrink-0"
+          >
+            <div className="absolute top-4 right-4 text-6xl text-[#4D6BFF]/30">
+              <Image
+                src="/assets/quote.png"
+                alt="Quote Icon"
+                width={48}
+                height={48}
+                className="w-[48px] h-[48px] sm:w-[128.73px] sm:h-[131px] blur-sm"
+              />
+            </div>
+            <div className="flex flex-col items-start gap-1 p-2">
+              <div className="flex gap-2 text-yellow-400 mb-3">
+                {Array(5)
+                  .fill(0)
+                  .map((_, i) => (
+                    <FaStar
+                      key={i}
+                      className="w-[22px] h-[22px] sm:w-[33px] sm:h-[33px]"
+                    />
+                  ))}
+              </div>
+
+              <h3 className="text-[20px] sm:text-[25px] font-medium mb-2">
+                {item.heading}
+              </h3>
+              <p className="text-[14px] sm:text-[15px] font-medium text-[#E9E9E9] mb-4">
+                {item.review}
+              </p>
+
+              <div className="flex items-center gap-3">
+                <Image
+                  src={item.image}
+                  alt={item.name}
+                  width={48}
+                  height={48}
+                  className="rounded-full"
+                />
+                <div>
+                  <p className="font-medium text-[#FCFCFC] text-[18px] sm:text-[22px]">
+                    {item.name}
+                  </p>
+                  <p className="text-[14px] sm:text-[15px] text-[#E9E9E9]">
+                    {item.title}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        ))}
       </div>
 
       {/* Bottom Tag Row */}
