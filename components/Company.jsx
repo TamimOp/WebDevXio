@@ -38,9 +38,9 @@ export default function Company() {
       </div>
 
       {/* Seamless Marquee */}
-      <div className="w-full bg-[#E0E6FF] py-12 overflow-hidden">
+      <div className="w-full bg-[#E0E6FF] py-3 md:py-12 overflow-hidden">
         <motion.div
-          className="flex gap-20 md:gap-60 w-max"
+          className="flex gap-10 md:gap-60 w-max"
           animate={{ x: ["0%", "-50%"] }}
           transition={{
             duration: 15,
@@ -48,16 +48,15 @@ export default function Company() {
             repeat: Infinity,
           }}
         >
-          {/* Duplicate content */}
           {[...logos, ...logos].map((logo, i) => (
-            <Image
-              key={i}
-              src={logo.src}
-              width={logo.width}
-              height={logo.height}
-              alt={logo.alt}
-              className="flex-shrink-0"
-            />
+            <div key={i} className="flex-shrink-0 w-[70px] md:w-auto h-auto">
+              <Image
+                src={logo.src}
+                alt={logo.alt}
+                width={logo.width}
+                height={logo.height}
+              />
+            </div>
           ))}
         </motion.div>
       </div>
