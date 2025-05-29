@@ -192,39 +192,39 @@ export default function Circle() {
       {/* Line for Mobile */}
       <div className="absolute top-[200px] left-0 w-full px-6 sm:hidden flex justify-center z-10">
         <div className="relative w-full max-w-[360px] h-12">
-          {/* Gradient Line with soft edges */}
-          <div className="absolute top-1/2 left-0 w-full h-[3px] bg-gradient-to-r from-[#274aff80] via-[#274aff] to-[#274aff80] rounded-full" />
+          {/* Gradient Line - positioned at 50% of the container (24px) */}
+          <div className="absolute top-[24px] left-0 w-full h-[3px] bg-gradient-to-r from-[#274aff80] via-[#274aff] to-[#274aff80] rounded-full" />
 
-          {/* Static Dots */}
-          <div className="absolute top-1/2 left-0 w-full flex justify-between items-center -translate-y-1/2">
+          {/* Static Dots - center-aligned with line */}
+          <div className="absolute top-[24px] left-0 w-full flex justify-between items-center">
             {[0, 1, 2].map((i) => (
               <div
                 key={i}
-                className="w-[8px] h-[8px] rounded-full bg-[#274aff] opacity-50"
+                className="w-[8px] h-[8px] rounded-full bg-[#274aff] opacity-50 -translate-y-[2.5px]"
               />
             ))}
           </div>
 
-          {/* Moving Ball */}
+          {/* Moving Ball - perfectly centered on the 3px line */}
           <motion.div
-            className="absolute top-1/2 w-[14px] h-[14px] rounded-full bg-[#274aff] border-2 border-white shadow-md -translate-y-1/2"
+            className="absolute w-[14px] h-[14px] rounded-full bg-[#274aff] border-2 border-white shadow-md"
+            style={{ top: "24px", transform: "translate(-50%, -6.5px)" }}
             animate={{
               left: `${
                 contentId === 0 ? "0%" : contentId === 1 ? "50%" : "100%"
               }`,
-              translateX: "-50%",
             }}
             transition={{ type: "tween", duration: 0.5, ease: "easeInOut" }}
           />
 
-          {/* Animated Label */}
+          {/* Animated Label above dot */}
           <motion.div
-            className="absolute -top-6 text-sm text-[#274aff] font-semibold"
+            className="absolute text-sm text-[#274aff] font-semibold"
+            style={{ top: "-6px", transform: "translateX(-50%)" }}
             animate={{
               left: `${
                 contentId === 0 ? "0%" : contentId === 1 ? "50%" : "100%"
               }`,
-              translateX: "-50%",
             }}
             transition={{ type: "tween", duration: 0.5, ease: "easeInOut" }}
           >
