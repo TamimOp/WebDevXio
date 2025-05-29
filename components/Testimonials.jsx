@@ -60,15 +60,22 @@ const testimonials = [
 ];
 
 const TagRow = () => (
-  <div className="w-full text-white text-[14px] md:text-[30px] bg-[#2A40F8] flex justify-between items-center">
-    {tagItems.map((item, idx) => {
-      return (
-        <div key={idx} className="flex items-center gap-2 md:gap-10 px-4">
-          <span className="text-[15px] md:text-6xl">✴</span>
-          <span>{item}</span>
+  <div className="w-full text-white bg-[#2A40F8] overflow-x-auto whitespace-nowrap scrollbar-hide px-4 py-2 md:py-0">
+    <div className="flex justify-start gap-6 md:justify-between">
+      {tagItems.slice(0, 4).map((item, idx) => (
+        <div
+          key={idx}
+          className={`flex items-center gap-2 md:gap-10 ${
+            idx > 2 ? "hidden md:flex" : "flex"
+          }`}
+        >
+          <span className="text-[18px] md:text-6xl">✴</span>
+          <span className="text-[14px] sm:text-base md:text-[30px]">
+            {item}
+          </span>
         </div>
-      );
-    })}
+      ))}
+    </div>
   </div>
 );
 
@@ -98,25 +105,88 @@ const Testimonials = () => {
   return (
     <div className="bg-[#0B1C4A] text-white relative overflow-hidden">
       {/* Top Tag Row */}
-      <div className="mb-10">
+      <div className="mb-6 sm:mb-10">
         <TagRow />
       </div>
 
       {/* Main Content */}
       <div className="max-w-6xl mx-auto text-center px-4 sm:px-6 md:px-10 py-6">
-        <div className="w-full max-w-[696px] text-center flex flex-col justify-center items-center mx-auto gap-3">
-          <p className="text-[12px] md:text-[22px] leading-[116%] font-bold text-[#FDFEFF] mb-2">
+        <div className="w-full max-w-[696px] flex flex-col justify-center items-center mx-auto gap-3 text-center">
+          <p className="text-sm md:text-[22px] leading-[116%] font-bold text-[#FDFEFF] mb-2">
             —Testimonials
           </p>
-          <h2 className="text-[24px] md:text-5xl font-medium">
+          <h2 className="text-[22px] sm:text-[26px] md:text-5xl font-medium">
             Testimonials:{" "}
             <span className="text-[#4D6BFF]">Trusted by Our Clients</span>
           </h2>
-          <p className="max-w-2xl text-[14px] sm:text-lg md:text-[22px] mx-auto text-[#E9E9E9] mt-4">
+          <p className="max-w-2xl text-sm sm:text-[18px] md:text-[22px] mx-auto text-[#E9E9E9] mt-4">
             At UX Recharge, we specialize in creating modern, user-friendly
             websites tailored for SaaS companies. Our designs are
             conversion-focused, fast, and fully optimized for mobile and SEO.
           </p>
+        </div>
+
+        {/* Testimonial Cards */}
+        <div
+          ref={scrollRef}
+          className="mt-8 sm:mt-10 flex justify-start gap-4 sm:gap-6 overflow-x-auto px-2 scroll-smooth scrollbar-hide"
+        >
+          {testimonials.map((item, index) => (
+            <motion.div
+              key={item.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.2 }}
+              className="bg-[#14275F] relative rounded-xl p-4 sm:p-6 w-full max-w-[490px] min-w-[280px] sm:min-w-[300px] h-auto shadow-xl text-left shrink-0"
+            >
+              <div className="absolute top-4 right-4 text-6xl text-[#4D6BFF]/30">
+                <Image
+                  src="/assets/quote.png"
+                  alt="Quote Icon"
+                  width={48}
+                  height={48}
+                  className="w-[48px] h-[48px] sm:w-[128.73px] sm:h-[131px] blur-sm"
+                />
+              </div>
+              <div className="flex flex-col items-start gap-1 p-2">
+                <div className="flex gap-1 sm:gap-2 text-yellow-400 mb-3">
+                  {Array(5)
+                    .fill(0)
+                    .map((_, i) => (
+                      <FaStar
+                        key={i}
+                        className="w-[18px] h-[18px] sm:w-[22px] sm:h-[22px]"
+                      />
+                    ))}
+                </div>
+
+                <h3 className="text-[18px] sm:text-[25px] font-semibold mb-2">
+                  {item.heading}
+                </h3>
+                <p className="text-[13px] sm:text-[15px] font-medium text-[#E9E9E9] mb-4">
+                  {item.review}
+                </p>
+
+                <div className="flex items-center gap-3">
+                  <Image
+                    src={item.image}
+                    alt={item.name}
+                    width={48}
+                    height={48}
+                    className="rounded-full"
+                  />
+                  <div>
+                    <p className="font-medium text-[#FCFCFC] text-[16px] sm:text-[20px]">
+                      {item.name}
+                    </p>
+                    <p className="text-[13px] sm:text-[15px] text-[#E9E9E9]">
+                      {item.title}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
         </div>
 
         {/* Pagination Dashes */}
@@ -135,71 +205,8 @@ const Testimonials = () => {
         </div>
       </div>
 
-      {/* Testimonial Cards */}
-      <div
-        ref={scrollRef}
-        className="mt-10 flex justify-start gap-6 overflow-x-auto px-4 scroll-smooth scrollbar-hide w-full pb-6 md:pb-10"
-      >
-        {testimonials.map((item, index) => (
-          <motion.div
-            key={item.id}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.2 }}
-            className="bg-[#14275F] relative rounded-xl p-6 w-full max-w-[490px] min-w-[300px] h-auto shadow-xl text-left shrink-0"
-          >
-            <div className="absolute top-4 right-4 text-6xl text-[#4D6BFF]/30">
-              <Image
-                src="/assets/quote.png"
-                alt="Quote Icon"
-                width={58}
-                height={58}
-                className="w-[58px] h-[58px] sm:w-[128.73px] sm:h-[131px] blur-sm"
-              />
-            </div>
-            <div className="flex flex-col items-start gap-1 p-2">
-              <div className="flex gap-2 text-yellow-400 mb-3">
-                {Array(5)
-                  .fill(0)
-                  .map((_, i) => (
-                    <FaStar
-                      key={i}
-                      className="w-[26px] h-[26px] sm:w-[33px] sm:h-[33px]"
-                    />
-                  ))}
-              </div>
-
-              <h3 className="text-[22px] sm:text-[25px] font-medium mb-2">
-                {item.heading}
-              </h3>
-              <p className="text-[15px] sm:text-[15px] font-medium text-[#E9E9E9] mb-4">
-                {item.review}
-              </p>
-
-              <div className="flex items-center gap-3">
-                <Image
-                  src={item.image}
-                  alt={item.name}
-                  width={48}
-                  height={48}
-                  className="rounded-full"
-                />
-                <div>
-                  <p className="font-medium text-[#FCFCFC] text-[20px] sm:text-[22px]">
-                    {item.name}
-                  </p>
-                  <p className="text-[15px] sm:text-[15px] text-[#E9E9E9]">
-                    {item.title}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        ))}
-      </div>
-
       {/* Bottom Tag Row */}
-      <div className="mt-10">
+      <div className="mt-6 sm:mt-10">
         <TagRow />
       </div>
 
