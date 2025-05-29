@@ -192,11 +192,11 @@ export default function Circle() {
       {/* Line for Mobile */}
       <div className="absolute top-[200px] left-0 w-full px-6 sm:hidden flex justify-center z-10">
         <div className="relative w-full max-w-[360px] h-12">
-          {/* Line */}
-          <div className="absolute top-1/2 left-0 w-full h-[3px] bg-gradient-to-r from-transparent via-[#274aff] to-transparent rounded-full" />
+          {/* Gradient Line with soft edges */}
+          <div className="absolute top-1/2 left-0 w-full h-[3px] bg-gradient-to-r from-[#274aff80] via-[#274aff] to-[#274aff80] rounded-full" />
 
-          {/* Static dots */}
-          <div className="absolute top-1/2 left-0 w-full flex justify-between items-center -translate-y-1/2 px-[2px]">
+          {/* Static Dots */}
+          <div className="absolute top-1/2 left-0 w-full flex justify-between items-center -translate-y-1/2">
             {[0, 1, 2].map((i) => (
               <div
                 key={i}
@@ -204,6 +204,18 @@ export default function Circle() {
               />
             ))}
           </div>
+
+          {/* Moving Ball */}
+          <motion.div
+            className="absolute top-1/2 w-[14px] h-[14px] rounded-full bg-[#274aff] border-2 border-white shadow-md -translate-y-1/2"
+            animate={{
+              left: `${
+                contentId === 0 ? "0%" : contentId === 1 ? "50%" : "100%"
+              }`,
+              translateX: "-50%",
+            }}
+            transition={{ type: "tween", duration: 0.5, ease: "easeInOut" }}
+          />
 
           {/* Animated Label */}
           <motion.div
@@ -214,7 +226,7 @@ export default function Circle() {
               }`,
               translateX: "-50%",
             }}
-            transition={{ duration: 0.5 }}
+            transition={{ type: "tween", duration: 0.5, ease: "easeInOut" }}
           >
             {contents[contentId].label}
           </motion.div>
