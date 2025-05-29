@@ -1,13 +1,10 @@
 "use client";
 import Image from "next/image";
 import { FiArrowUpRight, FiArrowDownRight, FiPhoneCall } from "react-icons/fi";
-import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { motion } from "framer-motion";
 import Button from "./Button";
 
 export default function FAQSection() {
-  const [hoveredIndex, setHoveredIndex] = useState(null);
-
   const faqItems = [
     {
       id: "01",
@@ -49,7 +46,7 @@ export default function FAQSection() {
 
       {/* Content Wrapper */}
       <div className="relative z-10 w-full max-w-screen-xl mx-auto">
-        <p className="text-blue-600 text-[16px] sm:text-[18px] md:text-[22px] font-medium mb-4">
+        <p className="text-blue-600 text-[18px] sm:text-[20px] md:text-[22px] font-medium mb-4">
           —FAQ
         </p>
 
@@ -63,19 +60,17 @@ export default function FAQSection() {
             className="w-full md:w-2/3"
           >
             <div className="mb-10">
-              <h2 className="text-[24px] sm:text-4xl md:text-5xl font-medium mb-6 leading-snug">
-                Got <span className="text-[#274AFF]">question?</span> We’ve got{" "}
-                <span className="text-[#274AFF]">answer</span>.
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium mb-6 leading-snug">
+                Got <span className="text-blue-600">question?</span> We’ve got{" "}
+                <span className="text-blue-600">answer</span>.
               </h2>
             </div>
 
             <div className="w-full space-y-4">
-              {faqItems.map((item, index) => (
+              {faqItems.map((item) => (
                 <div
                   key={item.id}
                   className="group relative rounded-2xl overflow-hidden transition-all duration-500"
-                  onMouseEnter={() => setHoveredIndex(index)}
-                  onMouseLeave={() => setHoveredIndex(null)}
                 >
                   {/* Gradient Border on Hover */}
                   <div className="absolute inset-0 rounded-2xl p-[2px] opacity-0 group-hover:opacity-100 transition-all duration-500 bg-gradient-to-r from-[#274AFF] to-[#7389FF]">
@@ -84,36 +79,28 @@ export default function FAQSection() {
 
                   {/* Content */}
                   <div
-                    className="relative z-10 flex justify-between items-center gap-4 sm:gap-6 px-6 py-6 sm:py-6 rounded-2xl transition-all duration-300 bg-white hover:shadow-md"
+                    className="relative z-10 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-6 px-6 py-5 md:py-6 rounded-2xl transition-all duration-300 bg-white hover:shadow-md"
                     style={{
                       background:
                         "linear-gradient(180deg, rgba(255, 255, 255, 0.054) 0%, rgba(0, 61, 255, 0.108) 100%)",
                     }}
                   >
-                    <div className="flex items-center gap-4 w-full">
-                      <span className="gradient-text mr-3 text-[18px] sm:text-2xl md:text-4xl font-medium">
+                    <div className="flex items-start gap-4">
+                      <span className="text-blue-600 mr-3 text-3xl sm:text-4xl font-medium">
                         {item.id}
                       </span>
-                      <div className="w-full">
-                        <p className="text-[16px] md:text-[22px] font-medium">
+                      <div>
+                        <p className="text-base md:text-[22px] font-medium">
                           {item.question}
                         </p>
-                        <AnimatePresence>
-                          {hoveredIndex === index && (
-                            <motion.p
-                              initial={{ opacity: 0, height: 0 }}
-                              animate={{ opacity: 1, height: "auto" }}
-                              exit={{ opacity: 0, height: 0 }}
-                              transition={{ duration: 0.4, ease: "easeInOut" }}
-                              className="mt-2 text-[#828282] text-[13px] sm:text-[15px] font-medium max-w-xl overflow-hidden"
-                            >
-                              {item.answer}
-                            </motion.p>
-                          )}
-                        </AnimatePresence>
+                        <div className="max-h-0 group-hover:max-h-40 overflow-hidden transition-all duration-900 ease-in-out">
+                          <p className="mt-2 text-[#828282] text-[15px] font-medium max-w-xl">
+                            {item.answer}
+                          </p>
+                        </div>
                       </div>
                     </div>
-                    <div className="rounded-full p-4 text-[14px] sm:text-xl bg-gradient-to-br from-black to-[#828282] text-white group-hover:from-[#274afd] group-hover:to-[#06197d] transition-all duration-300">
+                    <div className="rounded-full p-3 text-xl bg-gradient-to-br from-black to-gray-700 text-white group-hover:from-blue-500 group-hover:to-blue-700 transition-all duration-900 self-start sm:self-center">
                       <span className="block group-hover:hidden">
                         <FiArrowDownRight />
                       </span>
@@ -151,10 +138,10 @@ export default function FAQSection() {
                 width={88.74}
                 height={93.33}
               />
-              <h3 className="text-[20px] sm:text-[28px] font-bold mb-2 text-center">
+              <h3 className="text-[24px] sm:text-[28px] font-bold mb-2 text-center">
                 You have different question?
               </h3>
-              <p className="text-[13px] sm:text-[15px] text-[#A9ADB5] mb-4 text-center">
+              <p className="text-[15px] text-[#A9ADB5] mb-4 text-center">
                 Our team will answer all your question. <br />
                 We ensure a quick response.
               </p>
@@ -164,16 +151,16 @@ export default function FAQSection() {
             {/* Call Card */}
             <div className="bg-white p-6 rounded-3xl shadow-xl flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-8 w-full">
               <div className="bg-blue-100 p-3 rounded-full">
-                <FiPhoneCall className="text-blue-600" size={28} />
+                <FiPhoneCall className="text-blue-600" size={24} />
               </div>
               <div>
-                <p className="text-[#6B6B6B] text-[13px] sm:text-[15px] font-medium mb-1">
+                <p className="text-[#6B6B6B] text-[15px] font-medium mb-1">
                   Your comfort our priority
                 </p>
-                <p className="text-[20px] sm:text-[28px] font-bold">
+                <p className="text-[22px] sm:text-[28px] font-bold">
                   24/7 Service
                 </p>
-                <p className="text-[13px] sm:text-[15px] text-[#6B6B6B] font-medium">
+                <p className="text-[15px] text-[#6B6B6B] font-medium">
                   +(000)000000000
                 </p>
               </div>
