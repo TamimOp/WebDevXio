@@ -89,20 +89,23 @@ export default function Navbar() {
 
         {/* Mobile Toggle */}
         <div className="md:hidden flex items-center gap-2 z-50">
-          {isOpen && (
-            <Button
-              label="Contact Us"
-              Icon={SlPencil}
-              className="text-xs px-2 py-1"
-            />
-          )}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="text-black"
-            aria-label="Toggle Menu"
-          >
-            {isOpen ? <FiX size={28} /> : <FiMenu size={28} />}
-          </button>
+          {/* Show Contact Us always on mobile too */}
+          <Button
+            label="Contact Us"
+            Icon={SlPencil}
+            className="text-xs px-2 py-1"
+          />
+
+          {/* Menu toggle icon with solid color background */}
+          <div className="relative w-[38px] h-[38px] bg-[#274AFF] rounded-bl-[70%] flex items-center justify-center">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="text-white"
+              aria-label="Toggle Menu"
+            >
+              {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+            </button>
+          </div>
         </div>
       </motion.nav>
 
