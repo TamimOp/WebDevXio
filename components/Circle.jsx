@@ -76,18 +76,18 @@ export default function Circle() {
         </>
       ),
       text: "We design and develop stunning, high-performing websites for SaaS products to maximize conversions.",
-      label: "SaaS Website",
+      label: "SaaS",
     },
     {
       headline: "Pixel–Perfect UI/UX Design for a Seamless User Experience",
       text: "We create stunning, user-friendly designs that enhance usability and boost conversions.",
-      label: "UI/UX Design",
+      label: "UI/UX",
     },
     {
       headline:
         "Custom WordPress Websites – Flexible, Scalable & SEO-Optimized",
       text: "We build high-quality WordPress websites tailored for SaaS, startups, and businesses that need a powerful online presence.",
-      label: "WordPress Website",
+      label: "WordPress",
     },
   ];
 
@@ -105,7 +105,7 @@ export default function Circle() {
 
   return (
     <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden my-20">
-      {/* Arc Container */}
+      {/* Arc for Desktop */}
       <div className="absolute inset-0 items-center justify-center top-25 sm:top-210 sm:mt-10 hidden sm:flex">
         <div className="relative w-[1500px] h-[900px] 2xl:w-[1800px] 2xl:h-[1000px]">
           <svg
@@ -146,10 +146,7 @@ export default function Circle() {
                 cx: cx,
                 cy: cy,
               }}
-              transition={{
-                duration: 0.7,
-                ease: "linear",
-              }}
+              transition={{ duration: 0.7, ease: "linear" }}
             />
 
             <circle cx="22" cy="110" r="2.5" fill="#274aff" fillOpacity="0.3" />
@@ -178,7 +175,6 @@ export default function Circle() {
               textAnchor="middle"
               fill="#274aff"
               className={`text-[5px] ${
-                // Add condition for position 3 to maintain visibility
                 (position === 0 && contentId === 0) ||
                 (position === 1 && contentId === 1) ||
                 (position === 2 && contentId === 2) ||
@@ -190,6 +186,38 @@ export default function Circle() {
               {contents[contentId].label}
             </motion.text>
           </svg>
+        </div>
+      </div>
+
+      {/* Line for Mobile */}
+      <div className="absolute top-[200px] left-0 w-full px-6 sm:hidden flex justify-center z-10">
+        <div className="relative w-full max-w-[360px] h-12">
+          {/* Line */}
+          <div className="absolute top-1/2 left-0 w-full h-[3px] bg-gradient-to-r from-transparent via-[#274aff] to-transparent rounded-full" />
+
+          {/* Static dots */}
+          <div className="absolute top-1/2 left-0 w-full flex justify-between items-center -translate-y-1/2 px-[2px]">
+            {[0, 1, 2].map((i) => (
+              <div
+                key={i}
+                className="w-[8px] h-[8px] rounded-full bg-[#274aff] opacity-50"
+              />
+            ))}
+          </div>
+
+          {/* Animated Label */}
+          <motion.div
+            className="absolute -top-6 text-sm text-[#274aff] font-semibold"
+            animate={{
+              left: `${
+                contentId === 0 ? "0%" : contentId === 1 ? "50%" : "100%"
+              }`,
+              translateX: "-50%",
+            }}
+            transition={{ duration: 0.5 }}
+          >
+            {contents[contentId].label}
+          </motion.div>
         </div>
       </div>
 
@@ -232,7 +260,7 @@ export default function Circle() {
         </div>
       </div>
 
-      {/* Glow Effect */}
+      {/* Glow */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(39,74,255,0.08)_0%,transparent_70%)]" />
     </div>
   );
