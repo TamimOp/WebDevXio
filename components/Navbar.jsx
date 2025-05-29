@@ -7,6 +7,7 @@ import { FiMenu, FiX } from "react-icons/fi";
 import { SlPencil } from "react-icons/sl";
 import Logo from "@/public/assets/Logo.png";
 import Button from "@/components/Button";
+import { FiArrowUpRight } from "react-icons/fi";
 
 const navItems = ["Home", "Services", "Work", "About Us"];
 
@@ -88,21 +89,8 @@ export default function Navbar() {
                   >
                     {item}
                     {item === "Home" && (
-                      <span className="bg-black text-white rounded-full p-2">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="h-4 w-4"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M17 8l4 4m0 0l-4 4m4-4H3"
-                          />
-                        </svg>
+                      <span className="bg-gradient-to-br from-black to-[#828282] text-white rounded-full p-2">
+                        <FiArrowUpRight />
                       </span>
                     )}
                   </Link>
