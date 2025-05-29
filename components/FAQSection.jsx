@@ -3,7 +3,8 @@ import Image from "next/image";
 import { FiArrowUpRight, FiArrowDownRight, FiPhoneCall } from "react-icons/fi";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import Button from "./Button";
+import Button from "@/components/Button";
+import { SlPencil } from "react-icons/sl";
 
 export default function FAQSection() {
   const [activeIndex, setActiveIndex] = useState(null);
@@ -204,7 +205,7 @@ export default function FAQSection() {
                 Our team will answer all your question. <br />
                 We ensure a quick response.
               </p>
-              <Button />
+              <Button label="Contact Us" Icon={SlPencil} />
             </div>
 
             {/* Call Box */}

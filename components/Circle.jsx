@@ -2,6 +2,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { CiCalendar } from "react-icons/ci";
+import Button from "@/components/Button";
 
 export default function Circle() {
   const [contentId, setContentId] = useState(0);
@@ -101,21 +102,6 @@ export default function Circle() {
 
     return () => clearInterval(interval);
   }, [index, path]);
-
-  const Button = ({ label, Icon }) => (
-    <div className="w-[200px] h-[55px] bg-gradient-to-r from-[#0634FF] to-[#B2ACFF] shadow-lg shadow-[#B2ACFF] flex items-center justify-center rounded-[32px]">
-      <button className="relative overflow-hidden bg-gradient-to-r cursor-pointer flex group justify-center items-center gap-3 text-xl font-semibold text-white w-[195px] h-[50px] from-[#06197d] to-[#274afd] px-4 rounded-[30px] hover:from-black hover:to-gray-500 hover:flex-row-reverse transition-all duration-500 ease-in-out">
-        <Icon
-          className="transition-all duration-500 ease-in-out bg-white group-hover:bg-transparent group-hover:border group-hover:text-white border-white text-[#274afd] p-1.5 rounded-full"
-          size={33}
-        />
-        <span className="transition-all duration-500 ease-in-out group-hover:-translate-x-1 group-hover:text-white">
-          {label}
-        </span>
-        <div className="absolute inset-0 rounded-[30px] bg-gradient-to-r from-black to-gray-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
-      </button>
-    </div>
-  );
 
   return (
     <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden my-20">

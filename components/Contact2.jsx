@@ -3,7 +3,8 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import Image from "next/image";
-import Button from "./Button";
+import Button from "@/components/Button";
+import { SlPencil } from "react-icons/sl";
 
 const Contact2 = () => {
   const ref = useRef(null);
@@ -86,7 +87,7 @@ const Contact2 = () => {
               engagement and growth.
             </p>
             <div className="flex justify-center md:justify-start">
-              <Button className="w-[70%] md:w-2/5" />
+              <Button label="Contact Us" Icon={SlPencil} />
             </div>
           </div>
         </div>

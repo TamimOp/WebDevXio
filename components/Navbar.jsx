@@ -4,8 +4,9 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { FiMenu, FiX } from "react-icons/fi";
-import Button from "./Button";
 import Logo from "@/public/assets/Logo.png";
+import { SlPencil } from "react-icons/sl";
+import Button from "@/components/Button";
 
 const navItems = ["Home", "Services", "Work", "About Us"];
 
@@ -44,7 +45,7 @@ export default function Navbar() {
 
       {/* Desktop Contact Button */}
       <div className="hidden md:block">
-        <Button />
+        <Button label="Contact Us" Icon={SlPencil} />
       </div>
 
       {/* Hamburger Icon */}
@@ -93,7 +94,7 @@ export default function Navbar() {
 
             {/* Contact Button */}
             <div className="mt-6">
-              <Button />
+              <Button label="Contact Us" Icon={SlPencil} />
             </div>
           </div>
         </div>
