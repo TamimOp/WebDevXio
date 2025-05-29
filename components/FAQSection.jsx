@@ -46,7 +46,7 @@ export default function FAQSection() {
 
       {/* Content Wrapper */}
       <div className="relative z-10 w-full max-w-screen-xl mx-auto">
-        <p className="text-blue-600 text-[18px] sm:text-[20px] md:text-[22px] font-medium mb-4">
+        <p className="text-blue-600 text-[13px] sm:text-[18px] md:text-[22px] font-medium mb-4">
           —FAQ
         </p>
 
@@ -60,9 +60,9 @@ export default function FAQSection() {
             className="w-full md:w-2/3"
           >
             <div className="mb-10">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium mb-6 leading-snug">
-                Got <span className="text-blue-600">question?</span> We’ve got{" "}
-                <span className="text-blue-600">answer</span>.
+              <h2 className="text-2xl sm:text-4xl md:text-5xl font-medium mb-6 leading-snug">
+                Got <span className="text-[#274AFF]">question?</span> We’ve got{" "}
+                <span className="text-[#274AFF]">answer</span>.
               </h2>
             </div>
 
@@ -73,38 +73,39 @@ export default function FAQSection() {
                   className="group relative rounded-2xl overflow-hidden transition-all duration-500"
                 >
                   {/* Gradient Border on Hover */}
-                  <div className="absolute inset-0 rounded-2xl p-[2px] opacity-0 group-hover:opacity-100 transition-all duration-500 bg-gradient-to-r from-[#274AFF] to-[#7389FF]">
+                  <div className="absolute inset-0 rounded-2xl p-[2px] opacity-0 group-hover:opacity-100 peer-focus-within:opacity-100 transition-all duration-500 bg-gradient-to-r from-[#274AFF] to-[#7389FF]">
                     <div className="w-full h-full rounded-[14px] bg-white bg-opacity-90"></div>
                   </div>
 
                   {/* Content */}
                   <div
-                    className="relative z-10 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-6 px-6 py-5 md:py-6 rounded-2xl transition-all duration-300 bg-white hover:shadow-md"
+                    className="relative z-10 flex justify-between items-center gap-4 sm:gap-6 px-6 py-5 md:py-6 rounded-2xl transition-all duration-300 bg-white hover:shadow-md peer"
                     style={{
                       background:
                         "linear-gradient(180deg, rgba(255, 255, 255, 0.054) 0%, rgba(0, 61, 255, 0.108) 100%)",
                     }}
+                    tabIndex={0}
                   >
-                    <div className="flex items-start gap-4">
-                      <span className="text-blue-600 mr-3 text-3xl sm:text-4xl font-medium">
+                    <div className="flex items-start gap-4 w-full">
+                      <span className="gradient-text mr-3 text-[13px] sm:text-2xl md:text-4xl font-medium pt-1">
                         {item.id}
                       </span>
-                      <div>
-                        <p className="text-base md:text-[22px] font-medium">
+                      <div className="w-full">
+                        <p className="text-[13px] md:text-[22px] font-medium">
                           {item.question}
                         </p>
-                        <div className="max-h-0 group-hover:max-h-40 overflow-hidden transition-all duration-900 ease-in-out">
+                        <div className="max-h-0 group-hover:max-h-15 peer-focus:max-h-40 overflow-hidden transition-all duration-800 ease-in-out">
                           <p className="mt-2 text-[#828282] text-[15px] font-medium max-w-xl">
                             {item.answer}
                           </p>
                         </div>
                       </div>
                     </div>
-                    <div className="rounded-full p-3 text-xl bg-gradient-to-br from-black to-gray-700 text-white group-hover:from-blue-500 group-hover:to-blue-700 transition-all duration-900 self-start sm:self-center">
-                      <span className="block group-hover:hidden">
+                    <div className="rounded-full p-3 text-[10px] sm:text-xl bg-gradient-to-br from-black to-[#828282] text-white group-hover:from-[#274afd] group-hover:to-[#06197d] peer-focus:from-[#274afd] peer-focus:to-[#06197d] transition-all duration-800">
+                      <span className="block group-hover:hidden peer-focus:hidden">
                         <FiArrowDownRight />
                       </span>
-                      <span className="hidden group-hover:block">
+                      <span className="hidden group-hover:block peer-focus:block">
                         <FiArrowUpRight />
                       </span>
                     </div>
@@ -138,10 +139,10 @@ export default function FAQSection() {
                 width={88.74}
                 height={93.33}
               />
-              <h3 className="text-[24px] sm:text-[28px] font-bold mb-2 text-center">
+              <h3 className="text-[17.65px] sm:text-[28px] font-bold mb-2 text-center">
                 You have different question?
               </h3>
-              <p className="text-[15px] text-[#A9ADB5] mb-4 text-center">
+              <p className="text-[9.45px] sm:text-[15px] text-[#A9ADB5] mb-4 text-center">
                 Our team will answer all your question. <br />
                 We ensure a quick response.
               </p>
@@ -154,13 +155,13 @@ export default function FAQSection() {
                 <FiPhoneCall className="text-blue-600" size={24} />
               </div>
               <div>
-                <p className="text-[#6B6B6B] text-[15px] font-medium mb-1">
+                <p className="text-[#6B6B6B] text-[9.45px] sm:text-[15px] font-medium mb-1">
                   Your comfort our priority
                 </p>
-                <p className="text-[22px] sm:text-[28px] font-bold">
+                <p className="text-[17.65px] sm:text-[28px] font-bold">
                   24/7 Service
                 </p>
-                <p className="text-[15px] text-[#6B6B6B] font-medium">
+                <p className="text-[9.45px] sm:text-[15px] text-[#6B6B6B] font-medium">
                   +(000)000000000
                 </p>
               </div>
