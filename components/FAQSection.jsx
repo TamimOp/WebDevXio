@@ -2,9 +2,25 @@
 import Image from "next/image";
 import { FiArrowUpRight, FiArrowDownRight, FiPhoneCall } from "react-icons/fi";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import Button from "./Button";
 
 export default function FAQSection() {
+  const [activeIndex, setActiveIndex] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkIsMobile = () => setIsMobile(window.innerWidth < 768);
+    checkIsMobile();
+    window.addEventListener("resize", checkIsMobile);
+    return () => window.removeEventListener("resize", checkIsMobile);
+  }, []);
+
+  const toggleAnswer = (index) => {
+    if (!isMobile) return;
+    setActiveIndex((prev) => (prev === index ? null : index));
+  };
+
   const faqItems = [
     {
       id: "01",
@@ -44,14 +60,14 @@ export default function FAQSection() {
         />
       </div>
 
-      {/* Content Wrapper */}
+      {/* Content */}
       <div className="relative z-10 w-full max-w-screen-xl mx-auto">
-        <p className="text-blue-600 text-[13px] sm:text-[18px] md:text-[22px] font-medium mb-4">
+        <p className="text-blue-600 text-base sm:text-[18px] md:text-[22px] font-medium mb-4">
           —FAQ
         </p>
 
         <div className="flex flex-col md:flex-row gap-12 md:gap-16">
-          {/* FAQ List */}
+          {/* Left Column */}
           <motion.div
             initial={{ opacity: 0, x: -100 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -60,62 +76,104 @@ export default function FAQSection() {
             className="w-full md:w-2/3"
           >
             <div className="mb-10">
-              <h2 className="text-2xl sm:text-4xl md:text-5xl font-medium mb-6 leading-snug">
+              <h2 className="text-[26px] sm:text-4xl md:text-5xl font-medium mb-6 leading-snug">
                 Got <span className="text-[#274AFF]">question?</span> We’ve got{" "}
                 <span className="text-[#274AFF]">answer</span>.
               </h2>
             </div>
 
             <div className="w-full space-y-4">
-              {faqItems.map((item) => (
-                <div
-                  key={item.id}
-                  className="group relative rounded-2xl overflow-hidden transition-all duration-500"
-                >
-                  {/* Gradient Border on Hover */}
-                  <div className="absolute inset-0 rounded-2xl p-[2px] opacity-0 group-hover:opacity-100 peer-focus-within:opacity-100 transition-all duration-500 bg-gradient-to-r from-[#274AFF] to-[#7389FF]">
-                    <div className="w-full h-full rounded-[14px] bg-white bg-opacity-90"></div>
-                  </div>
+              {faqItems.map((item, index) => {
+                const isActiveMobile = activeIndex === index;
 
-                  {/* Content */}
+                return (
                   <div
-                    className="relative z-10 flex justify-between items-center gap-4 sm:gap-6 px-6 py-5 md:py-6 rounded-2xl transition-all duration-300 bg-white hover:shadow-md peer"
-                    style={{
-                      background:
-                        "linear-gradient(180deg, rgba(255, 255, 255, 0.054) 0%, rgba(0, 61, 255, 0.108) 100%)",
-                    }}
-                    tabIndex={0}
+                    key={item.id}
+                    className="group relative rounded-2xl overflow-hidden transition-all duration-500"
                   >
-                    <div className="flex items-start gap-4 w-full">
-                      <span className="gradient-text mr-3 text-[13px] sm:text-2xl md:text-4xl font-medium pt-1">
-                        {item.id}
-                      </span>
-                      <div className="w-full">
-                        <p className="text-[13px] md:text-[22px] font-medium">
-                          {item.question}
-                        </p>
-                        <div className="max-h-0 group-hover:max-h-15 peer-focus:max-h-40 overflow-hidden transition-all duration-800 ease-in-out">
-                          <p className="mt-2 text-[#828282] text-[15px] font-medium max-w-xl">
-                            {item.answer}
+                    {/* Gradient Border */}
+                    <div
+                      className={`absolute inset-0 rounded-2xl p-[2px] ${
+                        isMobile
+                          ? isActiveMobile
+                            ? "opacity-100"
+                            : "opacity-0"
+                          : "group-hover:opacity-100 peer-focus-within:opacity-100 opacity-0"
+                      } transition-all duration-500 bg-gradient-to-r from-[#274AFF] to-[#7389FF]`}
+                    >
+                      <div className="w-full h-full rounded-[14px] bg-white bg-opacity-90"></div>
+                    </div>
+
+                    {/* FAQ Item */}
+                    <div
+                      className="relative z-10 flex justify-between items-center gap-4 sm:gap-6 px-6 py-5 md:py-6 rounded-2xl transition-all duration-300 bg-white hover:shadow-md peer"
+                      style={{
+                        background:
+                          "linear-gradient(180deg, rgba(255, 255, 255, 0.054) 0%, rgba(0, 61, 255, 0.108) 100%)",
+                      }}
+                      tabIndex={0}
+                      onClick={() => toggleAnswer(index)}
+                    >
+                      <div className="flex items-start gap-4 w-full">
+                        <span className="gradient-text mr-3 text-base sm:text-2xl md:text-4xl font-medium pt-1">
+                          {item.id}
+                        </span>
+                        <div className="w-full">
+                          <p className="text-base md:text-[22px] font-medium">
+                            {item.question}
                           </p>
+                          <div
+                            className={`overflow-hidden transition-all duration-800 ease-in-out ${
+                              isMobile
+                                ? isActiveMobile
+                                  ? "max-h-30 mt-2"
+                                  : "max-h-0"
+                                : "group-hover:max-h-15 peer-focus:max-h-15 mt-2 max-h-0"
+                            }`}
+                          >
+                            <p className="text-[#828282] text-[12px] md:text-[15px] font-medium max-w-xl">
+                              {item.answer}
+                            </p>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <div className="rounded-full p-3 text-[10px] sm:text-xl bg-gradient-to-br from-black to-[#828282] text-white group-hover:from-[#274afd] group-hover:to-[#06197d] peer-focus:from-[#274afd] peer-focus:to-[#06197d] transition-all duration-800">
-                      <span className="block group-hover:hidden peer-focus:hidden">
-                        <FiArrowDownRight />
-                      </span>
-                      <span className="hidden group-hover:block peer-focus:block">
-                        <FiArrowUpRight />
-                      </span>
+
+                      <div
+                        className={`rounded-full p-3 text-[10px] sm:text-xl text-white transition-all duration-800
+                        ${
+                          isMobile
+                            ? isActiveMobile
+                              ? "bg-gradient-to-br from-[#274afd] to-[#06197d]"
+                              : "bg-gradient-to-br from-black to-[#828282]"
+                            : "bg-gradient-to-br from-black to-[#828282] group-hover:from-[#274afd] group-hover:to-[#06197d] peer-focus:from-[#274afd] peer-focus:to-[#06197d]"
+                        }
+                      `}
+                      >
+                        {isMobile ? (
+                          isActiveMobile ? (
+                            <FiArrowUpRight />
+                          ) : (
+                            <FiArrowDownRight />
+                          )
+                        ) : (
+                          <>
+                            <span className="block group-hover:hidden peer-focus:hidden">
+                              <FiArrowDownRight />
+                            </span>
+                            <span className="hidden group-hover:block peer-focus:block">
+                              <FiArrowUpRight />
+                            </span>
+                          </>
+                        )}
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </motion.div>
 
-          {/* Right Contact Side */}
+          {/* Right Column */}
           <motion.div
             initial={{ opacity: 0, x: 100 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -123,7 +181,7 @@ export default function FAQSection() {
             viewport={{ once: true }}
             className="w-full md:w-1/3 space-y-6"
           >
-            {/* Message Card */}
+            {/* Message Box */}
             <div className="relative bg-[#0c1e63] text-white px-6 pt-12 pb-8 rounded-3xl shadow-xl overflow-hidden flex flex-col items-center gap-2 w-full">
               <Image
                 src="/assets/ContactUsBG.png"
@@ -149,7 +207,7 @@ export default function FAQSection() {
               <Button />
             </div>
 
-            {/* Call Card */}
+            {/* Call Box */}
             <div className="bg-white p-6 rounded-3xl shadow-xl flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-8 w-full">
               <div className="bg-blue-100 p-3 rounded-full">
                 <FiPhoneCall className="text-blue-600" size={24} />
