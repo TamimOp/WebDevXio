@@ -1,18 +1,45 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { FiMenu, FiX } from "react-icons/fi";
+import { FiMenu, FiX, FiArrowUpRight } from "react-icons/fi";
 import { SlPencil } from "react-icons/sl";
 import Logo from "@/public/assets/Logo.png";
 import Button from "@/components/Button";
-import { FiArrowUpRight } from "react-icons/fi";
 
 const navItems = ["Home", "Services", "Work", "About Us"];
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const menuRef = useRef(null);
+
+  // Prevent body scroll when menu is open
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : "auto";
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isOpen]);
+
+  // Close menu on outside click
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    }
+
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen]);
 
   return (
     <>
@@ -60,11 +87,15 @@ export default function Navbar() {
           <Button label="Contact Us" Icon={SlPencil} />
         </div>
 
-        {/* Mobile Toggle Button */}
+        {/* Mobile Toggle */}
         <div className="md:hidden flex items-center gap-2 z-50">
-          {/* Contact button - only visible when menu is open */}
-          {isOpen && <Button label="Contact Us" Icon={SlPencil} />}
-          {/* Hamburger / Cross icon */}
+          {isOpen && (
+            <Button
+              label="Contact Us"
+              Icon={SlPencil}
+              className="text-xs px-2 py-1"
+            />
+          )}
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="text-black"
@@ -78,7 +109,10 @@ export default function Navbar() {
       {/* Mobile Menu Overlay */}
       {isOpen && (
         <div className="fixed inset-0 z-40 bg-black/30 pt-[96px] px-4 flex justify-center items-start">
-          <div className="relative w-full max-w-md bg-white rounded-2xl shadow-2xl p-6">
+          <div
+            ref={menuRef}
+            className="relative w-full max-w-md bg-white rounded-2xl shadow-2xl p-6"
+          >
             <ul className="space-y-4 mt-2">
               {navItems.map((item, i) => (
                 <li key={i} className="border-b pb-2 last:border-none">
