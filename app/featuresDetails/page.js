@@ -64,7 +64,7 @@ export default function FeaturesDetailsPage() {
         {/* LEFT SIDEBAR */}
         <div className="w-full lg:w-[280px] rounded-xl border border-black/20 p-4 space-y-6">
           {/* INDUSTRIES */}
-          <div>
+          <div className="border-b border-black/20 pb-4">
             <div
               className="flex justify-between items-center cursor-pointer font-semibold text-black text-lg"
               onClick={() => setOpenIndustry(!openIndustry)}
