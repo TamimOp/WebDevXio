@@ -205,7 +205,6 @@ export default function Circle() {
             ))}
           </div>
 
-          {/* Moving Ball - perfectly centered on the 3px line */}
           <motion.div
             className="absolute w-[14px] h-[14px] rounded-full bg-[#274aff] border-2 border-white shadow-md"
             style={{ top: "24px", transform: "translate(-50%, -6.5px)" }}
@@ -219,7 +218,7 @@ export default function Circle() {
 
           {/* Animated Label above dot */}
           <motion.div
-            className="absolute text-sm text-[#274aff] font-semibold"
+            className="absolute text-[12px] text-[#274aff] font-semibold"
             style={{ top: "-6px", transform: "translateX(-50%)" }}
             animate={{
               left: `${
