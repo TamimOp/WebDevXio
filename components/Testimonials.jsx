@@ -60,8 +60,8 @@ const testimonials = [
 ];
 
 const TagRow = () => (
-  <div className="w-full text-white bg-[#2A40F8] overflow-x-auto whitespace-nowrap scrollbar-hide px-4 py-2 md:py-0">
-    <div className="flex justify-start gap-6 md:justify-between">
+  <div className="w-full text-white bg-[#2A40F8] overflow-x-auto overflow-y-hidden whitespace-nowrap scrollbar-hide px-4 py-2 md:py-0">
+    <div className="flex justify-start gap-6 md:justify-between items-center h-full">
       {tagItems.slice(0, 4).map((item, idx) => (
         <div
           key={idx}
@@ -69,8 +69,8 @@ const TagRow = () => (
             idx > 2 ? "hidden md:flex" : "flex"
           }`}
         >
-          <span className="text-[18px] md:text-6xl">✴</span>
-          <span className="text-[14px] sm:text-base md:text-[30px]">
+          <span className="text-[18px] md:text-6xl leading-none">✴</span>
+          <span className="text-[14px] sm:text-base md:text-[30px] leading-none">
             {item}
           </span>
         </div>
