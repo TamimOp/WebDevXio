@@ -192,10 +192,7 @@ export default function Circle() {
       {/* Line for Mobile */}
       <div className="absolute top-[200px] left-0 w-full px-6 sm:hidden flex justify-center z-10">
         <div className="relative w-full max-w-[360px] h-12">
-          {/* Gradient Line - positioned at 50% of the container (24px) */}
           <div className="absolute top-[24px] left-0 w-full h-[3px] bg-gradient-to-r from-[#274aff80] via-[#274aff] to-[#274aff80] rounded-full" />
-
-          {/* Static Dots - center-aligned with line */}
           <div className="absolute top-[24px] left-0 w-full flex justify-between items-center">
             {[0, 1, 2].map((i) => (
               <div
@@ -216,7 +213,6 @@ export default function Circle() {
             transition={{ type: "tween", duration: 0.5, ease: "easeInOut" }}
           />
 
-          {/* Animated Label above dot */}
           <motion.div
             className="absolute text-[12px] text-[#274aff] font-semibold"
             style={{ top: "-6px", transform: "translateX(-50%)" }}
@@ -235,7 +231,7 @@ export default function Circle() {
       {/* Content */}
       <div className="relative z-10 max-w-[1200px] mx-auto px-4 mt:10 sm:mt-70">
         <div className="w-full max-w-[876px] mx-auto flex flex-col items-center space-y-2">
-          <div className="min-h-[120px] flex items-center justify-center">
+          <div className="min-h-[140px] sm:min-h-[120px] flex items-center justify-center">
             <AnimatePresence mode="wait">
               <motion.h1
                 key={contents[contentId].headline}
@@ -250,7 +246,7 @@ export default function Circle() {
             </AnimatePresence>
           </div>
 
-          <div className="min-h-[80px] flex items-center justify-center">
+          <div className="min-h-[90px] sm:min-h-[80px] flex items-center justify-center">
             <AnimatePresence mode="wait">
               <motion.p
                 key={contents[contentId].text}
@@ -271,7 +267,6 @@ export default function Circle() {
         </div>
       </div>
 
-      {/* Glow */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(39,74,255,0.08)_0%,transparent_70%)]" />
     </div>
   );
