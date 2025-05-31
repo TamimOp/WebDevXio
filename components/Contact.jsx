@@ -157,7 +157,7 @@ const Contact = () => {
               ></textarea>
             </div>
             <div className="md:col-span-2 flex justify-start">
-              <Button label="Message" Icon={CiMail} />
+              <Button label="Send Message" Icon={CiMail} />
             </div>
           </form>
         </motion.div>
