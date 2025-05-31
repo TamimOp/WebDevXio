@@ -14,7 +14,6 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef(null);
 
-  // Prevent body scroll when menu is open
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "auto";
     return () => {
@@ -22,7 +21,6 @@ export default function Navbar() {
     };
   }, [isOpen]);
 
-  // Close menu on outside click
   useEffect(() => {
     function handleClickOutside(event) {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -47,7 +45,7 @@ export default function Navbar() {
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="absolute top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-12 py-6 pointer-events-auto"
+        className="absolute top-0 left-0 right-0 z-50 flex items-center justify-between px-6 lg:px-12 py-6 pointer-events-auto"
       >
         {/* Logo */}
         <div className="flex items-center space-x-3">
@@ -56,12 +54,12 @@ export default function Navbar() {
             alt="Logo"
             width={221}
             height={32.28}
-            className="w-[140px] md:w-[221px] h-auto"
+            className="w-[140px] lg:w-[221px] h-auto"
           />
         </div>
 
         {/* Desktop Nav */}
-        <ul className="hidden md:flex items-center gap-8">
+        <ul className="hidden lg:flex items-center gap-8">
           {navItems.map((item, i) => (
             <li
               key={i}
@@ -83,13 +81,12 @@ export default function Navbar() {
         </ul>
 
         {/* Desktop Contact Button */}
-        <div className="hidden md:block">
+        <div className="hidden lg:block">
           <Button label="Contact Us" Icon={SlPencil} />
         </div>
 
         {/* Mobile Toggle */}
-        <div className="md:hidden flex items-center gap-2 z-50">
-          {/* Show Contact Us always on mobile too */}
+        <div className="lg:hidden flex items-center gap-2 z-50">
           <Button
             label="Contact Us"
             Icon={SlPencil}
