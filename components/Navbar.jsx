@@ -49,13 +49,15 @@ export default function Navbar() {
       >
         {/* Logo */}
         <div className="flex items-center space-x-3">
-          <Image
-            src={Logo}
-            alt="Logo"
-            width={221}
-            height={32.28}
-            className="w-[140px] lg:w-[221px] h-auto"
-          />
+          <Link href="/">
+            <Image
+              src={Logo}
+              alt="Logo"
+              width={221}
+              height={32.28}
+              className="w-[140px] lg:w-[221px] h-auto cursor-pointer"
+            />
+          </Link>
         </div>
 
         {/* Desktop Nav */}
