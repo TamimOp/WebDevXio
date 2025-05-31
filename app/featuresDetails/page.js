@@ -140,13 +140,16 @@ export default function FeaturesDetailsPage() {
               how our skills can contribute to your success.
             </h2>
 
-            <div className="flex flex-wrap gap-12">
+            <div className="flex flex-wrap justify-center sm:justify-start gap-8 sm:gap-10">
               {filteredCards.map((card, index) => (
-                <div key={index} className="w-[408px]">
+                <div
+                  key={index}
+                  className="flex-1 min-w-[280px] max-w-[408px] sm:basis-[calc(50%-20px)] lg:basis-[calc(33.333%-20px)]"
+                >
                   <div
                     className={`w-full h-[304px] rounded-2xl border-[3px] border-white shadow-[0px_0px_12.4px_2px_#274AFFB5] overflow-hidden flex items-center justify-center ${card.gradient}`}
                   >
-                    <div className="relative w-[348px] h-[246px] rounded-[7px] overflow-hidden">
+                    <div className="relative w-[90%] h-[246px] rounded-[7px] overflow-hidden">
                       <Image
                         src={card.src}
                         alt={card.title}
@@ -159,7 +162,7 @@ export default function FeaturesDetailsPage() {
                     <p className="text-[13px] text-[#515151] font-medium">
                       {card.tags}
                     </p>
-                    <h3 className="text-[28px] font-semibold text-[#1F1F1F]">
+                    <h3 className="text-[22px] sm:text-[24px] md:text-[28px] font-semibold text-[#1F1F1F]">
                       {card.title}
                     </h3>
                   </div>
