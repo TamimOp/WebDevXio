@@ -5,6 +5,7 @@ import { motion, useInView } from "framer-motion";
 import Image from "next/image";
 import { CiSearch } from "react-icons/ci";
 import Button from "@/components/Button";
+import { useRouter } from "next/navigation";
 
 const images = [
   { src: "/assets/Featured0.png" },
@@ -24,6 +25,7 @@ export default function Features() {
   const galleryRef = useRef(null);
   const headerInView = useInView(headerRef, { once: true, margin: "-100px" });
   const galleryInView = useInView(galleryRef, { once: true, margin: "-100px" });
+  const router = useRouter();
 
   useEffect(() => {
     const checkMobile = () => {
@@ -68,7 +70,11 @@ export default function Features() {
               products to maximize conversions.
             </p>
           </div>
-          <Button label="See More" Icon={CiSearch} />
+          <Button
+            label="See More"
+            Icon={CiSearch}
+            onClick={() => router.push("/featuresDetails")}
+          />
         </motion.div>
 
         {/* Gallery */}
