@@ -59,7 +59,7 @@ const Contact = () => {
             alt="Quote Icon"
             width={50}
             height={50}
-            className="absolute top-66 left-3 sm:top-75 sm:left-5 z-50"
+            className="absolute top-66 left-3 sm:top-73 sm:left-5 z-50"
           />
           <div className="w-full sm:w-[361px] sm:h-[164px] relative mt-10 border border-white rounded-xl overflow-hidden">
             <Image

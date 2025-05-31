@@ -190,7 +190,7 @@ export default function Circle() {
       </div>
 
       {/* Line for Mobile */}
-      <div className="absolute top-[220px] left-0 w-full px-6 sm:hidden flex justify-center z-10">
+      <div className="absolute top-[215px] left-0 w-full px-6 sm:hidden flex justify-center z-10">
         <div className="relative w-full max-w-[360px] h-12">
           <div className="absolute top-[24px] left-0 w-full h-[3px] bg-gradient-to-r from-[#274aff80] via-[#274aff] to-[#274aff80] rounded-full" />
           <div className="absolute top-[24px] left-0 w-full flex justify-between items-center">
