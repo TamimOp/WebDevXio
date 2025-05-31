@@ -1,7 +1,174 @@
-import React from "react";
+"use client";
 
-function page() {
-  return <div>This is features details page</div>;
+import Button from "@/components/Button";
+import Image from "next/image";
+import { useState } from "react";
+import { FaChevronDown } from "react-icons/fa";
+import { PiChatCenteredTextBold } from "react-icons/pi";
+
+const industries = [
+  "All industries",
+  "SaaS",
+  "B2B",
+  "Finance",
+  "Education",
+  "Other industries",
+];
+const services = ["UI/UX Design", "Web Design", "Development"];
+
+const cards = [
+  {
+    src: "/assets/featuresDetails1.png",
+    title: "Digital CRYPTO Wallet",
+    tags: "Framer - SaaS",
+    bg: "bg-[#10002B]",
+    gradient: "bg-[linear-gradient(180deg,_#0D011A_0%,_#1E0039_100%)]",
+  },
+  {
+    src: "/assets/featuresDetails2.png",
+    title: "Digital CRYPTO Wallet",
+    tags: "Word Press - Fashion",
+    gradient:
+      "bg-[linear-gradient(122.05deg,_#1E1E1E_6.83%,_#274AFF_49.74%,_#1E1E1E_92.01%)]",
+  },
+  {
+    src: "/assets/featuresDetails3.png",
+    title: "Digital CRYPTO Wallet",
+    tags: "UI/UX Design - SaaS",
+    gradient: "bg-[linear-gradient(180deg,_#220202_0%,_#212429_100%)]",
+  },
+  {
+    src: "/assets/Featured1.png",
+    title: "Digital CRYPTO Wallet",
+    tags: "UI/UX Design - SaaS",
+    gradient:
+      "bg-[linear-gradient(122.05deg,_#1E1E1E_6.83%,_#4A7639_49.74%,_#1E1E1E_92.01%)]",
+  },
+];
+
+export default function FeaturesDetailsPage() {
+  const [activeIndustry, setActiveIndustry] = useState("All industries");
+  const [openIndustry, setOpenIndustry] = useState(true);
+  const [openService, setOpenService] = useState(false);
+
+  const filteredCards =
+    activeIndustry === "All industries"
+      ? cards
+      : cards.filter((card) =>
+          card.tags.toLowerCase().includes(activeIndustry.toLowerCase())
+        );
+
+  return (
+    <section className="pt-35 px-4 sm:px-6 lg:px-12 pb-16 bg-white">
+      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-10 items-start">
+        {/* LEFT SIDEBAR */}
+        <div className="w-full lg:w-[280px] rounded-xl border border-black/20 p-4 space-y-6">
+          {/* INDUSTRIES */}
+          <div>
+            <div
+              className="flex justify-between items-center cursor-pointer font-semibold text-black text-lg"
+              onClick={() => setOpenIndustry(!openIndustry)}
+            >
+              <span>INDUSTRIES</span>
+              <FaChevronDown
+                className={`transition-transform duration-200 ${
+                  openIndustry ? "rotate-180" : ""
+                }`}
+              />
+            </div>
+            {openIndustry && (
+              <ul className="mt-4 space-y-2 text-sm font-medium text-[#595959]">
+                {industries.map((industry) => (
+                  <li
+                    key={industry}
+                    className={`cursor-pointer hover:text-[#274AFF] ${
+                      activeIndustry === industry
+                        ? "text-[#274AFF] border-l-4 border-[#274AFF] pl-2"
+                        : "pl-2"
+                    }`}
+                    onClick={() => setActiveIndustry(industry)}
+                  >
+                    {industry}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+
+          {/* SERVICES */}
+          <div>
+            <div
+              className="flex justify-between items-center cursor-pointer font-semibold text-black text-lg"
+              onClick={() => setOpenService(!openService)}
+            >
+              <span>SERVICES</span>
+              <FaChevronDown
+                className={`transition-transform duration-200 ${
+                  openService ? "rotate-180" : ""
+                }`}
+              />
+            </div>
+            {openService && (
+              <ul className="mt-4 space-y-2 text-sm font-medium text-gray-800">
+                {services.map((service) => (
+                  <li
+                    key={service}
+                    className="pl-2 hover:text-[#274AFF] cursor-pointer"
+                  >
+                    {service}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+
+          {/* BUTTON */}
+          <Button
+            label="Have a Project?"
+            Icon={PiChatCenteredTextBold}
+            onClick={() => console.log("clicked")}
+          />
+        </div>
+
+        {/* RIGHT CONTENT */}
+        <div className="flex-1">
+          <div className="max-w-[880px] space-y-12">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium text-black leading-snug">
+              We&#39;ve helped over{" "}
+              <span className="text-[#274AFF]">350 firms</span> reach their full
+              potential, and we&#39;re happy to do the same for you! Find out
+              how our skills can contribute to your success.
+            </h2>
+
+            <div className="flex flex-wrap gap-12">
+              {filteredCards.map((card, index) => (
+                <div key={index} className="w-[408px]">
+                  <div
+                    className={`w-full h-[304px] rounded-2xl border-[3px] border-white shadow-[0px_0px_12.4px_2px_#274AFFB5] overflow-hidden flex items-center justify-center ${card.gradient}`}
+                  >
+                    <div className="relative w-[348px] h-[246px] rounded-[7px] overflow-hidden">
+                      <Image
+                        src={card.src}
+                        alt={card.title}
+                        fill
+                        className="object-cover object-top rounded-[7px]"
+                      />
+                    </div>
+                  </div>
+                  <div className="mt-3 px-1">
+                    <p className="text-[13px] text-[#515151] font-medium">
+                      {card.tags}
+                    </p>
+                    <h3 className="text-[28px] font-semibold text-[#1F1F1F]">
+                      {card.title}
+                    </h3>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }
-
-export default page;
