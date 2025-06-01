@@ -89,12 +89,6 @@ export default function Navbar() {
 
         {/* Mobile Toggle */}
         <div className="lg:hidden flex items-center gap-2 z-50">
-          <Button
-            label="Contact Us"
-            Icon={SlPencil}
-            className="text-xs px-2 py-1"
-          />
-
           {/* Menu toggle icon with solid color background */}
           <div className="relative w-[38px] h-[38px] bg-[#274AFF] rounded-bl-[70%] flex items-center justify-center">
             <button
@@ -133,6 +127,16 @@ export default function Navbar() {
                 </li>
               ))}
             </ul>
+
+            {/* Mobile Contact Button - only shown in menu */}
+            <div className="mt-6">
+              <Button
+                label="Contact Us"
+                Icon={SlPencil}
+                className="w-full justify-center text-sm py-2"
+                fullWidth
+              />
+            </div>
           </div>
         </div>
       )}
