@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { FiMenu, FiX, FiArrowUpRight } from "react-icons/fi";
@@ -17,6 +17,7 @@ const navItems = [
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const menuRef = useRef(null);
 
   useEffect(() => {
@@ -44,6 +45,14 @@ export default function Navbar() {
     };
   }, [isOpen]);
 
+  useEffect(() => {
+    const onScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   const handleScroll = (e, target) => {
     e.preventDefault();
     const el = document.querySelector(target);
@@ -55,26 +64,25 @@ export default function Navbar() {
 
   return (
     <>
+      {/* Initial Navbar */}
       <motion.nav
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="absolute top-0 left-0 right-0 z-50 flex items-center justify-between px-6 lg:px-12 py-6 pointer-events-auto"
+        className="absolute top-0 left-0 right-0 z-50 flex items-center justify-between px-6 lg:px-12 py-6"
       >
         {/* Logo */}
-        <div className="flex items-center space-x-3">
-          <Link href="/">
-            <Image
-              src={Logo}
-              alt="Logo"
-              width={221}
-              height={32.28}
-              className="w-[140px] lg:w-[221px] h-auto cursor-pointer"
-            />
-          </Link>
-        </div>
+        <Link href="/">
+          <Image
+            src={Logo}
+            alt="Logo"
+            width={221}
+            height={32.28}
+            className="w-[140px] lg:w-[221px] h-auto cursor-pointer"
+          />
+        </Link>
 
-        {/* Desktop Nav */}
+        {/* Nav Links */}
         <ul className="hidden lg:flex items-center gap-8">
           {navItems.map((item, i) => (
             <li
@@ -98,7 +106,7 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* Desktop Contact Button */}
+        {/* Contact Button */}
         <div className="hidden lg:block">
           <Button
             label="Contact Us"
@@ -126,7 +134,51 @@ export default function Navbar() {
         </div>
       </motion.nav>
 
-      {/* Mobile Menu Overlay */}
+      {/* Sticky Scrolled Navbar */}
+      <AnimatePresence>
+        {scrolled && (
+          <motion.div
+            initial={{ opacity: 0, y: -30 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -30 }}
+            transition={{ duration: 0.4 }}
+            className="fixed top-4 left-1/2 -translate-x-1/2 z-[60] backdrop-blur-lg bg-white/60 rounded-full shadow-xl px-6 py-2 hidden lg:flex items-center gap-6"
+          >
+            <Image
+              src={Logo}
+              alt="Logo"
+              width={100}
+              height={30}
+              className="w-[100px] h-auto"
+            />
+            <ul className="flex items-center gap-4">
+              {navItems.map((item, i) => (
+                <li key={i}>
+                  <Link
+                    href={item.target}
+                    scroll={false}
+                    className="text-sm font-medium text-black"
+                    onClick={(e) => handleScroll(e, item.target)}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <Button
+              label="Contact Us"
+              Icon={SlPencil}
+              className="text-sm px-4 py-2"
+              onClick={() => {
+                const el = document.querySelector("#contact");
+                if (el) el.scrollIntoView({ behavior: "smooth" });
+              }}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Mobile Menu */}
       {isOpen && (
         <div className="fixed inset-0 z-40 bg-black/30 pt-[96px] px-4 flex justify-center items-start">
           <div
@@ -152,8 +204,6 @@ export default function Navbar() {
                 </li>
               ))}
             </ul>
-
-            {/* Mobile Contact Button */}
             <div className="mt-6">
               <Button
                 label="Contact Us"
