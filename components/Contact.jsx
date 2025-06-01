@@ -12,7 +12,10 @@ import Button from "@/components/Button";
 
 const Contact = () => {
   return (
-    <section className="w-full bg-[#F7F8FC] py-16 px-6 md:px-12 lg:px-20 overflow-x-hidden">
+    <section
+      className="w-full bg-[#F7F8FC] py-16 px-6 md:px-12 lg:px-20 overflow-x-hidden"
+      id="contact"
+    >
       <div className="flex flex-col lg:flex-row justify-center gap-20">
         {/* Left Side */}
         <motion.div

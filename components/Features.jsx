@@ -48,7 +48,7 @@ export default function Features() {
   }, [isMobile]);
 
   return (
-    <section className="p-6 sm:p-12 bg-[#F9F8FF]">
+    <section className="p-6 sm:p-12 bg-[#F9F8FF]" id="work">
       <div className="max-w-7xl mx-auto flex flex-col gap-16">
         {/* Header */}
         <motion.div

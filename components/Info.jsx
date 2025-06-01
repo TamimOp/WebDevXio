@@ -76,7 +76,10 @@ const Card = ({ title, description, icon, bg, isMain }) => {
 
 const Info = () => {
   return (
-    <section className="w-full py-16 bg-[#f7f7fb] flex flex-col items-center px-6 md:px-20">
+    <section
+      className="w-full py-16 bg-[#f7f7fb] flex flex-col items-center px-6 md:px-20"
+      id="services"
+    >
       {/* Header */}
       <motion.div
         className="flex flex-col items-center mb-6 gap-1"

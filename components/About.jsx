@@ -38,6 +38,7 @@ const About = () => {
     <section
       ref={ref}
       className="bg-[#f7f7fb] px-6 md:px-10 lg:px-28 py-16 flex flex-col lg:flex-row items-center justify-between gap-12 overflow-hidden"
+      id="about"
     >
       {/* Image Animation */}
       <motion.div

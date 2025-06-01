@@ -8,7 +8,12 @@ import { SlPencil } from "react-icons/sl";
 import Logo from "@/public/assets/Logo.png";
 import Button from "@/components/Button";
 
-const navItems = ["Home", "Services", "Work", "About Us"];
+const navItems = [
+  { label: "Home", target: "#home" },
+  { label: "About Us", target: "#about" },
+  { label: "Services", target: "#services" },
+  { label: "Work", target: "#work" },
+];
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -39,6 +44,15 @@ export default function Navbar() {
     };
   }, [isOpen]);
 
+  const handleScroll = (e, target) => {
+    e.preventDefault();
+    const el = document.querySelector(target);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+      setIsOpen(false);
+    }
+  };
+
   return (
     <>
       <motion.nav
@@ -68,13 +82,15 @@ export default function Navbar() {
               className="relative group text-sm font-medium text-black"
             >
               <Link
-                href="#"
+                href={item.target}
+                scroll={false}
                 className={`relative px-4 py-2 text-[15px] ${
-                  item === "Home" ? "font-semibold text-black" : ""
+                  item.label === "Home" ? "font-semibold text-black" : ""
                 }`}
+                onClick={(e) => handleScroll(e, item.target)}
               >
-                {item}
-                {item === "Home" && (
+                {item.label}
+                {item.label === "Home" && (
                   <div className="absolute inset-0 -z-10 blur-lg rounded-full bg-[#2E44FF] opacity-40" />
                 )}
               </Link>
@@ -84,12 +100,20 @@ export default function Navbar() {
 
         {/* Desktop Contact Button */}
         <div className="hidden lg:block">
-          <Button label="Contact Us" Icon={SlPencil} />
+          <Button
+            label="Contact Us"
+            Icon={SlPencil}
+            onClick={() => {
+              const el = document.querySelector("#contact");
+              if (el) {
+                el.scrollIntoView({ behavior: "smooth" });
+              }
+            }}
+          />
         </div>
 
         {/* Mobile Toggle */}
         <div className="lg:hidden flex items-center gap-2 z-50">
-          {/* Menu toggle icon with solid color background */}
           <div className="relative w-[38px] h-[38px] bg-[#274AFF] rounded-bl-[70%] flex items-center justify-center">
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -113,12 +137,13 @@ export default function Navbar() {
               {navItems.map((item, i) => (
                 <li key={i} className="border-b pb-2 last:border-none">
                   <Link
-                    href="#"
+                    href={item.target}
+                    scroll={false}
                     className="flex items-center justify-between text-lg font-medium text-black"
-                    onClick={() => setIsOpen(false)}
+                    onClick={(e) => handleScroll(e, item.target)}
                   >
-                    {item}
-                    {item === "Home" && (
+                    {item.label}
+                    {item.label === "Home" && (
                       <span className="bg-gradient-to-br from-black to-[#828282] text-white rounded-full p-2">
                         <FiArrowUpRight />
                       </span>
@@ -128,13 +153,20 @@ export default function Navbar() {
               ))}
             </ul>
 
-            {/* Mobile Contact Button - only shown in menu */}
+            {/* Mobile Contact Button */}
             <div className="mt-6">
               <Button
                 label="Contact Us"
                 Icon={SlPencil}
                 className="w-full justify-center text-sm py-2"
                 fullWidth
+                onClick={() => {
+                  const el = document.querySelector("#contact");
+                  if (el) {
+                    el.scrollIntoView({ behavior: "smooth" });
+                    setIsOpen(false);
+                  }
+                }}
               />
             </div>
           </div>
