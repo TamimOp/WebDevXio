@@ -62,7 +62,7 @@ export default function FeaturesDetailsPage() {
     <section className="pt-35 px-4 sm:px-6 lg:px-12 pb-16 bg-white">
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-10 items-start">
         {/* LEFT SIDEBAR */}
-        <div className="w-full lg:w-[280px] rounded-xl border-2 border-black p-4 space-y-6">
+        <div className="w-full lg:w-[280px] rounded-xl border-2 border-black p-4 space-y-6 lg:sticky top-10 self-start">
           {/* INDUSTRIES */}
           <div className="border-b border-[#6B6B6B] pb-4">
             <div
