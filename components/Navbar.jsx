@@ -18,6 +18,7 @@ const navItems = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeId, setActiveId] = useState("");
   const menuRef = useRef(null);
 
   useEffect(() => {
@@ -53,6 +54,26 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveId(entry.target.id);
+          }
+        });
+      },
+      { threshold: 0.6 }
+    );
+
+    navItems.forEach((item) => {
+      const el = document.querySelector(item.target);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   const handleScroll = (e, target) => {
     e.preventDefault();
     const el = document.querySelector(target);
@@ -69,9 +90,8 @@ export default function Navbar() {
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="absolute top-0 left-0 right-0 z-50 flex items-center justify-between px-6 lg:px-12 py-6"
+        className="absolute top-0 left-0 right-0 z-50 flex items-center justify-between px-8 lg:px-20 py-6"
       >
-        {/* Logo */}
         <Link href="/">
           <Image
             src={Logo}
@@ -82,31 +102,31 @@ export default function Navbar() {
           />
         </Link>
 
-        {/* Nav Links */}
         <ul className="hidden lg:flex items-center gap-8">
           {navItems.map((item, i) => (
             <li
               key={i}
-              className="relative group text-sm font-medium text-black"
+              className="relative group text-sm font-medium text-black flex items-center gap-1"
             >
               <Link
                 href={item.target}
                 scroll={false}
-                className={`relative px-4 py-2 text-[15px] ${
-                  item.label === "Home" ? "font-semibold text-black" : ""
+                className={`relative px-4 py-2 text-[18px] ${
+                  activeId === item.target.slice(1)
+                    ? "text-[#274AFF]"
+                    : "text-black"
                 }`}
                 onClick={(e) => handleScroll(e, item.target)}
               >
                 {item.label}
-                {item.label === "Home" && (
-                  <div className="absolute inset-0 -z-10 blur-lg rounded-full bg-[#2E44FF] opacity-40" />
-                )}
               </Link>
+              {activeId === item.target.slice(1) && (
+                <span className="w-2 h-2 bg-[#274AFF] rounded-full" />
+              )}
             </li>
           ))}
         </ul>
 
-        {/* Contact Button */}
         <div className="hidden lg:block">
           <Button
             label="Contact Us"
@@ -120,7 +140,6 @@ export default function Navbar() {
           />
         </div>
 
-        {/* Mobile Toggle */}
         <div className="lg:hidden flex items-center gap-2 z-50">
           <div className="relative w-[38px] h-[38px] bg-[#274AFF] rounded-bl-[70%] flex items-center justify-center">
             <button
@@ -147,21 +166,28 @@ export default function Navbar() {
             <Image
               src={Logo}
               alt="Logo"
-              width={100}
-              height={30}
-              className="w-[100px] h-auto"
+              width={130}
+              height={36}
+              className="w-[130px] h-auto"
             />
             <ul className="flex items-center gap-4">
               {navItems.map((item, i) => (
-                <li key={i}>
+                <li key={i} className="flex items-center gap-1">
                   <Link
                     href={item.target}
                     scroll={false}
-                    className="text-sm font-medium text-black"
+                    className={`text-[18px] font-medium ${
+                      activeId === item.target.slice(1)
+                        ? "text-[#274AFF]"
+                        : "text-black"
+                    }`}
                     onClick={(e) => handleScroll(e, item.target)}
                   >
                     {item.label}
                   </Link>
+                  {activeId === item.target.slice(1) && (
+                    <span className="w-2 h-2 bg-[#274AFF] rounded-full" />
+                  )}
                 </li>
               ))}
             </ul>
