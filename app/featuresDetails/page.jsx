@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { FaChevronDown } from "react-icons/fa";
 import { PiChatCenteredTextBold } from "react-icons/pi";
+import Link from "next/link"; // ⬅️ Import this at the top
 
 const industries = [
   "All industries",
@@ -23,6 +24,7 @@ const cards = [
     tags: "Framer - SaaS",
     bg: "bg-[#10002B]",
     gradient: "bg-[linear-gradient(180deg,_#0D011A_0%,_#1E0039_100%)]",
+    slug: "digital-crypto-wallet-1",
   },
   {
     src: "/assets/featuresDetails2.png",
@@ -30,12 +32,14 @@ const cards = [
     tags: "Word Press - Fashion",
     gradient:
       "bg-[linear-gradient(122.05deg,_#1E1E1E_6.83%,_#274AFF_49.74%,_#1E1E1E_92.01%)]",
+    slug: "digital-crypto-wallet-2",
   },
   {
     src: "/assets/featuresDetails3.png",
     title: "Digital CRYPTO Wallet",
     tags: "UI/UX Design - SaaS",
     gradient: "bg-[linear-gradient(180deg,_#220202_0%,_#212429_100%)]",
+    slug: "digital-crypto-wallet-3",
   },
   {
     src: "/assets/Featured1.png",
@@ -43,6 +47,7 @@ const cards = [
     tags: "UI/UX Design - SaaS",
     gradient:
       "bg-[linear-gradient(122.05deg,_#1E1E1E_6.83%,_#4A7639_49.74%,_#1E1E1E_92.01%)]",
+    slug: "digital-crypto-wallet-4",
   },
 ];
 
@@ -146,26 +151,31 @@ export default function FeaturesDetailsPage() {
                   key={index}
                   className="flex-1 min-w-[280px] max-w-[408px] sm:basis-[calc(50%-20px)] lg:basis-[calc(33.333%-20px)]"
                 >
-                  <div
-                    className={`w-full h-[304px] rounded-2xl border-[3px] border-white shadow-[0px_0px_12.4px_2px_#274AFFB5] overflow-hidden flex items-center justify-center ${card.gradient}`}
+                  <Link
+                    href={`/featuresDetails/${card.slug}`}
+                    className="block group"
                   >
-                    <div className="relative w-[90%] h-[246px] rounded-[7px] overflow-hidden">
-                      <Image
-                        src={card.src}
-                        alt={card.title}
-                        fill
-                        className="object-cover object-top rounded-[7px]"
-                      />
+                    <div
+                      className={`w-full h-[304px] rounded-2xl border-[3px] border-white shadow-[0px_0px_12.4px_2px_#274AFFB5] overflow-hidden flex items-center justify-center ${card.gradient} transition-transform duration-300 group-hover:scale-[1.01]`}
+                    >
+                      <div className="relative w-[90%] h-[246px] rounded-[7px] overflow-hidden">
+                        <Image
+                          src={card.src}
+                          alt={card.title}
+                          fill
+                          className="object-cover object-top rounded-[7px]"
+                        />
+                      </div>
                     </div>
-                  </div>
-                  <div className="mt-3 px-1">
-                    <p className="text-[13px] text-[#515151] font-medium">
-                      {card.tags}
-                    </p>
-                    <h3 className="text-[22px] sm:text-[24px] md:text-[28px] font-semibold text-[#1F1F1F]">
-                      {card.title}
-                    </h3>
-                  </div>
+                    <div className="mt-3 px-1">
+                      <p className="text-[13px] text-[#515151] font-medium">
+                        {card.tags}
+                      </p>
+                      <h3 className="text-[22px] sm:text-[24px] md:text-[28px] font-semibold text-[#1F1F1F]">
+                        {card.title}
+                      </h3>
+                    </div>
+                  </Link>
                 </div>
               ))}
             </div>
