@@ -34,7 +34,7 @@ const cards = [
   },
 ];
 
-export default function slug({ params }) {
+export default function FeatureDetails({ params }) {
   const { slug } = params;
   const card = cards.find((item) => item.slug === slug);
 
