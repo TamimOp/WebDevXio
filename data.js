@@ -1,0 +1,45 @@
+export const featuresData = [
+  {
+    src: "/assets/featuresDetails1.png",
+    title: "Digital CRYPTO Wallet",
+    tags: "Framer - SaaS",
+    bg: "bg-[#10002B]",
+    gradient: "bg-[linear-gradient(180deg,_#0D011A_0%,_#1E0039_100%)]",
+    slug: "digital-crypto-wallet-1",
+    year: "2023",
+    description: "An intuitive crypto wallet designed for SaaS platforms.",
+    heroImage: "/assets/hero1.png",
+  },
+  {
+    src: "/assets/featuresDetails2.png",
+    title: "Fashion Wallet UI",
+    tags: "WordPress - Fashion",
+    gradient:
+      "bg-[linear-gradient(122.05deg,_#1E1E1E_6.83%,_#274AFF_49.74%,_#1E1E1E_92.01%)]",
+    slug: "digital-crypto-wallet-2",
+    year: "2024",
+    description: "A stylish UI for a fashion-focused WordPress app.",
+    heroImage: "/assets/hero1.png",
+  },
+  {
+    src: "/assets/featuresDetails3.png",
+    title: "Fintech SaaS UX",
+    tags: "UI/UX Design - SaaS",
+    gradient: "bg-[linear-gradient(180deg,_#220202_0%,_#212429_100%)]",
+    slug: "digital-crypto-wallet-3",
+    year: "2022",
+    description: "Sleek UX design for a fintech platform.",
+    heroImage: "/assets/hero1.png",
+  },
+  {
+    src: "/assets/Featured1.png",
+    title: "Growth-Driven UI",
+    tags: "UI/UX Design - SaaS",
+    gradient:
+      "bg-[linear-gradient(122.05deg,_#1E1E1E_6.83%,_#4A7639_49.74%,_#1E1E1E_92.01%)]",
+    slug: "digital-crypto-wallet-4",
+    year: "2023",
+    description: "Smart UI design focused on growth and conversions.",
+    heroImage: "/assets/hero1.png",
+  },
+];
