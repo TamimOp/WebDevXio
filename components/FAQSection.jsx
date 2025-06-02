@@ -205,7 +205,16 @@ export default function FAQSection() {
                 Our team will answer all your question. <br />
                 We ensure a quick response.
               </p>
-              <Button label="Contact Us" Icon={SlPencil} />
+              <Button
+                label="Contact Us"
+                Icon={SlPencil}
+                onClick={() => {
+                  const el = document.querySelector("#contact");
+                  if (el) {
+                    el.scrollIntoView({ behavior: "smooth" });
+                  }
+                }}
+              />
             </div>
 
             {/* Call Box */}
