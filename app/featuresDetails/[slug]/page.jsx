@@ -183,24 +183,24 @@ export default function FeaturedWork() {
         {/* LEFT COLUMN */}
         <div className="flex-1 flex flex-col gap-12">
           <div>
-            <h3 className="text-3xl sm:text-4xl md:text-5xl font-semibold leading-tight">
+            <h3 className="text-3xl sm:text-4xl md:text-5xl font-medium leading-tight">
               Inspired by real lives, focused <br className="hidden md:block" />
               on real experiences
             </h3>
           </div>
           <div className="flex flex-col md:flex-row gap-10">
-            <p className="text-[#5C5C5C] text-base sm:text-lg md:text-xl leading-relaxed md:w-2/3">
+            <p className="text-[#787878] text-base sm:text-xl md:text-[22px] leading-relaxed md:w-[50%]">
               Our creative direction was shaped around the real-world coffee
               rituals of community-driven individuals. Drawing inspiration from
               Half Million Coffee’s origin story—rooted in love, warmth, and
               community—we worked to uncover emotional touchpoints that would
               drive connection and loyalty.
             </p>
-            <div className="md:w-1/3">
-              <h4 className="text-sm sm:text-base font-semibold mb-3">
+            <div className="md:w-[50%]">
+              <h4 className="text-base text-[#505050] sm:text-[22px] font-semibold mb-3">
                 Key Findings:
               </h4>
-              <ul className="list-disc pl-5 space-y-2 text-gray-800 text-sm sm:text-base">
+              <ul className="list-disc pl-5 text-[#787878] text-base sm:text-[22px]">
                 <li>
                   Customers associate coffee moments with emotional connection
                   and routine.
@@ -218,17 +218,17 @@ export default function FeaturedWork() {
         {/* RIGHT STICKY DROPDOWN */}
         <div className="w-full lg:w-[250px] sticky top-24 self-start">
           <div className="border border-gray-300 rounded-2xl px-4 py-3 mb-4">
-            <div className="flex items-center justify-between text-sm text-gray-600 mb-1">
+            <div className="flex items-center justify-between text-[15px] text-gray-600 mb-1">
               <span>Half million</span>
               <span>1/7</span>
             </div>
-            <div className="flex items-center justify-between font-medium">
+            <div className="flex items-center text-base md:text-xl justify-between font-medium">
               <span>Web exploration</span>
               <span className="text-xl">⌄</span>
             </div>
           </div>
 
-          <div className="relative border border-gray-300 rounded-2xl px-4 py-3 text-gray-700 text-sm">
+          <div className="relative border border-gray-300 rounded-2xl px-4 py-3 text-[#595959] text-base md:text-xl">
             <div
               className="flex items-center justify-between cursor-pointer"
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
