@@ -173,7 +173,7 @@ export default function FeaturedWork() {
             src="/assets/HMC2.png"
             alt="Workflow image"
             fill
-            className="object-cover"
+            className="object-fill"
           />
         </div>
       </div>
