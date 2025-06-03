@@ -5,6 +5,7 @@ import { featuresData } from "@/data";
 import { notFound, useParams } from "next/navigation";
 import Image from "next/image";
 import { CiClock2 } from "react-icons/ci";
+import { IoArrowDownCircleOutline } from "react-icons/io5";
 
 export default function FeaturedWork() {
   const params = useParams();
@@ -21,6 +22,7 @@ export default function FeaturedWork() {
   ];
 
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -41,12 +43,12 @@ export default function FeaturedWork() {
         />
 
         <div className="absolute inset-0 z-10 flex flex-col justify-between p-6 md:p-14 text-white">
-          <div className="text-sm text-white/70">
+          <div className="text-[28px] text-white font-normal">
             All Project / {card.title}
           </div>
 
           <div>
-            <h1 className="text-4xl md:text-5xl font-bold leading-tight max-w-2xl">
+            <h1 className="text-4xl md:text-[64px] font-bold leading-tight max-w-2xl">
               {card.title}
             </h1>
             <p className="text-base md:text-lg mt-4 text-white/90">
@@ -56,11 +58,12 @@ export default function FeaturedWork() {
           </div>
 
           <div className="flex items-center justify-between text-sm border-t border-white pt-4 mt-6">
-            <div className="flex items-center gap-2 text-white/80">
+            <div className="flex items-center gap-2 text-[28px] text-[#E3E3E3]">
               <CiClock2 />
               2023
             </div>
-            <span className="uppercase tracking-widest text-xs animate-bounce">
+            <span className="flex items-center gap-2 text-[28px] text-[#E3E3E3] uppercase tracking-widest animate-bounce">
+              <IoArrowDownCircleOutline />
               Scroll
             </span>
           </div>
@@ -70,12 +73,12 @@ export default function FeaturedWork() {
       {/* Description and Sidebar */}
       <div className="max-w-7xl mx-auto px-6 md:px-14 pt-16 flex flex-col lg:flex-row gap-12">
         {/* LEFT CONTENT */}
-        <div className="lg:w-2/3 flex flex-col">
-          <h2 className="text-2xl md:text-3xl font-medium pb-4 border-b border-gray-300 mb-8">
+        <div className="lg:w-[80%] flex flex-col">
+          <h2 className="text-2xl md:text-5xl font-semibold pb-4 border-b border-[#A9A9A9] mb-8 leading-[100%]">
             We combined textures of coffee beans, wood, and greenery to form an
             inviting ambiance.
           </h2>
-          <div className="flex flex-col md:flex-row gap-6 text-gray-700 leading-relaxed text-base">
+          <div className="flex flex-col md:flex-row gap-6 text-[#787878] leading-relaxed text-[22px] font-medium">
             <p className="md:w-1/2">
               Half Million Coffee needed an immersive online experience that
               conveyed their passion for crafting premium coffee while inviting
@@ -97,20 +100,24 @@ export default function FeaturedWork() {
         <div className="lg:w-1/3 flex justify-end">
           <div className="flex flex-col space-y-4 text-sm text-right">
             <div>
-              <p className="text-xs text-gray-500 uppercase">Industry</p>
-              <p className="font-medium text-gray-800">
+              <p className="text-xl text-[#A1A1A1] font-medium uppercase">
+                Industry
+              </p>
+              <p className="text-xl font-semibold">
                 {card.tags.split(" - ")[1]}
               </p>
             </div>
 
             <div>
-              <p className="text-xs text-gray-500 uppercase">Services</p>
+              <p className="text-xl text-[#A1A1A1] font-medium uppercase">
+                Services
+              </p>
               <ul className="space-y-1">
                 {card.tags
                   .split(" - ")[0]
                   .split(",")
                   .map((service, i) => (
-                    <li key={i} className="font-medium text-gray-800">
+                    <li key={i} className="text-xl font-semibold">
                       {service.trim()}
                     </li>
                   ))}
@@ -118,17 +125,21 @@ export default function FeaturedWork() {
             </div>
 
             <div>
-              <p className="text-xs text-gray-500 uppercase">Timeline</p>
-              <p className="font-medium text-gray-800">1.5 months</p>
+              <p className="text-xl text-[#A1A1A1] font-medium uppercase">
+                Timeline
+              </p>
+              <p className="text-xl font-semibold">1.5 months</p>
             </div>
 
             <div>
-              <p className="text-xs text-gray-500 uppercase">Website</p>
+              <p className="text-xl text-[#A1A1A1] font-medium uppercase">
+                Website
+              </p>
               <a
                 href="https://halfmillion.store"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-medium text-blue-600 underline"
+                className="text-xl font-semibold text-[#274AFF] underline"
               >
                 halfmillion.store
               </a>
@@ -150,18 +161,18 @@ export default function FeaturedWork() {
       </div>
 
       {/* Quote Section */}
-      <div className="max-w-7xl mx-auto px-6 md:px-14 my-20 flex flex-col md:flex-row gap-10 items-start">
-        <button className="border border-black px-6 py-2 rounded-full font-medium">
+      <div className="max-w-7xl mx-auto px-6 md:px-14 my-20 flex flex-col md:flex-row justify-between items-start">
+        <button className="border border-black px-6 py-2 rounded-full font-medium tracking-widest text-[32px]">
           CHALLENGE
         </button>
-        <p className="text-xl md:text-2xl max-w-3xl">
+        <p className="text-2xl md:text-5xl max-w-2xl leading-relaxed font-medium">
           The site had to reflect both the brand’s artisanal values and its
           community-focused mission—all while driving product discovery and
           sales.
         </p>
       </div>
 
-      {/* Bottom Image and Insights */}
+      {/* Bottom Full-Width Image */}
       <div className="w-full my-20">
         <div className="relative w-full h-[300px] md:h-[500px] overflow-hidden mb-12">
           <Image
@@ -171,33 +182,91 @@ export default function FeaturedWork() {
             className="object-cover"
           />
         </div>
+      </div>
 
-        <div className="max-w-7xl mx-auto px-6 md:px-14 grid grid-cols-1 md:grid-cols-2 gap-12">
+      {/* Final Section: Two Columns */}
+      <div className="max-w-7xl mx-auto px-6 md:px-14 my-24 flex flex-col lg:flex-row gap-16">
+        {/* LEFT COLUMN */}
+        <div className="flex-1 flex flex-col gap-12">
+          {/* Heading */}
           <div>
-            <h3 className="text-2xl font-semibold mb-4">
-              Inspired by real lives, focused on real experiences
+            <h3 className="text-4xl md:text-5xl font-semibold leading-tight">
+              Inspired by real lives, focused <br className="hidden md:block" />
+              on real experiences
             </h3>
-            <p className="text-gray-700">
+          </div>
+
+          {/* Paragraph and Key Findings Side by Side */}
+          <div className="flex flex-col md:flex-row gap-10">
+            <p className="text-[#5C5C5C] text-lg md:text-xl leading-relaxed md:w-2/3">
               Our creative direction was shaped around the real-world coffee
               rituals of community-driven individuals. Drawing inspiration from
               Half Million Coffee’s origin story—rooted in love, warmth, and
               community—we worked to uncover emotional touchpoints that would
               drive connection and loyalty.
             </p>
+            <div className="md:w-1/3">
+              <h4 className="text-base font-semibold mb-3">Key Findings:</h4>
+              <ul className="list-disc pl-5 space-y-2 text-gray-800 text-base">
+                <li>
+                  Customers associate coffee moments with emotional connection
+                  and routine.
+                </li>
+                <li>A cozy and elegant brand aesthetic is highly appealing.</li>
+                <li>
+                  Storytelling-first websites generate longer engagement and
+                  stronger recall.
+                </li>
+              </ul>
+            </div>
           </div>
-          <div>
-            <h3 className="text-lg font-medium mb-2">Key Findings:</h3>
-            <ul className="list-disc list-inside text-gray-700 space-y-2">
-              <li>
-                Customers associate coffee moments with emotional connection and
-                routine.
-              </li>
-              <li>A cozy and elegant brand aesthetic is highly appealing.</li>
-              <li>
-                Storytelling-first websites generate longer engagement and
-                stronger recall.
-              </li>
-            </ul>
+        </div>
+
+        {/* RIGHT STICKY DROPDOWN */}
+        <div className="w-full lg:w-[250px] sticky top-36 self-start">
+          {/* Dropdown Card */}
+          <div className="border border-gray-300 rounded-2xl px-4 py-3 mb-4">
+            <div className="flex items-center justify-between text-sm text-gray-600 mb-1">
+              <span>Half million</span>
+              <span>1/7</span>
+            </div>
+            <div className="flex items-center justify-between font-medium">
+              <span>Web exploration</span>
+              <span className="text-xl">⌄</span>
+            </div>
+          </div>
+
+          {/* Industry List Dropdown */}
+          <div className="relative border border-gray-300 rounded-2xl px-4 py-3 text-gray-700 text-sm">
+            <div
+              className="flex items-center justify-between cursor-pointer"
+              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+            >
+              <span>All industries</span>
+              <span className="text-xl transform transition-transform duration-300">
+                {isDropdownOpen ? "⌃" : "⌄"}
+              </span>
+            </div>
+
+            {isDropdownOpen && (
+              <div className="absolute left-0 top-full w-full bg-white border border-t-0 rounded-b-2xl shadow-md mt-1 py-3 space-y-2 z-10">
+                <div className="px-4 hover:text-blue-600 cursor-pointer">
+                  SaaS
+                </div>
+                <div className="px-4 hover:text-blue-600 cursor-pointer">
+                  B2B
+                </div>
+                <div className="px-4 hover:text-blue-600 cursor-pointer">
+                  Finance
+                </div>
+                <div className="px-4 hover:text-blue-600 cursor-pointer">
+                  Education
+                </div>
+                <div className="px-4 hover:text-blue-600 cursor-pointer">
+                  Other industries
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
