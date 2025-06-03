@@ -8,7 +8,7 @@ export const featuresData = [
     slug: "digital-crypto-wallet-1",
     year: "2023",
     description: "An intuitive crypto wallet designed for SaaS platforms.",
-    heroImage: "/assets/hero1.png",
+    heroImage: "/assets/HMC1.png",
   },
   {
     src: "/assets/featuresDetails2.png",
@@ -19,7 +19,7 @@ export const featuresData = [
     slug: "digital-crypto-wallet-2",
     year: "2024",
     description: "A stylish UI for a fashion-focused WordPress app.",
-    heroImage: "/assets/hero1.png",
+    heroImage: "/assets/HMC1.png",
   },
   {
     src: "/assets/featuresDetails3.png",
@@ -29,7 +29,7 @@ export const featuresData = [
     slug: "digital-crypto-wallet-3",
     year: "2022",
     description: "Sleek UX design for a fintech platform.",
-    heroImage: "/assets/hero1.png",
+    heroImage: "/assets/HMC1.png",
   },
   {
     src: "/assets/Featured1.png",
@@ -40,6 +40,6 @@ export const featuresData = [
     slug: "digital-crypto-wallet-4",
     year: "2023",
     description: "Smart UI design focused on growth and conversions.",
-    heroImage: "/assets/hero1.png",
+    heroImage: "/assets/HMC1.png",
   },
 ];
