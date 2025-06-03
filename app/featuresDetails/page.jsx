@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { FaChevronDown } from "react-icons/fa";
 import { PiChatCenteredTextBold } from "react-icons/pi";
-import Link from "next/link"; // ⬅️ Import this at the top
+import Link from "next/link";
 
 const industries = [
   "All industries",

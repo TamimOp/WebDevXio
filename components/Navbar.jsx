@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { FiMenu, FiX, FiArrowUpRight } from "react-icons/fi";
 import { SlPencil } from "react-icons/sl";
 import Logo from "@/public/assets/Logo.png";
@@ -20,6 +21,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [activeId, setActiveId] = useState("");
   const menuRef = useRef(null);
+  const pathname = usePathname();
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "auto";
@@ -66,13 +68,23 @@ export default function Navbar() {
       { threshold: 0.6 }
     );
 
-    navItems.forEach((item) => {
-      const el = document.querySelector(item.target);
+    const elements = navItems.map((item) =>
+      document.querySelector(item.target)
+    );
+    elements.forEach((el) => {
       if (el) observer.observe(el);
     });
 
+    if (pathname === "/") {
+      const visible = elements.find(
+        (el) => el && el.getBoundingClientRect().top >= 0
+      );
+      if (visible) setActiveId(visible.id);
+      else if (elements[0]) setActiveId(elements[0].id);
+    }
+
     return () => observer.disconnect();
-  }, []);
+  }, [pathname]);
 
   const handleScroll = (e, target) => {
     e.preventDefault();
@@ -92,7 +104,16 @@ export default function Navbar() {
         transition={{ duration: 0.6 }}
         className="absolute top-0 left-0 right-0 z-50 flex items-center justify-between px-8 lg:px-20 py-6"
       >
-        <Link href="/">
+        <Link
+          href="/"
+          onClick={(e) => {
+            if (pathname === "/") {
+              e.preventDefault();
+              const home = document.querySelector("#home");
+              if (home) home.scrollIntoView({ behavior: "smooth" });
+            }
+          }}
+        >
           <Image
             src={Logo}
             alt="Logo"
