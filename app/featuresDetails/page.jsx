@@ -67,6 +67,7 @@ export default function FeaturesDetailsPage() {
   const [activeIndustry, setActiveIndustry] = useState("All industries");
   const [openIndustry, setOpenIndustry] = useState(true);
   const [openService, setOpenService] = useState(false);
+  const [hoveredIndex, setHoveredIndex] = useState(null);
 
   const filteredCards =
     activeIndustry === "All industries"
@@ -158,38 +159,47 @@ export default function FeaturesDetailsPage() {
             </h2>
 
             <div className="flex flex-wrap justify-center sm:justify-start gap-8 sm:gap-10">
-              {filteredCards.map((card, index) => (
-                <div
-                  key={index}
-                  className="flex-1 min-w-[280px] max-w-[408px] sm:basis-[calc(50%-20px)] lg:basis-[calc(33.333%-20px)]"
-                >
-                  <Link
-                    href={`/featuresDetails/${card.slug}`}
-                    className="block group"
+              {filteredCards.map((card, index) => {
+                const isHovered = hoveredIndex !== null;
+                const isCurrent = hoveredIndex === index;
+
+                return (
+                  <div
+                    key={index}
+                    className={`flex-1 min-w-[280px] max-w-[408px] sm:basis-[calc(50%-20px)] lg:basis-[calc(33.333%-20px)] transition-opacity duration-300 ${
+                      isHovered && !isCurrent ? "opacity-40" : "opacity-100"
+                    }`}
+                    onMouseEnter={() => setHoveredIndex(index)}
+                    onMouseLeave={() => setHoveredIndex(null)}
                   >
-                    <div
-                      className={`w-full h-[304px] rounded-2xl border-[3px] border-white shadow-[0px_0px_12.4px_2px_#274AFFB5] overflow-hidden flex items-center justify-center ${card.gradient} transition-transform duration-300 group-hover:scale-[1.01]`}
+                    <Link
+                      href={`/featuresDetails/${card.slug}`}
+                      className="block group"
                     >
-                      <div className="relative w-[90%] h-[246px] rounded-[7px] overflow-hidden">
-                        <Image
-                          src={card.src}
-                          alt={card.title}
-                          fill
-                          className="object-cover object-top rounded-[7px]"
-                        />
+                      <div
+                        className={`w-full h-[304px] rounded-2xl border-[3px] border-white shadow-[0px_0px_12.4px_2px_#274AFFB5] overflow-hidden flex items-center justify-center ${card.gradient} transition-transform duration-300 group-hover:scale-[1.01]`}
+                      >
+                        <div className="relative w-[90%] h-[246px] rounded-[7px] overflow-hidden">
+                          <Image
+                            src={card.src}
+                            alt={card.title}
+                            fill
+                            className="object-cover object-top rounded-[7px]"
+                          />
+                        </div>
                       </div>
-                    </div>
-                    <div className="mt-3 px-1">
-                      <p className="text-[13px] text-[#515151] font-medium">
-                        {card.tags}
-                      </p>
-                      <h3 className="text-[22px] sm:text-[24px] md:text-[28px] font-semibold text-[#1F1F1F]">
-                        {card.title}
-                      </h3>
-                    </div>
-                  </Link>
-                </div>
-              ))}
+                      <div className="mt-3 px-1">
+                        <p className="text-[13px] text-[#515151] font-medium">
+                          {card.tags}
+                        </p>
+                        <h3 className="text-[22px] sm:text-[24px] md:text-[28px] font-semibold text-[#1F1F1F]">
+                          {card.title}
+                        </h3>
+                      </div>
+                    </Link>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
