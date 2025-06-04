@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation"; // added useRouter
 import { FiMenu, FiX, FiArrowUpRight } from "react-icons/fi";
 import { SlPencil } from "react-icons/sl";
 import Logo from "@/public/assets/Logo.png";
@@ -22,6 +22,7 @@ export default function Navbar() {
   const [activeId, setActiveId] = useState("");
   const menuRef = useRef(null);
   const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "auto";
@@ -88,10 +89,15 @@ export default function Navbar() {
 
   const handleScroll = (e, target) => {
     e.preventDefault();
-    const el = document.querySelector(target);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
+    if (pathname !== "/") {
+      router.push("/" + target);
       setIsOpen(false);
+    } else {
+      const el = document.querySelector(target);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+        setIsOpen(false);
+      }
     }
   };
 
@@ -153,9 +159,11 @@ export default function Navbar() {
             label="Contact Us"
             Icon={SlPencil}
             onClick={() => {
-              const el = document.querySelector("#contact");
-              if (el) {
-                el.scrollIntoView({ behavior: "smooth" });
+              if (pathname !== "/") {
+                router.push("/#contact");
+              } else {
+                const el = document.querySelector("#contact");
+                if (el) el.scrollIntoView({ behavior: "smooth" });
               }
             }}
           />
@@ -184,13 +192,25 @@ export default function Navbar() {
             transition={{ duration: 0.4 }}
             className="fixed top-4 left-1/2 -translate-x-1/2 z-[60] backdrop-blur-lg bg-white/60 rounded-full shadow-xl px-6 py-2 hidden lg:flex items-center gap-6"
           >
-            <Image
-              src={Logo}
-              alt="Logo"
-              width={130}
-              height={36}
-              className="w-[130px] h-auto"
-            />
+            <Link
+              href="/"
+              onClick={(e) => {
+                if (pathname === "/") {
+                  e.preventDefault();
+                  const home = document.querySelector("#home");
+                  if (home) home.scrollIntoView({ behavior: "smooth" });
+                }
+              }}
+            >
+              <Image
+                src={Logo}
+                alt="Logo"
+                width={130}
+                height={36}
+                className="w-[130px] h-auto"
+              />
+            </Link>
+
             <ul className="flex items-center gap-4">
               {navItems.map((item, i) => (
                 <li key={i} className="flex items-center gap-1">
@@ -217,8 +237,12 @@ export default function Navbar() {
               Icon={SlPencil}
               className="text-sm px-4 py-2"
               onClick={() => {
-                const el = document.querySelector("#contact");
-                if (el) el.scrollIntoView({ behavior: "smooth" });
+                if (pathname !== "/") {
+                  router.push("/#contact");
+                } else {
+                  const el = document.querySelector("#contact");
+                  if (el) el.scrollIntoView({ behavior: "smooth" });
+                }
               }}
             />
           </motion.div>
@@ -258,10 +282,14 @@ export default function Navbar() {
                 className="w-full justify-center text-sm py-2"
                 fullWidth
                 onClick={() => {
-                  const el = document.querySelector("#contact");
-                  if (el) {
-                    el.scrollIntoView({ behavior: "smooth" });
-                    setIsOpen(false);
+                  if (pathname !== "/") {
+                    router.push("/#contact");
+                  } else {
+                    const el = document.querySelector("#contact");
+                    if (el) {
+                      el.scrollIntoView({ behavior: "smooth" });
+                      setIsOpen(false);
+                    }
                   }
                 }}
               />
