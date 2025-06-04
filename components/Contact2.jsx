@@ -78,11 +78,11 @@ const Contact2 = () => {
 
           {/* Right - Text Content */}
           <div className="flex flex-col gap-4 w-full md:w-1/2 text-center md:text-left">
-            <h2 className="text-3xl md:text-5xl font-medium leading-tight">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium leading-tight">
               Transform the Way Your{" "}
               <span className="gradient-text">SaaS Website</span> Converts
             </h2>
-            <p className="text-[18px] md:text-[22px] text-gray-600 border-l-4 border-blue-700 pl-4 mt-2 font-medium">
+            <p className="text-[18px] md:text-xl lg:text-[22px] text-gray-600 border-l-4 border-blue-700 pl-4 mt-2 font-medium">
               We craft high-converting, user-friendly SaaS websites that drive
               engagement and growth.
             </p>
