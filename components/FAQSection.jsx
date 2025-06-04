@@ -11,7 +11,7 @@ export default function FAQSection() {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const checkIsMobile = () => setIsMobile(window.innerWidth < 768);
+    const checkIsMobile = () => setIsMobile(window.innerWidth <= 1024);
     checkIsMobile();
     window.addEventListener("resize", checkIsMobile);
     return () => window.removeEventListener("resize", checkIsMobile);
@@ -67,14 +67,14 @@ export default function FAQSection() {
           —FAQ
         </p>
 
-        <div className="flex flex-col md:flex-row gap-12 md:gap-16">
+        <div className="flex flex-col md:flex-row gap-12 lg:gap-16">
           {/* Left Column */}
           <motion.div
             initial={{ opacity: 0, x: -100 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="w-full md:w-2/3"
+            className="w-full lg:w-2/3"
           >
             <div className="mb-10">
               <h2 className="text-[26px] sm:text-4xl md:text-5xl font-medium mb-6 leading-snug">
@@ -180,7 +180,7 @@ export default function FAQSection() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="w-full md:w-1/3 space-y-6"
+            className="w-full lg:w-1/3 space-y-6"
           >
             {/* Message Box */}
             <div className="relative bg-[#0c1e63] text-white px-6 pt-12 pb-8 rounded-3xl shadow-xl overflow-hidden flex flex-col items-center gap-2 w-full">
