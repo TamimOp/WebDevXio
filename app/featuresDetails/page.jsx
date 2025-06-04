@@ -6,6 +6,7 @@ import { useState } from "react";
 import { FaChevronDown } from "react-icons/fa";
 import { PiChatCenteredTextBold } from "react-icons/pi";
 import Link from "next/link";
+import { featuresData } from "@/data";
 
 const industries = [
   "All industries",
@@ -15,53 +16,8 @@ const industries = [
   "Education",
   "Other industries",
 ];
-const services = ["UI/UX Design", "Web Design", "Development"];
 
-const cards = [
-  {
-    src: "/assets/featuresDetails1.png",
-    title: "Digital CRYPTO Wallet",
-    tags: "Framer - SaaS",
-    bg: "bg-[#10002B]",
-    gradient: "bg-[linear-gradient(180deg,_#0D011A_0%,_#1E0039_100%)]",
-    slug: "digital-crypto-wallet-1",
-    year: "2023",
-    description: "An intuitive crypto wallet designed for SaaS platforms.",
-    heroImage: "/assets/hero1.png",
-  },
-  {
-    src: "/assets/featuresDetails2.png",
-    title: "Fashion Wallet UI",
-    tags: "WordPress - Fashion",
-    gradient:
-      "bg-[linear-gradient(122.05deg,_#1E1E1E_6.83%,_#274AFF_49.74%,_#1E1E1E_92.01%)]",
-    slug: "digital-crypto-wallet-2",
-    year: "2024",
-    description: "A stylish UI for a fashion-focused WordPress app.",
-    heroImage: "/assets/hero1.png",
-  },
-  {
-    src: "/assets/featuresDetails3.png",
-    title: "Fintech SaaS UX",
-    tags: "UI/UX Design - SaaS",
-    gradient: "bg-[linear-gradient(180deg,_#220202_0%,_#212429_100%)]",
-    slug: "digital-crypto-wallet-3",
-    year: "2022",
-    description: "Sleek UX design for a fintech platform.",
-    heroImage: "/assets/hero1.png",
-  },
-  {
-    src: "/assets/Featured1.png",
-    title: "Growth-Driven UI",
-    tags: "UI/UX Design - SaaS",
-    gradient:
-      "bg-[linear-gradient(122.05deg,_#1E1E1E_6.83%,_#4A7639_49.74%,_#1E1E1E_92.01%)]",
-    slug: "digital-crypto-wallet-4",
-    year: "2023",
-    description: "Smart UI design focused on growth and conversions.",
-    heroImage: "/assets/hero1.png",
-  },
-];
+const services = ["UI/UX Design", "Web Design", "Development"];
 
 export default function FeaturesDetailsPage() {
   const [activeIndustry, setActiveIndustry] = useState("All industries");
@@ -71,8 +27,8 @@ export default function FeaturesDetailsPage() {
 
   const filteredCards =
     activeIndustry === "All industries"
-      ? cards
-      : cards.filter((card) =>
+      ? featuresData
+      : featuresData.filter((card) =>
           card.tags.toLowerCase().includes(activeIndustry.toLowerCase())
         );
 
@@ -80,7 +36,7 @@ export default function FeaturesDetailsPage() {
     <section className="pt-35 px-4 sm:px-6 lg:px-12 pb-16 bg-white">
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-10 items-start">
         {/* LEFT SIDEBAR */}
-        <div className="w-full lg:w-[280px] rounded-xl border-2 border-black p-4 space-y-6 lg:sticky top-10 self-start">
+        <aside className="w-full lg:w-[280px] rounded-xl border-2 border-black p-4 space-y-6 lg:sticky top-10 self-start">
           {/* INDUSTRIES */}
           <div className="border-b border-[#6B6B6B] pb-4">
             <div
@@ -140,13 +96,12 @@ export default function FeaturesDetailsPage() {
             )}
           </div>
 
-          {/* BUTTON */}
           <Button
             label="Have a Project?"
             Icon={PiChatCenteredTextBold}
             onClick={() => console.log("clicked")}
           />
-        </div>
+        </aside>
 
         {/* RIGHT CONTENT */}
         <div className="flex-1">
