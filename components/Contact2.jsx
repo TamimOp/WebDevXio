@@ -17,7 +17,7 @@ const Contact2 = () => {
         initial={{ opacity: 0, y: 100 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="w-full max-w-[1261px] h-auto md:h-[563px] rounded-[19px] p-6 md:p-16 relative overflow-hidden"
+        className="w-full h-auto xl:h-[563px] max-w-[1261px] rounded-[19px] p-6 lg:p-16 relative overflow-hidden"
         style={{
           boxShadow: "0px 0px 85.9px -7px #00000030",
         }}
@@ -42,10 +42,10 @@ const Contact2 = () => {
         ></div>
 
         {/* Content */}
-        <div className="relative z-10 flex flex-col md:flex-row items-center justify-center gap-10 md:gap-12 w-full h-full">
+        <div className="relative z-10 flex flex-col lg:flex-row items-center justify-center gap-10 lg:gap-12 w-full h-full">
           {/* Left - Images */}
           <div className="flex flex-col items-center gap-3 w-full max-w-[430px]">
-            <div className="rounded-full border-[3px] md:border-[5px] border-[#274AFF] overflow-hidden w-full aspect-[2.3/1] shadow-xl/30">
+            <div className="rounded-full border-[3px] lg:border-[5px] border-[#274AFF] overflow-hidden w-full aspect-[2.3/1] shadow-xl/30">
               <Image
                 src="/assets/ContactBg1.jpg"
                 alt="Team Working"
@@ -55,7 +55,7 @@ const Contact2 = () => {
               />
             </div>
             <div className="flex gap-3 w-[90%] aspect-[3/1]">
-              <div className="rounded-l-[163.5px] rounded-r-[17px] border-[2px] md:border-[3px] border-[#274AFF] overflow-hidden w-1/2 shadow-xl/30">
+              <div className="rounded-l-[163.5px] rounded-r-[17px] border-[2px] lg:border-[3px] border-[#274AFF] overflow-hidden w-1/2 shadow-xl/30">
                 <Image
                   src="/assets/ContactBg2.jpg"
                   alt="Team Meeting"
@@ -64,7 +64,7 @@ const Contact2 = () => {
                   className="object-cover w-full h-full"
                 />
               </div>
-              <div className="rounded-r-[163.5px] rounded-l-[17px] border-[2px] md:border-[3px] border-[#274AFF] overflow-hidden w-1/2 shadow-xl/30">
+              <div className="rounded-r-[163.5px] rounded-l-[17px] border-[2px] lg:border-[3px] border-[#274AFF] overflow-hidden w-1/2 shadow-xl/30">
                 <Image
                   src="/assets/ContactBg3.png"
                   alt="Team Planning"
@@ -77,16 +77,16 @@ const Contact2 = () => {
           </div>
 
           {/* Right - Text Content */}
-          <div className="flex flex-col gap-4 w-full md:w-1/2 text-center md:text-left">
+          <div className="flex flex-col gap-4 w-full xl:w-1/2 text-center lg:text-left">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium leading-tight">
               Transform the Way Your{" "}
               <span className="gradient-text">SaaS Website</span> Converts
             </h2>
-            <p className="text-[18px] md:text-xl lg:text-[22px] text-gray-600 border-l-4 border-blue-700 pl-4 mt-2 font-medium">
+            <p className="text-[18px] md:text-[20px] lg:text-[22px] text-gray-600 border-l-4 border-blue-700 pl-4 mt-2 font-medium">
               We craft high-converting, user-friendly SaaS websites that drive
               engagement and growth.
             </p>
-            <div className="flex justify-center md:justify-start">
+            <div className="flex justify-center lg:justify-start">
               <Button label="Contact Us" Icon={SlPencil} />
             </div>
           </div>
