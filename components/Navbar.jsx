@@ -206,7 +206,7 @@ export default function Navbar() {
                   if (home) home.scrollIntoView({ behavior: "smooth" });
                 }
               }}
-              className="flex items-center py-1" // for vertical alignment
+              className="flex items-center py-1 pl-2"
             >
               <Image
                 src={Logo}
