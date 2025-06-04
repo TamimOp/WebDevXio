@@ -195,7 +195,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -30 }}
             transition={{ duration: 0.4 }}
-            className="fixed top-4 left-1/2 -translate-x-1/2 z-[60] backdrop-blur-lg bg-white/60 rounded-full shadow-xl px-6 py-2 hidden lg:flex items-center gap-6 w-full max-w-3xl justify-between"
+            className="fixed top-4 left-1/2 -translate-x-1/2 z-[60] backdrop-blur-lg bg-white/60 rounded-full shadow-xl px-4 py-3 hidden lg:flex items-center gap-6 w-full max-w-3xl justify-between"
           >
             <Link
               href="/"
@@ -206,13 +206,14 @@ export default function Navbar() {
                   if (home) home.scrollIntoView({ behavior: "smooth" });
                 }
               }}
+              className="flex items-center py-1" // for vertical alignment
             >
               <Image
                 src={Logo}
                 alt="Logo"
                 width={160}
                 height={42}
-                className="w-[160px] h-auto transition-all duration-300"
+                className="w-[160px] h-auto object-contain"
               />
             </Link>
 
@@ -237,10 +238,11 @@ export default function Navbar() {
                 </li>
               ))}
             </ul>
+
             <Button
               label="Contact Us"
               Icon={SlPencil}
-              className="text-sm px-4 py-2"
+              className="text-sm px-4 py-2.5 flex items-center gap-2"
               onClick={() => {
                 if (pathname !== "/") {
                   router.push("/#contact");
