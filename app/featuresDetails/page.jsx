@@ -113,6 +113,17 @@ export default function FeaturesDetailsPage() {
               how our skills can contribute to your success.
             </h2>
 
+            {/* ACTIVE INDUSTRY TAG */}
+            {activeIndustry !== "All industries" && (
+              <div className="text-sm text-[#3D4A5C] font-medium flex items-center gap-2 flex-wrap">
+                <span>You’re looking for:</span>
+                <span className="inline-flex items-center bg-white border border-[#D0D5DD] text-black px-3 py-1 rounded-full text-sm font-medium shadow-sm">
+                  {activeIndustry}
+                  <span className="ml-2 text-xs cursor-pointer">×</span>
+                </span>
+              </div>
+            )}
+
             <div className="flex flex-wrap justify-center sm:justify-start gap-8 sm:gap-10">
               {filteredCards.map((card, index) => {
                 const isHovered = hoveredIndex !== null;
