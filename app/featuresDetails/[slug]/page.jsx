@@ -7,6 +7,7 @@ import Image from "next/image";
 import { CiClock2 } from "react-icons/ci";
 import { IoArrowDownCircleOutline } from "react-icons/io5";
 import Link from "next/link";
+import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 
 export default function FeaturedWork() {
   const params = useParams();
@@ -226,7 +227,9 @@ export default function FeaturedWork() {
             </div>
             <div className="flex items-center text-base md:text-xl justify-between font-medium">
               <span>Web exploration</span>
-              <span className="text-xl">⌄</span>
+              <span className="text-xl">
+                <FaAngleDown />
+              </span>
             </div>
           </div>
 
@@ -237,7 +240,7 @@ export default function FeaturedWork() {
             >
               <span>All industries</span>
               <span className="text-xl transform transition-transform duration-300">
-                {isDropdownOpen ? "⌃" : "⌄"}
+                {isDropdownOpen ? <FaAngleUp /> : <FaAngleDown />}
               </span>
             </div>
 
