@@ -108,8 +108,9 @@ export default function Navbar() {
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="absolute top-0 left-0 right-0 z-50 flex items-center justify-between px-8 lg:px-20 py-6"
+        className="absolute top-0 left-0 right-0 z-50 w-full flex items-center justify-between px-6 md:px-12 xl:px-20 py-5 bg-transparent"
       >
+        {/* Logo */}
         <Link
           href="/"
           onClick={(e) => {
@@ -119,17 +120,19 @@ export default function Navbar() {
               if (home) home.scrollIntoView({ behavior: "smooth" });
             }
           }}
+          className="flex-shrink-0"
         >
           <Image
             src={Logo}
             alt="Logo"
             width={221}
             height={32.28}
-            className="w-[140px] lg:w-[221px] h-auto cursor-pointer"
+            className="w-[140px] md:w-[180px] lg:w-[221px] h-auto cursor-pointer"
           />
         </Link>
 
-        <ul className="hidden lg:flex items-center gap-8">
+        {/* Navigation */}
+        <ul className="hidden lg:flex items-center gap-5 xl:gap-8">
           {navItems.map((item, i) => (
             <li
               key={i}
@@ -138,7 +141,7 @@ export default function Navbar() {
               <Link
                 href={item.target}
                 scroll={false}
-                className={`relative px-4 py-2 text-[18px] ${
+                className={`relative px-2 xl:px-4 py-2 text-[17px] whitespace-nowrap ${
                   activeId === item.target.slice(1)
                     ? "text-[#274AFF]"
                     : "text-black"
@@ -154,7 +157,8 @@ export default function Navbar() {
           ))}
         </ul>
 
-        <div className="hidden lg:block">
+        {/* Button */}
+        <div className="hidden lg:block ml-4">
           <Button
             label="Contact Us"
             Icon={SlPencil}
@@ -169,6 +173,7 @@ export default function Navbar() {
           />
         </div>
 
+        {/* Hamburger for mobile */}
         <div className="lg:hidden flex items-center gap-2 z-50">
           <div className="relative w-[38px] h-[38px] bg-[#274AFF] rounded-bl-[70%] flex items-center justify-center">
             <button
@@ -190,7 +195,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -30 }}
             transition={{ duration: 0.4 }}
-            className="fixed top-4 left-1/2 -translate-x-1/2 z-[60] backdrop-blur-lg bg-white/60 rounded-full shadow-xl px-6 py-2 hidden lg:flex items-center gap-6"
+            className="fixed top-4 left-1/2 -translate-x-1/2 z-[60] backdrop-blur-lg bg-white/60 rounded-full shadow-xl px-6 py-2 hidden lg:flex items-center gap-6 w-full max-w-3xl justify-between"
           >
             <Link
               href="/"
@@ -205,19 +210,19 @@ export default function Navbar() {
               <Image
                 src={Logo}
                 alt="Logo"
-                width={130}
-                height={36}
-                className="w-[130px] h-auto"
+                width={160}
+                height={42}
+                className="w-[160px] h-auto transition-all duration-300"
               />
             </Link>
 
-            <ul className="flex items-center gap-4">
+            <ul className="flex items-center gap-5">
               {navItems.map((item, i) => (
                 <li key={i} className="flex items-center gap-1">
                   <Link
                     href={item.target}
                     scroll={false}
-                    className={`text-[18px] font-medium ${
+                    className={`text-[18px] font-medium whitespace-nowrap ${
                       activeId === item.target.slice(1)
                         ? "text-[#274AFF]"
                         : "text-black"
