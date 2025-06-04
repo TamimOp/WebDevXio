@@ -97,8 +97,9 @@ export default function FeaturedWork() {
         </div>
 
         {/* RIGHT SIDEBAR */}
-        <div className="lg:w-1/3 flex justify-end">
-          <div className="flex flex-col space-y-4 text-sm text-right">
+        {/* RIGHT SIDEBAR */}
+        <div className="w-full lg:w-1/3 flex justify-center lg:justify-end">
+          <div className="w-full max-w-sm flex flex-col space-y-6 text-sm text-left lg:text-right">
             <div>
               <p className="text-lg text-[#A1A1A1] font-medium uppercase">
                 Industry
