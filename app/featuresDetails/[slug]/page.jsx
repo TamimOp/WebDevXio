@@ -6,6 +6,7 @@ import { notFound, useParams } from "next/navigation";
 import Image from "next/image";
 import { CiClock2 } from "react-icons/ci";
 import { IoArrowDownCircleOutline } from "react-icons/io5";
+import Link from "next/link";
 
 export default function FeaturedWork() {
   const params = useParams();
@@ -14,13 +15,7 @@ export default function FeaturedWork() {
 
   if (!card) return notFound();
 
-  const slides = [
-    "/assets/HMCslide1.png",
-    "/assets/HMCslide2.png",
-    "/assets/HMCslide3.png",
-    "/assets/HMCslide4.png",
-  ];
-
+  const slides = card.slides || [];
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -32,9 +27,9 @@ export default function FeaturedWork() {
   }, []);
 
   return (
-    <div className="w-full pt-[120px] bg-white text-black overflow-x-hidden">
+    <div className="w-full pt-[100px] bg-white text-black overflow-x-hidden">
       {/* Hero Section */}
-      <div className="relative w-full max-w-7xl mx-auto rounded-3xl overflow-hidden h-[80vh] md:h-[90vh] mb-16">
+      <div className="relative w-full h-[80vh] md:h-[90vh] mb-16 overflow-hidden">
         <Image
           src={card.heroImage}
           alt={card.title}
@@ -43,8 +38,15 @@ export default function FeaturedWork() {
         />
         <div className="absolute inset-0 z-10 flex flex-col justify-between p-4 sm:p-6 md:p-14 text-white">
           <div className="text-lg sm:text-xl font-normal">
-            All Project / {card.title}
+            <Link
+              href="/featuresDetails"
+              className="hover:underline hover:text-blue-300"
+            >
+              All Project
+            </Link>{" "}
+            / {card.title}
           </div>
+
           <div>
             <h1 className="text-3xl sm:text-5xl md:text-[64px] font-bold leading-tight max-w-2xl">
               {card.title}
@@ -170,7 +172,7 @@ export default function FeaturedWork() {
       <div className="w-full my-20">
         <div className="relative w-full h-[250px] sm:h-[400px] md:h-[500px] overflow-hidden mb-12">
           <Image
-            src="/assets/HMC2.png"
+            src={card.workFlowImage}
             alt="Workflow image"
             fill
             className="object-fill"

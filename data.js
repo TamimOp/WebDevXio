@@ -9,6 +9,13 @@ export const featuresData = [
     year: "2023",
     description: "An intuitive crypto wallet designed for SaaS platforms.",
     heroImage: "/assets/HMC1.png",
+    workFlowImage: "/assets/HMC2.png",
+    slides: [
+      "/assets/HMCslide1.png",
+      "/assets/HMCslide2.png",
+      "/assets/HMCslide3.png",
+      "/assets/HMCslide4.png",
+    ],
   },
   {
     src: "/assets/featuresDetails2.png",
@@ -19,7 +26,14 @@ export const featuresData = [
     slug: "digital-crypto-wallet-2",
     year: "2024",
     description: "A stylish UI for a fashion-focused WordPress app.",
-    heroImage: "/assets/HMC1.png",
+    heroImage: "/assets/Zyvo1.png",
+    workFlowImage: "/assets/Zyvo2.png",
+    slides: [
+      "/assets/Zyvoslide1.png",
+      "/assets/Zyvoslide2.png",
+      "/assets/Zyvoslide3.png",
+      "/assets/Zyvoslide4.png",
+    ],
   },
   {
     src: "/assets/featuresDetails3.png",
@@ -30,6 +44,13 @@ export const featuresData = [
     year: "2022",
     description: "Sleek UX design for a fintech platform.",
     heroImage: "/assets/HMC1.png",
+    workFlowImage: "/assets/HMC2.png",
+    slides: [
+      "/assets/HMCslide1.png",
+      "/assets/HMCslide2.png",
+      "/assets/HMCslide3.png",
+      "/assets/HMCslide4.png",
+    ],
   },
   {
     src: "/assets/Featured1.png",
@@ -41,5 +62,12 @@ export const featuresData = [
     year: "2023",
     description: "Smart UI design focused on growth and conversions.",
     heroImage: "/assets/HMC1.png",
+    workFlowImage: "/assets/HMC2.png",
+    slides: [
+      "/assets/HMCslide1.png",
+      "/assets/HMCslide2.png",
+      "/assets/HMCslide3.png",
+      "/assets/HMCslide4.png",
+    ],
   },
 ];
