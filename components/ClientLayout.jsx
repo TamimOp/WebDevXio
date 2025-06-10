@@ -8,13 +8,6 @@ import PageTransition from "@/components/PageTransition";
 export default function ClientLayout({ children }) {
   const pathname = usePathname();
 
-  useEffect(() => {
-    // Enable view transitions if supported
-    if (typeof document !== "undefined" && document.startViewTransition) {
-      document.documentElement.style.viewTransitionName = "root";
-    }
-  }, []);
-
   return (
     <>
       <Navbar />
