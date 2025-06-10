@@ -81,7 +81,7 @@ export default function FeaturedWork() {
   };
 
   return (
-    <div className="w-full pt-[100px] bg-white text-black overflow-x-hidden">
+    <div className="w-full pt-[100px] bg-white text-black">
       {/* Hero Section */}
       <div className="relative w-full h-[60vh] md:h-[90vh] mb-16 overflow-hidden">
         <Image
@@ -298,7 +298,7 @@ export default function FeaturedWork() {
         </div>
 
         {/* RIGHT STICKY DROPDOWN */}
-        <div className="w-full lg:w-[250px] sticky top-24 self-start h-fit">
+        <div className="w-full lg:w-[250px] sticky top-30 self-start h-fit">
           <div className="border border-gray-300 rounded-2xl px-4 py-3 mb-4 bg-white shadow-sm">
             <div className="flex items-center justify-between text-[15px] text-gray-600 mb-1">
               <span>Half million</span>
