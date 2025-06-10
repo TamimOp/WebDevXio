@@ -65,3 +65,66 @@
   z-index: 1; /* Place it above the content but below any interactive elements */
   pointer-events: none; /* Allow clicking through the fade overlay */
 }
+
+/* View Transitions */
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.5s;
+  animation-timing-function: ease-in-out;
+}
+
+::view-transition-old(root) {
+  animation-name: slide-out-left;
+}
+
+::view-transition-new(root) {
+  animation-name: slide-in-right;
+}
+
+@keyframes slide-out-left {
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Specific transitions for different routes */
+[data-transition="fade"] {
+  view-transition-name: fade-transition;
+}
+
+::view-transition-old(fade-transition),
+::view-transition-new(fade-transition) {
+  animation-duration: 0.3s;
+}
+
+::view-transition-old(fade-transition) {
+  animation-name: fade-out;
+}
+
+::view-transition-new(fade-transition) {
+  animation-name: fade-in;
+}
+
+@keyframes fade-out {
+  to { opacity: 0; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+}
