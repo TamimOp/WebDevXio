@@ -30,7 +30,7 @@ export default function FeaturedWork() {
   return (
     <div className="w-full pt-[100px] bg-white text-black overflow-x-hidden">
       {/* Hero Section */}
-      <div className="relative w-full h-[80vh] md:h-[90vh] mb-16 overflow-hidden">
+      <div className="relative w-full h-[60vh] md:h-[90vh] mb-16 overflow-hidden">
         <Image
           src={card.heroImage}
           alt={card.title}
