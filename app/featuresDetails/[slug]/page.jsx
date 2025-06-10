@@ -148,12 +148,13 @@ export default function FeaturedWork() {
 
       {/* Slideshow Section */}
       <div className="mt-20 w-full">
-        <div className="relative w-full aspect-video overflow-hidden rounded-none">
+        <div className="relative w-full overflow-hidden rounded-none">
           <Image
             src={slides[currentSlide]}
             alt="Coffee slide"
-            fill
-            className="object-cover transition-all duration-700 ease-in-out"
+            width={1920}
+            height={1080}
+            className="w-full h-auto transition-all duration-700 ease-in-out"
           />
         </div>
       </div>
@@ -172,12 +173,13 @@ export default function FeaturedWork() {
 
       {/* Bottom Full-Width Image */}
       <div className="w-full my-20">
-        <div className="relative w-full h-[250px] sm:h-[400px] md:h-[500px] overflow-hidden mb-12">
+        <div className="relative w-full overflow-hidden mb-12">
           <Image
             src={card.workFlowImage}
             alt="Workflow image"
-            fill
-            className="object-fill"
+            width={1920}
+            height={1080}
+            className="w-full h-auto"
           />
         </div>
       </div>
