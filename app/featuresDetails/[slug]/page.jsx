@@ -19,6 +19,42 @@ export default function FeaturedWork() {
   const slides = card.slides || [];
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [showAllIndustries, setShowAllIndustries] = useState(false);
+  const [activeSection, setActiveSection] = useState("All industries");
+
+  // Demo sections data
+  const sections = [
+    {
+      id: "saas",
+      name: "SaaS",
+      content:
+        "This is the SaaS section content. Here we showcase software-as-a-service solutions and their implementations in modern web development.",
+    },
+    {
+      id: "b2b",
+      name: "B2B",
+      content:
+        "This is the B2B section content. Business-to-business solutions require different approaches and strategies for effective user engagement.",
+    },
+    {
+      id: "finance",
+      name: "Finance",
+      content:
+        "This is the Finance section content. Financial applications demand high security, reliability, and user trust through exceptional design.",
+    },
+    {
+      id: "education",
+      name: "Education",
+      content:
+        "This is the Education section content. Educational platforms focus on user engagement, accessibility, and knowledge retention.",
+    },
+    {
+      id: "other",
+      name: "Other industries",
+      content:
+        "This is the Other industries section content. We work across various sectors, adapting our approach to meet specific industry needs.",
+    },
+  ];
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -26,6 +62,23 @@ export default function FeaturedWork() {
     }, 2000);
     return () => clearInterval(interval);
   }, []);
+
+  const handleWebExplorationClick = () => {
+    setShowAllIndustries(true);
+  };
+
+  const handleSectionClick = (sectionName) => {
+    setActiveSection(sectionName);
+    setIsDropdownOpen(false);
+
+    // Scroll to the section
+    const element = document.getElementById(
+      sectionName.toLowerCase().replace(/\s+/g, "-")
+    );
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
 
   return (
     <div className="w-full pt-[100px] bg-white text-black overflow-x-hidden">
@@ -83,7 +136,7 @@ export default function FeaturedWork() {
               Half Million Coffee needed an immersive online experience that
               conveyed their passion for crafting premium coffee while inviting
               users to explore and engage with the brand. The site had to
-              reflect both the brand’s artisanal values and its
+              reflect both the brand's artisanal values and its
               community-focused mission—all while driving product discovery and
               sales.
             </p>
@@ -96,7 +149,6 @@ export default function FeaturedWork() {
           </div>
         </div>
 
-        {/* RIGHT SIDEBAR */}
         {/* RIGHT SIDEBAR */}
         <div className="w-full lg:w-1/3 flex justify-center lg:justify-end">
           <div className="w-full max-w-sm flex flex-col space-y-6 text-sm text-left lg:text-right">
@@ -165,7 +217,7 @@ export default function FeaturedWork() {
           CHALLENGE
         </button>
         <p className="text-2xl sm:text-3xl md:text-5xl leading-relaxed font-medium max-w-3xl">
-          The site had to reflect both the brand’s artisanal values and its
+          The site had to reflect both the brand's artisanal values and its
           community-focused mission—all while driving product discovery and
           sales.
         </p>
@@ -198,7 +250,7 @@ export default function FeaturedWork() {
             <p className="text-[#787878] text-base sm:text-xl md:text-[22px] leading-relaxed md:w-[50%]">
               Our creative direction was shaped around the real-world coffee
               rituals of community-driven individuals. Drawing inspiration from
-              Half Million Coffee’s origin story—rooted in love, warmth, and
+              Half Million Coffee's origin story—rooted in love, warmth, and
               community—we worked to uncover emotional touchpoints that would
               drive connection and loyalty.
             </p>
@@ -219,16 +271,43 @@ export default function FeaturedWork() {
               </ul>
             </div>
           </div>
+
+          {/* Demo Sections for Scrolling */}
+          {sections.map((section) => (
+            <div
+              key={section.id}
+              id={section.name.toLowerCase().replace(/\s+/g, "-")}
+              className="py-16 border-t border-gray-200"
+            >
+              <h4 className="text-2xl sm:text-3xl md:text-4xl font-medium mb-6 text-black">
+                {section.name} Solutions
+              </h4>
+              <p className="text-[#787878] text-base sm:text-xl md:text-[22px] leading-relaxed">
+                {section.content}
+              </p>
+              <div className="mt-8 p-6 bg-gray-50 rounded-lg">
+                <p className="text-[#505050] text-lg">
+                  This section demonstrates how our expertise in{" "}
+                  {section.name.toLowerCase()} helps clients achieve their
+                  business objectives through thoughtful design and strategic
+                  implementation.
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
 
         {/* RIGHT STICKY DROPDOWN */}
-        <div className="w-full lg:w-[250px] sticky top-24 self-start">
-          <div className="border border-gray-300 rounded-2xl px-4 py-3 mb-4">
+        <div className="w-full lg:w-[250px] sticky top-24 self-start h-fit">
+          <div className="border border-gray-300 rounded-2xl px-4 py-3 mb-4 bg-white shadow-sm">
             <div className="flex items-center justify-between text-[15px] text-gray-600 mb-1">
               <span>Half million</span>
               <span>1/7</span>
             </div>
-            <div className="flex items-center text-base md:text-xl justify-between font-medium">
+            <div
+              className="flex items-center text-base md:text-xl justify-between font-medium cursor-pointer"
+              onClick={handleWebExplorationClick}
+            >
               <span>Web exploration</span>
               <span className="text-xl">
                 <FaAngleDown />
@@ -236,37 +315,54 @@ export default function FeaturedWork() {
             </div>
           </div>
 
-          <div className="relative border border-gray-300 rounded-2xl px-4 py-3 text-[#595959] text-base md:text-xl">
-            <div
-              className="flex items-center justify-between cursor-pointer"
-              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-            >
-              <span>All industries</span>
-              <span className="text-xl transform transition-transform duration-300">
-                {isDropdownOpen ? <FaAngleUp /> : <FaAngleDown />}
-              </span>
-            </div>
-
-            {isDropdownOpen && (
-              <div className="absolute left-0 top-full w-full bg-white border border-t-0 rounded-b-2xl shadow-md mt-1 py-3 space-y-2 z-10">
-                <div className="px-4 hover:text-blue-600 cursor-pointer">
-                  SaaS
-                </div>
-                <div className="px-4 hover:text-blue-600 cursor-pointer">
-                  B2B
-                </div>
-                <div className="px-4 hover:text-blue-600 cursor-pointer">
-                  Finance
-                </div>
-                <div className="px-4 hover:text-blue-600 cursor-pointer">
-                  Education
-                </div>
-                <div className="px-4 hover:text-blue-600 cursor-pointer">
-                  Other industries
-                </div>
+          {showAllIndustries && (
+            <div className="relative border border-gray-300 rounded-2xl px-4 py-3 text-[#595959] text-base md:text-xl bg-white shadow-sm">
+              <div
+                className="flex items-center justify-between cursor-pointer"
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+              >
+                <span>{activeSection}</span>
+                <span className="text-xl transform transition-transform duration-300">
+                  {isDropdownOpen ? <FaAngleUp /> : <FaAngleDown />}
+                </span>
               </div>
-            )}
-          </div>
+
+              {isDropdownOpen && (
+                <div className="absolute left-0 top-full w-full bg-white border border-t-0 rounded-b-2xl shadow-lg mt-1 py-3 space-y-2 z-50">
+                  <div
+                    className="px-4 hover:text-blue-600 cursor-pointer py-1 transition-colors duration-200"
+                    onClick={() => handleSectionClick("SaaS")}
+                  >
+                    SaaS
+                  </div>
+                  <div
+                    className="px-4 hover:text-blue-600 cursor-pointer py-1 transition-colors duration-200"
+                    onClick={() => handleSectionClick("B2B")}
+                  >
+                    B2B
+                  </div>
+                  <div
+                    className="px-4 hover:text-blue-600 cursor-pointer py-1 transition-colors duration-200"
+                    onClick={() => handleSectionClick("Finance")}
+                  >
+                    Finance
+                  </div>
+                  <div
+                    className="px-4 hover:text-blue-600 cursor-pointer py-1 transition-colors duration-200"
+                    onClick={() => handleSectionClick("Education")}
+                  >
+                    Education
+                  </div>
+                  <div
+                    className="px-4 hover:text-blue-600 cursor-pointer py-1 transition-colors duration-200"
+                    onClick={() => handleSectionClick("Other industries")}
+                  >
+                    Other industries
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </div>
