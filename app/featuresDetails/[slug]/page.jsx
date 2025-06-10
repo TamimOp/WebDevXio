@@ -298,7 +298,7 @@ export default function FeaturedWork() {
         </div>
 
         {/* RIGHT STICKY DROPDOWN */}
-        <div className="w-full lg:w-[250px] sticky top-30 self-start h-fit">
+        <div className="w-full lg:w-[250px] sticky top-30 self-start h-fit z-50">
           <div className="border border-gray-300 rounded-2xl px-4 py-3 mb-4 bg-white shadow-sm">
             <div className="flex items-center justify-between text-[15px] text-gray-600 mb-1">
               <span>Half million</span>
