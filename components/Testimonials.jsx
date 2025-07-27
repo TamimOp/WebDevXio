@@ -16,7 +16,7 @@ const testimonials = [
     id: 1,
     name: "Heftiba",
     title: "CEO, Law firm",
-    image: "/assets/heftiba1.jpg",
+    image: "/assets/heftiba1.webp",
     heading: "A wonderful Experience!",
     review:
       "Our web developers are experts in building highly interactive and deeply pleasant full-screen websites that work flawlessly on smartphones, desktops, or any other device your users choose.",
@@ -25,7 +25,7 @@ const testimonials = [
     id: 2,
     name: "Heftiba",
     title: "CEO, Law firm",
-    image: "/assets/heftiba2.jpg",
+    image: "/assets/heftiba2.webp",
     heading: "WordPress Website Design",
     review:
       "Their WordPress designs were modern, responsive, and SEO-ready, built with best practices in mind. The results were immediate and measurable, boosting our site's visibility.",
@@ -34,7 +34,7 @@ const testimonials = [
     id: 3,
     name: "Heftiba",
     title: "CEO, Law firm",
-    image: "/assets/heftiba1.jpg",
+    image: "/assets/heftiba1.webp",
     heading: "Fast Turnaround",
     review:
       "Our full-screen site went live within days without a hitch. These developers are incredibly fast, efficient, and detail-oriented.",
@@ -43,7 +43,7 @@ const testimonials = [
     id: 4,
     name: "Heftiba",
     title: "CEO, Law firm",
-    image: "/assets/heftiba2.jpg",
+    image: "/assets/heftiba2.webp",
     heading: "Mobile-First Magic",
     review:
       "Everything is mobile-optimized with top performance scores across tools like Lighthouse. They truly understand modern web design and user experience.",
@@ -52,7 +52,7 @@ const testimonials = [
     id: 5,
     name: "Heftiba",
     title: "CEO, Law firm",
-    image: "/assets/heftiba1.jpg",
+    image: "/assets/heftiba1.webp",
     heading: "Reliable Team!",
     review:
       "Working with them has been a pleasure from start to finish. They are always on time, professional, and ready to help at a moment’s notice.",
@@ -141,7 +141,7 @@ const Testimonials = () => {
             >
               <div className="absolute top-4 right-4 text-6xl text-[#4D6BFF]/30">
                 <Image
-                  src="/assets/quote.png"
+                  src="/assets/quote.webp"
                   alt="Quote Icon"
                   width={48}
                   height={48}

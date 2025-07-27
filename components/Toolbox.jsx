@@ -4,14 +4,14 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 
 const tools = [
-  { name: "Figma", desc: "we use figma", icon: "/assets/Figma.png" },
-  { name: "Framer", desc: "we use figma", icon: "/assets/FramerMotion.png" },
-  { name: "WordPress", desc: "we use figma", icon: "/assets/Wordpress.png" },
-  { name: "Adobe XD", desc: "we use figma", icon: "/assets/AdobeXD.png" },
-  { name: "Figma", desc: "we use figma", icon: "/assets/Figma.png" },
-  { name: "Figma", desc: "we use figma", icon: "/assets/Figma.png" },
-  { name: "Figma", desc: "we use figma", icon: "/assets/Figma.png" },
-  { name: "Figma", desc: "we use figma", icon: "/assets/Figma.png" },
+  { name: "Figma", desc: "we use figma", icon: "/assets/Figma.webp" },
+  { name: "Framer", desc: "we use figma", icon: "/assets/FramerMotion.webp" },
+  { name: "WordPress", desc: "we use figma", icon: "/assets/Wordpress.webp" },
+  { name: "Adobe XD", desc: "we use figma", icon: "/assets/AdobeXD.webp" },
+  { name: "Figma", desc: "we use figma", icon: "/assets/Figma.webp" },
+  { name: "Figma", desc: "we use figma", icon: "/assets/Figma.webp" },
+  { name: "Figma", desc: "we use figma", icon: "/assets/Figma.webp" },
+  { name: "Figma", desc: "we use figma", icon: "/assets/Figma.webp" },
 ];
 
 const Toolbox = () => {

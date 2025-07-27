@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from "@/public/assets/Logo.png";
+import Logo from "@/public/assets/Logo.webp";
 import Image from "next/image";
 
 const FooterItems = [

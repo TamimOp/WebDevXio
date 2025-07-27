@@ -25,7 +25,7 @@ const Contact2 = () => {
         {/* Background Image with 30% opacity */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/assets/ContactBg.png"
+            src="/assets/ContactBg.webp"
             alt="Background"
             fill
             className="opacity-[30%]"
@@ -47,7 +47,7 @@ const Contact2 = () => {
           <div className="flex flex-col items-center gap-3 w-full max-w-[430px]">
             <div className="rounded-full border-[3px] lg:border-[5px] border-[#274AFF] overflow-hidden w-full aspect-[2.3/1] shadow-xl/30">
               <Image
-                src="/assets/ContactBg1.jpg"
+                src="/assets/ContactBg1.webp"
                 alt="Team Working"
                 width={430}
                 height={186}
@@ -57,7 +57,7 @@ const Contact2 = () => {
             <div className="flex gap-3 w-[90%] aspect-[3/1]">
               <div className="rounded-l-[163.5px] rounded-r-[17px] border-[2px] lg:border-[3px] border-[#274AFF] overflow-hidden w-1/2 shadow-xl/30">
                 <Image
-                  src="/assets/ContactBg2.jpg"
+                  src="/assets/ContactBg2.webp"
                   alt="Team Meeting"
                   width={189}
                   height={128}
@@ -66,7 +66,7 @@ const Contact2 = () => {
               </div>
               <div className="rounded-r-[163.5px] rounded-l-[17px] border-[2px] lg:border-[3px] border-[#274AFF] overflow-hidden w-1/2 shadow-xl/30">
                 <Image
-                  src="/assets/ContactBg3.png"
+                  src="/assets/ContactBg3.webp"
                   alt="Team Planning"
                   width={189}
                   height={128}

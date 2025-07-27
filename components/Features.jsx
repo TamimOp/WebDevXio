@@ -8,10 +8,10 @@ import Button from "@/components/Button";
 import { useRouter } from "next/navigation";
 
 const images = [
-  { src: "/assets/Featured0.png" },
-  { src: "/assets/Featured1.png" },
-  { src: "/assets/Featured2.png" },
-  { src: "/assets/Featured3.png" },
+  { src: "/assets/Featured0.webp" },
+  { src: "/assets/Featured1.webp" },
+  { src: "/assets/Featured2.webp" },
+  { src: "/assets/Featured3.webp" },
 ];
 
 const title = "Digital Marketing Website";
@@ -195,7 +195,7 @@ export default function Features() {
                       }}
                     >
                       <Image
-                        src="/assets/NEW BUTTON/arrow.png"
+                        src="/assets/NEW BUTTON/arrow.webp"
                         width={14}
                         height={14}
                         className="sm:w-[18px] sm:h-[18px]"

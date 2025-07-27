@@ -3,21 +3,21 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 
 const logos = [
-  { src: "/assets/Slack.png", width: 102.1, height: 25.67, alt: "SlackLogo" },
+  { src: "/assets/Slack.webp", width: 102.1, height: 25.67, alt: "SlackLogo" },
   {
-    src: "/assets/heap_logo.png",
+    src: "/assets/heap_logo.webp",
     width: 108.38,
     height: 35.5,
     alt: "HeapLogo",
   },
   {
-    src: "/assets/AnytimeFitnessLogo.png",
+    src: "/assets/AnytimeFitnessLogo.webp",
     width: 150,
     height: 35.5,
     alt: "AnytimeFitnessLogo",
   },
   {
-    src: "/assets/leadhuntio_logo.png",
+    src: "/assets/leadhuntio_logo.webp",
     width: 194.44,
     height: 35.5,
     alt: "LeadHuntioLogo",

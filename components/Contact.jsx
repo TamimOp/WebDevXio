@@ -29,7 +29,7 @@ const Contact = () => {
           }}
         >
           <Image
-            src="/assets/ContactUsBG.png"
+            src="/assets/ContactUsBG.webp"
             alt="Overlay BG"
             fill
             className="absolute top-0 left-0 w-full h-full object-cover z-0 opacity-5"
@@ -58,7 +58,7 @@ const Contact = () => {
 
           {/* Quote Box with Floating Image */}
           <Image
-            src="/assets/quote.png"
+            src="/assets/quote.webp"
             alt="Quote Icon"
             width={50}
             height={50}
@@ -66,7 +66,7 @@ const Contact = () => {
           />
           <div className="w-full sm:w-[361px] sm:h-[164px] relative mt-10 border border-white rounded-xl overflow-hidden">
             <Image
-              src="/assets/ContactBg3.png"
+              src="/assets/ContactBg3.webp"
               alt="Quote Background"
               fill
               className="absolute top-0 left-0 w-full h-full object-cover opacity-30"

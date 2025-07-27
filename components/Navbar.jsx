@@ -6,7 +6,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation"; // added useRouter
 import { FiMenu, FiX, FiArrowUpRight } from "react-icons/fi";
 import { SlPencil } from "react-icons/sl";
-import Logo from "@/public/assets/Logo.png";
+import Logo from "@/public/assets/Logo.webp";
 import Button from "@/components/Button";
 
 const navItems = [

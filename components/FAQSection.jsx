@@ -54,7 +54,7 @@ export default function FAQSection() {
       {/* Background */}
       <div className="absolute -top-10 -left-10 md:-top-30 md:-left-55 w-52 h-52 md:w-[478px] md:h-93 z-0 opacity-80">
         <Image
-          src="/assets/3Dconcrete.png"
+          src="/assets/3Dconcrete.webp"
           alt="3D Concrete"
           fill
           className="object-contain"
@@ -185,7 +185,7 @@ export default function FAQSection() {
             {/* Message Box */}
             <div className="relative bg-[#0c1e63] text-white px-6 pt-12 pb-8 rounded-3xl shadow-xl overflow-hidden flex flex-col items-center gap-2 w-full">
               <Image
-                src="/assets/ContactUsBG.png"
+                src="/assets/ContactUsBG.webp"
                 alt="Overlay BG"
                 fill
                 className="absolute object-center opacity-5"
@@ -193,7 +193,7 @@ export default function FAQSection() {
                 priority
               />
               <Image
-                src="/assets/message.png"
+                src="/assets/message.webp"
                 alt="Message Icon"
                 width={88.74}
                 height={93.33}

@@ -7,15 +7,15 @@ const infoCards = [
     title: "Website De",
     description:
       "Our web developers are experts in building highly interactive and deeply pleasant full-screen websites that work as flawlessly on smartphones as they do on desktops or any other device of your users’ choice.",
-    icon: "/assets/Figma.png",
-    bg: "/assets/FigmaBG.jpg",
+    icon: "/assets/Figma.webp",
+    bg: "/assets/FigmaBG.webp",
     isMain: false,
   },
   {
     title: "Saas Website Design",
     description:
       "Fully functional, high-performance SaaS websites built with modern technologies.",
-    icon: "/assets/SaaS.png",
+    icon: "/assets/SaaS.webp",
     bg: "linear-gradient(to right, #4563ff 0%, #132663 100%)",
     isMain: true,
   },
@@ -23,16 +23,16 @@ const infoCards = [
     title: "Website Development & Maintenance",
     description:
       "Our web developers are experts in building highly interactive and deeply pleasant full-screen websites that work as flawlessly on smartphones as they do on desktops or any other device of your users’ choice.",
-    icon: "/assets/FramerMotion.png",
-    bg: "/assets/FramerBG.jpg",
+    icon: "/assets/FramerMotion.webp",
+    bg: "/assets/FramerBG.webp",
     isMain: false,
   },
   {
     title: "Wordpress website Design",
     description:
       "Our web developers are experts in building highly interactive and deeply pleasant full-screen websites that work as flawlessly on smartphones as they do on desktops or any other device of your users’ choice.",
-    icon: "/assets/Wordpress.png",
-    bg: "/assets/WordpressBG.jpg",
+    icon: "/assets/Wordpress.webp",
+    bg: "/assets/WordpressBG.webp",
     isMain: false,
   },
 ];
