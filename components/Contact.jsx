@@ -33,7 +33,6 @@ const Contact = () => {
             alt="Overlay BG"
             fill
             className="absolute top-0 left-0 w-full h-full object-cover z-0 opacity-5"
-            unoptimized
             priority
           />
           <div className="relative z-10">
