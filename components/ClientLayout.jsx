@@ -1,5 +1,4 @@
 "use client";
-import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -10,11 +9,11 @@ export default function ClientLayout({ children }) {
 
   return (
     <>
-      {/* <Navbar /> */}
+      <Navbar />
       <PageTransition>
         <main>{children}</main>
       </PageTransition>
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 }
