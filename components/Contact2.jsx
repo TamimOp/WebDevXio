@@ -10,13 +10,23 @@ const Contact2 = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
+  // Define animation variants
+  const variants = {
+    hidden: { opacity: 0, y: 100 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 1.2, ease: "easeOut" },
+    },
+  };
+
   return (
     <section className="w-full py-16 bg-[#f7f7fb] flex justify-center items-center px-6 md:px-12">
       <motion.div
         ref={ref}
-        initial={{ opacity: 0, y: 100 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        variants={variants}
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
         className="w-full h-auto xl:h-[563px] max-w-[1261px] rounded-[19px] p-6 lg:p-16 relative overflow-hidden"
         style={{
           boxShadow: "0px 0px 85.9px -7px #00000030",

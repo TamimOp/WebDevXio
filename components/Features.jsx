@@ -17,6 +17,24 @@ const images = [
 const title = "Digital Marketing Website";
 const tags = ["UI/UX Design", "Web Design", "Wireframe"];
 
+const headerVariants = {
+  hidden: { y: -80, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: { duration: 1.6, ease: [0.25, 0.8, 0.25, 1] },
+  },
+};
+
+const galleryVariants = {
+  hidden: { y: 80, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: { duration: 1.6, ease: [0.25, 0.8, 0.25, 1], delay: 0.15 },
+  },
+};
+
 export default function Features() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
@@ -53,9 +71,9 @@ export default function Features() {
         {/* Header */}
         <motion.div
           ref={headerRef}
-          initial={{ y: -80, opacity: 0 }}
-          animate={headerInView ? { y: 0, opacity: 1 } : {}}
-          transition={{ duration: 1.2, ease: [0.25, 0.8, 0.25, 1] }}
+          variants={headerVariants}
+          initial="hidden"
+          animate={headerInView ? "visible" : "hidden"}
           className="flex flex-col md:flex-row justify-between items-center sm:items-end gap-10"
         >
           <div className="max-w-2xl space-y-4">
@@ -80,9 +98,9 @@ export default function Features() {
         {/* Gallery */}
         <motion.div
           ref={galleryRef}
-          initial={{ y: 80, opacity: 0 }}
-          animate={galleryInView ? { y: 0, opacity: 1 } : {}}
-          transition={{ duration: 1.3, ease: [0.25, 0.8, 0.25, 1], delay: 0.1 }}
+          variants={galleryVariants}
+          initial="hidden"
+          animate={galleryInView ? "visible" : "hidden"}
           className={`${
             isMobile ? "flex-col" : "md:flex-row"
           } flex gap-4 min-h-[400px] md:h-[500px]`}
@@ -108,8 +126,8 @@ export default function Features() {
                   isMobile
                     ? {}
                     : {
-                        flex: { duration: 0.8, ease: [0.25, 0.8, 0.25, 1] },
-                        borderRadius: { duration: 0.4, ease: "easeInOut" },
+                        flex: { duration: 1.2, ease: [0.25, 0.8, 0.25, 1] },
+                        borderRadius: { duration: 0.8, ease: "easeInOut" },
                       }
                 }
               >

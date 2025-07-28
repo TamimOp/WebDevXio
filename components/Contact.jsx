@@ -7,10 +7,34 @@ import {
   FaTwitter,
   FaLinkedinIn,
 } from "react-icons/fa";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 import Button from "@/components/Button";
 
 const Contact = () => {
+  const leftRef = useRef(null);
+  const rightRef = useRef(null);
+  const leftInView = useInView(leftRef, { once: true, margin: "-100px" });
+  const rightInView = useInView(rightRef, { once: true, margin: "-100px" });
+
+  const leftVariants = {
+    hidden: { opacity: 0, x: -100 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 1.2, ease: "easeOut" },
+    },
+  };
+
+  const rightVariants = {
+    hidden: { opacity: 0, x: 100 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 1.2, ease: "easeOut" },
+    },
+  };
+
   return (
     <section
       className="w-full bg-[#F7F8FC] py-16 px-6 md:px-12 lg:px-20 overflow-x-hidden"
@@ -19,10 +43,10 @@ const Contact = () => {
       <div className="flex flex-col lg:flex-row justify-center gap-20">
         {/* Left Side */}
         <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1 }}
+          ref={leftRef}
+          variants={leftVariants}
+          initial="hidden"
+          animate={leftInView ? "visible" : "hidden"}
           className="relative w-full max-w-[453px] h-auto rounded-3xl p-8 text-white flex flex-col justify-between"
           style={{
             background: "linear-gradient(180deg, #132663 0%, #000F3F 100%)",
@@ -104,10 +128,10 @@ const Contact = () => {
 
         {/* Right Side */}
         <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          ref={rightRef}
+          variants={rightVariants}
+          initial="hidden"
+          animate={rightInView ? "visible" : "hidden"}
           className="flex flex-col gap-5 w-full max-w-[750px]"
         >
           <h4 className="text-[20px] md:text-[22px] font-medium text-blue-600 mb-2">

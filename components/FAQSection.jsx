@@ -1,14 +1,20 @@
 "use client";
 import Image from "next/image";
 import { FiArrowUpRight, FiArrowDownRight, FiPhoneCall } from "react-icons/fi";
-import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { motion, useInView } from "framer-motion";
+import { useEffect, useState, useRef } from "react";
 import Button from "@/components/Button";
 import { SlPencil } from "react-icons/sl";
 
 export default function FAQSection() {
   const [activeIndex, setActiveIndex] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
+
+  // Add refs for left and right columns
+  const leftRef = useRef(null);
+  const rightRef = useRef(null);
+  const leftInView = useInView(leftRef, { once: true, margin: "-100px" });
+  const rightInView = useInView(rightRef, { once: true, margin: "-100px" });
 
   useEffect(() => {
     const checkIsMobile = () => setIsMobile(window.innerWidth <= 1024);
@@ -49,6 +55,25 @@ export default function FAQSection() {
     },
   ];
 
+  // Animation variants with slower duration
+  const leftVariants = {
+    hidden: { opacity: 0, x: -100 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 1.4, ease: "easeOut" },
+    },
+  };
+
+  const rightVariants = {
+    hidden: { opacity: 0, x: 100 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 1.4, ease: "easeOut" },
+    },
+  };
+
   return (
     <section className="w-full min-h-screen relative py-24 px-4 sm:px-6 md:px-20 overflow-hidden flex items-center justify-center">
       {/* Background */}
@@ -70,10 +95,10 @@ export default function FAQSection() {
         <div className="flex flex-col md:flex-row gap-12 lg:gap-16">
           {/* Left Column */}
           <motion.div
-            initial={{ opacity: 0, x: -100 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+            ref={leftRef}
+            variants={leftVariants}
+            initial="hidden"
+            animate={leftInView ? "visible" : "hidden"}
             className="w-full lg:w-2/3"
           >
             <div className="mb-10">
@@ -176,10 +201,10 @@ export default function FAQSection() {
 
           {/* Right Column */}
           <motion.div
-            initial={{ opacity: 0, x: 100 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+            ref={rightRef}
+            variants={rightVariants}
+            initial="hidden"
+            animate={rightInView ? "visible" : "hidden"}
             className="w-full lg:w-1/3 space-y-6"
           >
             {/* Message Box */}

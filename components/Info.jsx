@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import React, { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 
 const infoCards = [
   {
@@ -127,18 +128,54 @@ const Card = ({ title, description, icon, bg, isMain }) => {
 };
 
 const Info = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  // Animation variants
+  const headerVariants = {
+    hidden: { opacity: 0, y: -40 },
+    visible: { opacity: 1, y: 0, transition: { duration: 1.4 } },
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: (i) => ({
+      opacity: 1,
+      y: 0,
+      transition: { duration: 1.4, delay: i * 0.15, ease: "linear" },
+    }),
+  };
+
+  const rowLeftVariants = {
+    hidden: { opacity: 0, x: -100 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 1.4, ease: "linear" },
+    },
+  };
+
+  const rowRightVariants = {
+    hidden: { opacity: 0, x: 100 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 1.4, ease: "linear" },
+    },
+  };
+
   return (
     <section
+      ref={ref}
       className="w-full py-16 bg-[#f7f7fb] flex flex-col items-center px-6 md:px-20"
       id="services"
     >
       {/* Header */}
       <motion.div
         className="flex flex-col items-center mb-6 gap-1"
-        initial={{ opacity: 0, y: -40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
+        variants={headerVariants}
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
       >
         <h2 className="text-[26px] md:text-5xl font-medium mb-4 text-center">
           What We Do
@@ -154,10 +191,10 @@ const Info = () => {
         {infoCards.map((card, i) => (
           <motion.div
             key={i}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "linear" }}
-            viewport={{ once: true }}
+            custom={i}
+            variants={cardVariants}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
           >
             <Card {...card} />
           </motion.div>
@@ -169,10 +206,9 @@ const Info = () => {
         {/* Row 1 */}
         <motion.div
           className="flex flex-row gap-8 justify-between items-start"
-          initial={{ opacity: 0, x: -100 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, ease: "linear" }}
-          viewport={{ once: true }}
+          variants={rowLeftVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
         >
           <Card {...infoCards[0]} />
           <Card {...infoCards[1]} />
@@ -182,10 +218,9 @@ const Info = () => {
         {/* Row 2 */}
         <motion.div
           className="flex flex-row gap-8 justify-between items-end"
-          initial={{ opacity: 0, x: 100 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, ease: "linear" }}
-          viewport={{ once: true }}
+          variants={rowRightVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
         >
           <div className="hidden xl:block w-[392.25px] h-[258.93px]"></div>
           <Card {...infoCards[2]} />
