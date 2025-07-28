@@ -1,12 +1,12 @@
 #!/bin/bash
 
-Make executable with: chmod +x update-and-deploy.sh
-Run with: ./update-and-deploy.sh
+#Make executable with: chmod +x update-and-deploy.sh
+#Run with: ./update-and-deploy.sh
 echo "🔄 Pulling latest changes from GitHub..."
 git pull origin main  { echo "❌ Git pull failed"; exit 1; }
 
 #######################
-Frontend Deployment
+#Frontend Deployment
 #######################
 
 echo "📦 Installing frontend dependencies..."
