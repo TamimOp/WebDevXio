@@ -8,7 +8,7 @@ const infoCards = [
     description:
       "Our web developers are experts in building highly interactive and deeply pleasant full-screen websites that work as flawlessly on smartphones as they do on desktops or any other device of your users’ choice.",
     icon: "/assets/Figma.webp",
-    bg: "/assets/FigmaBG.webp",
+    bg: "/assets/FigmaBG.png",
     isMain: false,
   },
   {
@@ -24,7 +24,7 @@ const infoCards = [
     description:
       "Our web developers are experts in building highly interactive and deeply pleasant full-screen websites that work as flawlessly on smartphones as they do on desktops or any other device of your users’ choice.",
     icon: "/assets/FramerMotion.webp",
-    bg: "/assets/FramerBG.webp",
+    bg: "/assets/FramerBG.png",
     isMain: false,
   },
   {
@@ -32,28 +32,80 @@ const infoCards = [
     description:
       "Our web developers are experts in building highly interactive and deeply pleasant full-screen websites that work as flawlessly on smartphones as they do on desktops or any other device of your users’ choice.",
     icon: "/assets/Wordpress.webp",
-    bg: "/assets/WordpressBG.webp",
+    bg: "/assets/WordpressBG.png",
     isMain: false,
   },
 ];
 
 const Card = ({ title, description, icon, bg, isMain }) => {
   const baseStyles =
-    "flex flex-col justify-between p-8 w-[335px] sm:w-[392.25px] h-[244.66px] sm:h-[258.93px] rounded-3xl shadow-lg";
+    "flex flex-col justify-between p-8 w-[335px] sm:w-[392.25px] h-[244.66px] sm:h-[258.93px] rounded-3xl shadow-lg overflow-hidden relative";
 
   const mainCardClasses = isMain ? "text-white" : "bg-white text-black";
 
-  const customBgStyle = isMain
-    ? { background: bg }
-    : {
-        backgroundImage: `url(${bg})`,
-        backgroundSize: "fill",
-        backgroundPosition: "center",
-      };
+  // Check if bg is a gradient or image path
+  const isGradient = typeof bg === "string" && bg.startsWith("linear-gradient");
+
+  // Custom glassmorphism for Figma, Framer, Wordpress cards
+  const isGlass =
+    title === "Website De" ||
+    title === "Website Development & Maintenance" ||
+    title === "Wordpress website Design";
 
   return (
-    <div className={`${baseStyles} ${mainCardClasses}`} style={customBgStyle}>
-      <div className="flex flex-col items-start gap-2">
+    <div
+      className={`${baseStyles} ${mainCardClasses}`}
+      style={
+        isGlass
+          ? {
+              borderRadius: "18px",
+              background:
+                "linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(0,61,255,0.07) 100%)",
+              boxShadow:
+                "0 4px 18.7px 0 rgba(0,0,0,0.25), 21.693px -21.693px 21.693px 0 rgba(194,194,194,0.10) inset, -21.693px 21.693px 21.693px 0 rgba(255,255,255,0.10) inset",
+              backdropFilter: "blur(8px)",
+              WebkitBackdropFilter: "blur(8px)",
+            }
+          : {}
+      }
+    >
+      {/* Blurred decorative BG image for glass cards */}
+      {isGlass && (
+        <div
+          className="absolute top-4 right-4 z-0 w-24 h-24 pointer-events-none select-none"
+          style={{ filter: "blur(8px)" }}
+        >
+          <Image
+            src={bg}
+            alt="background"
+            fill
+            className="object-contain"
+            style={{ borderRadius: "12px", opacity: 0.7 }}
+            priority
+          />
+        </div>
+      )}
+      {/* Background for non-glass cards */}
+      {!isGlass && !isMain && !isGradient && (
+        <Image
+          src={bg}
+          alt="background"
+          fill
+          className="object-cover z-0"
+          style={{ borderRadius: "18px" }}
+          priority
+        />
+      )}
+      {/* Gradient background for main card */}
+      {isMain && isGradient && (
+        <div
+          className="absolute inset-0 z-0 rounded-3xl"
+          style={{ background: bg }}
+        />
+      )}
+
+      {/* Content */}
+      <div className="flex flex-col items-start gap-2 relative z-10">
         <div className="w-[40.65px] h-[41.44px] md:w-[47.6px] md:h-[43.86px] relative">
           <Image src={icon} alt="icon" fill className="object-contain" />
         </div>
