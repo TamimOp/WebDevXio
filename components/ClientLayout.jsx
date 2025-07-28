@@ -10,11 +10,11 @@ export default function ClientLayout({ children }) {
 
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <PageTransition>
         <main>{children}</main>
       </PageTransition>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }
