@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { featuresData } from "@/data";
 import { notFound, useParams } from "next/navigation";
 import Image from "next/image";
 import { CiClock2 } from "react-icons/ci";
@@ -12,8 +11,18 @@ import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 export default function FeaturedWork() {
   const params = useParams();
   const slug = params.slug;
-  const card = featuresData.find((item) => item.slug === slug);
+  const [card, setCard] = useState(null);
+  const [loading, setLoading] = useState(true);
 
+  useEffect(() => {
+    import("@/data").then((mod) => {
+      const found = mod.featuresData.find((item) => item.slug === slug);
+      setCard(found);
+      setLoading(false);
+    });
+  }, [slug]);
+
+  if (loading) return <div>Loading...</div>;
   if (!card) return notFound();
 
   const slides = card.slides || [];

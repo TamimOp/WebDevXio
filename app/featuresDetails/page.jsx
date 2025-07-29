@@ -2,11 +2,10 @@
 
 import Button from "@/components/Button";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaChevronDown } from "react-icons/fa";
 import { PiChatCenteredTextBold } from "react-icons/pi";
 import Link from "next/link";
-import { featuresData } from "@/data";
 
 const industries = [
   "All industries",
@@ -24,6 +23,15 @@ export default function FeaturesDetailsPage() {
   const [openIndustry, setOpenIndustry] = useState(true);
   const [openService, setOpenService] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [featuresData, setFeaturesData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    import("@/data").then((mod) => {
+      setFeaturesData(mod.featuresData);
+      setLoading(false);
+    });
+  }, []);
 
   const filteredCards =
     activeIndustry === "All industries"
@@ -31,6 +39,10 @@ export default function FeaturesDetailsPage() {
       : featuresData.filter((card) =>
           card.tags.toLowerCase().includes(activeIndustry.toLowerCase())
         );
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <section className="pt-35 px-4 sm:px-6 lg:px-12 pb-16 bg-white">
