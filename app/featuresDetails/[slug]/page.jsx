@@ -89,6 +89,7 @@ export default function FeaturedWork() {
           alt={card.title}
           fill
           className="object-cover object-center z-0"
+          loading="lazy"
         />
         <div className="absolute inset-0 z-10 flex flex-col justify-between p-4 sm:p-6 md:p-14 text-white">
           <div className="text-lg sm:text-xl font-normal">
@@ -207,6 +208,7 @@ export default function FeaturedWork() {
             width={1920}
             height={1080}
             className="w-full h-auto transition-all duration-700 ease-in-out"
+            loading="lazy"
           />
         </div>
       </div>
@@ -232,6 +234,7 @@ export default function FeaturedWork() {
             width={1920}
             height={1080}
             className="w-full h-auto"
+            loading="lazy"
           />
         </div>
       </div>

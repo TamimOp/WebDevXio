@@ -39,6 +39,7 @@ const Contact2 = () => {
             alt="Background"
             fill
             className="opacity-[30%]"
+            loading="lazy"
           />
         </div>
 
@@ -62,6 +63,7 @@ const Contact2 = () => {
                 width={430}
                 height={186}
                 className="object-cover w-full h-full"
+                loading="lazy"
               />
             </div>
             <div className="flex gap-3 w-[90%] aspect-[3/1]">
@@ -72,6 +74,7 @@ const Contact2 = () => {
                   width={189}
                   height={128}
                   className="object-cover w-full h-full"
+                  loading="lazy"
                 />
               </div>
               <div className="rounded-r-[163.5px] rounded-l-[17px] border-[2px] lg:border-[3px] border-[#274AFF] overflow-hidden w-1/2 shadow-xl/30">
@@ -81,6 +84,7 @@ const Contact2 = () => {
                   width={189}
                   height={128}
                   className="object-cover w-full h-full"
+                  loading="lazy"
                 />
               </div>
             </div>

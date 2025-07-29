@@ -57,7 +57,7 @@ const Contact = () => {
             alt="Overlay BG"
             fill
             className="absolute top-0 left-0 w-full h-full object-cover z-0 opacity-5"
-            priority
+            loading="lazy"
           />
           <div className="relative z-10">
             <h3 className="text-[24px] md:text-[28px] font-bold mb-4">
@@ -86,6 +86,7 @@ const Contact = () => {
             width={50}
             height={50}
             className="absolute top-66 left-3 sm:top-73 sm:left-5 z-50"
+            loading="lazy"
           />
           <div className="w-full sm:w-[361px] sm:h-[164px] relative mt-10 border border-white rounded-xl overflow-hidden">
             <Image
@@ -93,6 +94,7 @@ const Contact = () => {
               alt="Quote Background"
               fill
               className="absolute top-0 left-0 w-full h-full object-cover opacity-30"
+              loading="lazy"
             />
 
             <div className="relative z-10 p-6">

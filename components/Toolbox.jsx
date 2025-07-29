@@ -88,6 +88,7 @@ const Toolbox = () => {
                   alt={tool.name}
                   fill
                   className="object-contain"
+                  loading="lazy"
                 />
               </div>
               <div className="text-left">
@@ -123,6 +124,7 @@ const Toolbox = () => {
                   alt={tool.name}
                   fill
                   className="object-contain"
+                  loading="lazy"
                 />
               </div>
               <div className="text-left">

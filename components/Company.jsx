@@ -94,7 +94,7 @@ export default function Company() {
                   width={logo.width}
                   height={logo.height}
                   draggable={false}
-                  priority={i === 0}
+                  loading="lazy"
                 />
               </div>
             ))}
@@ -112,6 +112,7 @@ export default function Company() {
                   width={logo.width}
                   height={logo.height}
                   draggable={false}
+                  loading="lazy"
                 />
               </div>
             ))}

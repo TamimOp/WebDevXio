@@ -138,6 +138,7 @@ export default function Features() {
                     fill
                     sizes="100vw"
                     className="transition-all duration-500 scale-[0.92] rounded-2xl object-cover"
+                    loading="lazy"
                   />
                 </div>
 
@@ -199,8 +200,8 @@ export default function Features() {
 
                     <motion.div
                       className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center mb-2 sm:mb-6
-        ${isActive ? "bg-[#2e44ff]/60" : "bg-black/40"}
-        backdrop-blur-md backdrop-saturate-150 bg-opacity-60`}
+    ${isActive ? "bg-[#2e44ff]/60" : "bg-black/40"}
+    backdrop-blur-md backdrop-saturate-150 bg-opacity-60`}
                       initial={{ x: 30, opacity: 0 }}
                       animate={{
                         x: isActive ? 0 : 30,
@@ -218,6 +219,7 @@ export default function Features() {
                         height={14}
                         className="sm:w-[18px] sm:h-[18px]"
                         alt="arrow"
+                        loading="lazy"
                       />
                     </motion.div>
                   </div>

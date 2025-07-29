@@ -51,7 +51,7 @@ const About = () => {
           src={AboutUsImage}
           alt="About Us"
           className="w-[229px] h-[210px] md:w-[482px] md:h-[442px]"
-          priority
+          loading="lazy"
         />
       </motion.div>
 

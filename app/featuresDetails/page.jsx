@@ -151,6 +151,7 @@ export default function FeaturesDetailsPage() {
                             alt={card.title}
                             fill
                             className="object-cover object-top rounded-[7px]"
+                            loading="lazy"
                           />
                         </div>
                       </div>

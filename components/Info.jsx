@@ -82,7 +82,7 @@ const Card = ({ title, description, icon, bg, isMain }) => {
             fill
             className="object-contain"
             style={{ borderRadius: "12px", opacity: 0.7 }}
-            priority
+            loading="lazy"
           />
         </div>
       )}
@@ -94,7 +94,7 @@ const Card = ({ title, description, icon, bg, isMain }) => {
           fill
           className="object-cover z-0"
           style={{ borderRadius: "18px" }}
-          priority
+          loading="lazy"
         />
       )}
       {/* Gradient background for main card */}
@@ -108,7 +108,13 @@ const Card = ({ title, description, icon, bg, isMain }) => {
       {/* Content */}
       <div className="flex flex-col items-start gap-2 relative z-10">
         <div className="w-[40.65px] h-[41.44px] md:w-[47.6px] md:h-[43.86px] relative">
-          <Image src={icon} alt="icon" fill className="object-contain" />
+          <Image
+            src={icon}
+            alt="icon"
+            fill
+            className="object-contain"
+            loading="lazy"
+          />
         </div>
         <div>
           <h3 className="text-xl sm:text-[25px] font-medium mb-2 leading-[106%]">

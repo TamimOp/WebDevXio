@@ -83,6 +83,7 @@ export default function FAQSection() {
           alt="3D Concrete"
           fill
           className="object-contain"
+          loading="lazy"
         />
       </div>
 
@@ -214,13 +215,14 @@ export default function FAQSection() {
                 alt="Overlay BG"
                 fill
                 className="absolute object-center opacity-5"
-                priority
+                loading="lazy"
               />
               <Image
                 src="/assets/message.webp"
                 alt="Message Icon"
                 width={88.74}
                 height={93.33}
+                loading="lazy"
               />
               <h3 className="text-[17.65px] sm:text-[28px] font-bold mb-2 text-center">
                 You have different question?

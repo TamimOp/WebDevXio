@@ -204,6 +204,7 @@ const Testimonials = () => {
                       width={48}
                       height={48}
                       className="rounded-full"
+                      loading="lazy"
                     />
                     <div>
                       <p className="font-medium text-[#FCFCFC] text-[16px] sm:text-[20px]">
