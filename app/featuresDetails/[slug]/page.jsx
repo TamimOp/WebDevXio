@@ -13,8 +13,6 @@ export default function FeaturedWork() {
   const slug = params.slug;
   const [card, setCard] = useState(null);
   const [loading, setLoading] = useState(true);
-
-  // Move these hooks up!
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [showAllIndustries, setShowAllIndustries] = useState(false);
@@ -28,17 +26,15 @@ export default function FeaturedWork() {
     });
   }, [slug]);
 
-  if (loading) return <div>Loading...</div>;
-  if (!card) return notFound();
-
-  const slides = card.slides || [];
+  const slides = card?.slides || [];
 
   useEffect(() => {
+    if (!card || slides.length === 0) return;
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
     }, 2000);
     return () => clearInterval(interval);
-  }, []);
+  }, [card, slides.length]);
 
   const handleWebExplorationClick = () => {
     setShowAllIndustries(true);
@@ -57,17 +53,64 @@ export default function FeaturedWork() {
     }
   };
 
+  // Now, after all hooks, do your conditional return
+  if (loading || !card) {
+    return (
+      <div className="w-full pt-[100px] bg-white text-black">
+        {/* Skeleton or placeholder that matches your page layout */}
+        <div className="relative w-full h-[60vh] md:h-[90vh] mb-16 overflow-hidden bg-gray-100 animate-pulse" />
+        {/* Add more skeletons as needed */}
+      </div>
+    );
+  }
+
+  const sections = [
+    {
+      id: 1,
+      name: "SaaS",
+      content:
+        "SaaS solutions help streamline business operations and scale efficiently.",
+    },
+    {
+      id: 2,
+      name: "B2B",
+      content:
+        "B2B strategies focus on building strong partnerships and driving growth.",
+    },
+    {
+      id: 3,
+      name: "Finance",
+      content:
+        "Finance solutions ensure secure transactions and regulatory compliance.",
+    },
+    {
+      id: 4,
+      name: "Education",
+      content:
+        "Education platforms empower learners and educators with innovative tools.",
+    },
+    {
+      id: 5,
+      name: "Other industries",
+      content: "Custom solutions tailored for unique industry needs.",
+    },
+  ];
+
   return (
     <div className="w-full pt-[100px] bg-white text-black">
       {/* Hero Section */}
       <div className="relative w-full h-[60vh] md:h-[90vh] mb-16 overflow-hidden">
-        <Image
-          src={card.heroImage}
-          alt={card.title}
-          fill
-          className="object-cover object-center z-0"
-          loading="lazy"
-        />
+        {loading || !card ? (
+          <div className="w-full h-full bg-gray-100 animate-pulse" />
+        ) : (
+          <Image
+            src={card.heroImage}
+            alt={card.title}
+            fill
+            className="object-cover object-center z-0"
+            loading="lazy"
+          />
+        )}
         <div className="absolute inset-0 z-10 flex flex-col justify-between p-4 sm:p-6 md:p-14 text-white">
           <div className="text-lg sm:text-xl font-normal">
             <Link
@@ -76,16 +119,21 @@ export default function FeaturedWork() {
             >
               All Project
             </Link>{" "}
-            / {card.title}
+            /{" "}
+            {card?.title || (
+              <span className="inline-block w-24 h-6 bg-gray-300 animate-pulse rounded" />
+            )}
           </div>
-
           <div>
             <h1 className="text-3xl sm:text-5xl md:text-[64px] font-bold leading-tight max-w-2xl">
-              {card.title}
+              {card?.title || (
+                <span className="inline-block w-48 h-10 bg-gray-300 animate-pulse rounded" />
+              )}
             </h1>
             <p className="text-base sm:text-lg mt-4 text-white/90">
-              {card.description ||
-                "This is a sample description for the selected project. You can replace it with actual content later."}
+              {card?.description || (
+                <span className="inline-block w-64 h-6 bg-gray-300 animate-pulse rounded" />
+              )}
             </p>
           </div>
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between text-sm border-t border-white pt-4 mt-6 gap-2">
