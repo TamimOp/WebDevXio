@@ -214,7 +214,6 @@ export default function FAQSection() {
                 alt="Overlay BG"
                 fill
                 className="absolute object-center opacity-5"
-                unoptimized
                 priority
               />
               <Image
