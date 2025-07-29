@@ -1,7 +1,7 @@
 "use client";
 import React, { useRef } from "react";
 import Image from "next/image";
-import AboutUsImage from "@/public/assets/AboutUs.svg";
+import AboutUsImage from "@/public/assets/AboutUs.webp";
 import { CiCalendar } from "react-icons/ci";
 import { motion, useInView } from "framer-motion";
 import Button from "@/components/Button";
