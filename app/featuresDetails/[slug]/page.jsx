@@ -14,6 +14,12 @@ export default function FeaturedWork() {
   const [card, setCard] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  // Move these hooks up!
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [showAllIndustries, setShowAllIndustries] = useState(false);
+  const [activeSection, setActiveSection] = useState("All industries");
+
   useEffect(() => {
     import("@/data").then((mod) => {
       const found = mod.featuresData.find((item) => item.slug === slug);
@@ -26,44 +32,6 @@ export default function FeaturedWork() {
   if (!card) return notFound();
 
   const slides = card.slides || [];
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [showAllIndustries, setShowAllIndustries] = useState(false);
-  const [activeSection, setActiveSection] = useState("All industries");
-
-  // Demo sections data
-  const sections = [
-    {
-      id: "saas",
-      name: "SaaS",
-      content:
-        "This is the SaaS section content. Here we showcase software-as-a-service solutions and their implementations in modern web development.",
-    },
-    {
-      id: "b2b",
-      name: "B2B",
-      content:
-        "This is the B2B section content. Business-to-business solutions require different approaches and strategies for effective user engagement.",
-    },
-    {
-      id: "finance",
-      name: "Finance",
-      content:
-        "This is the Finance section content. Financial applications demand high security, reliability, and user trust through exceptional design.",
-    },
-    {
-      id: "education",
-      name: "Education",
-      content:
-        "This is the Education section content. Educational platforms focus on user engagement, accessibility, and knowledge retention.",
-    },
-    {
-      id: "other",
-      name: "Other industries",
-      content:
-        "This is the Other industries section content. We work across various sectors, adapting our approach to meet specific industry needs.",
-    },
-  ];
 
   useEffect(() => {
     const interval = setInterval(() => {
