@@ -16,25 +16,44 @@ const tools = [
 ];
 
 const headerVariants = {
-  hidden: { opacity: 0, y: 50 },
-  visible: { opacity: 1, y: 0, transition: { duration: 1.2, ease: "easeOut" } },
+  hidden: { opacity: 0, scale: 0.85, y: 40 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: { duration: 1, type: "spring", stiffness: 120, delay: 0.1 },
+  },
 };
 
 const cardLeftVariants = {
-  hidden: { opacity: 0, x: -100 },
+  hidden: { opacity: 0, scale: 0.7, rotate: -10, x: -100 },
   visible: (i) => ({
     opacity: 1,
+    scale: 1,
+    rotate: 0,
     x: 0,
-    transition: { duration: 1.2, delay: i * 0.25, ease: "easeOut" },
+    transition: {
+      type: "spring",
+      stiffness: 120,
+      damping: 14,
+      delay: 0.2 + i * 0.18,
+    },
   }),
 };
 
 const cardRightVariants = {
-  hidden: { opacity: 0, x: 100 },
+  hidden: { opacity: 0, scale: 0.7, rotate: 10, x: 100 },
   visible: (i) => ({
     opacity: 1,
+    scale: 1,
+    rotate: 0,
     x: 0,
-    transition: { duration: 1.2, delay: i * 0.25, ease: "easeOut" },
+    transition: {
+      type: "spring",
+      stiffness: 120,
+      damping: 14,
+      delay: 0.4 + i * 0.18,
+    },
   }),
 };
 
@@ -81,6 +100,12 @@ const Toolbox = () => {
               variants={cardLeftVariants}
               initial="hidden"
               animate={isInView ? "visible" : "hidden"}
+              whileHover={{
+                scale: 1.08,
+                rotate: -2,
+                y: -8,
+                boxShadow: "0 16px 40px 0 rgba(39,74,255,0.18)",
+              }}
             >
               <div className="w-8 h-6 sm:w-12 sm:h-10 relative">
                 <Image
@@ -117,6 +142,12 @@ const Toolbox = () => {
               variants={cardRightVariants}
               initial="hidden"
               animate={isInView ? "visible" : "hidden"}
+              whileHover={{
+                scale: 1.08,
+                rotate: 2,
+                y: -8,
+                boxShadow: "0 16px 40px 0 rgba(39,74,255,0.18)",
+              }}
             >
               <div className="w-8 h-6 sm:w-12 sm:h-10 relative">
                 <Image
