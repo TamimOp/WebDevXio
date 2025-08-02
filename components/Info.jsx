@@ -139,34 +139,61 @@ const Info = () => {
 
   // Animation variants
   const headerVariants = {
-    hidden: { opacity: 0, y: -40 },
-    visible: { opacity: 1, y: 0, transition: { duration: 1.4 } },
+    hidden: { opacity: 0, scale: 0.8, y: -40 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      transition: { duration: 1, type: "spring", stiffness: 120, delay: 0.1 },
+    },
   };
 
   const cardVariants = {
-    hidden: { opacity: 0, y: 40 },
+    hidden: { opacity: 0, scale: 0.7, rotate: -8, y: 60, boxShadow: "none" },
     visible: (i) => ({
       opacity: 1,
+      scale: 1,
+      rotate: 0,
       y: 0,
-      transition: { duration: 1.4, delay: i * 0.15, ease: "linear" },
+      boxShadow: "0 8px 32px 0 rgba(39,74,255,0.12)",
+      transition: {
+        type: "spring",
+        stiffness: 120,
+        damping: 14,
+        delay: 0.3 + i * 0.18,
+      },
     }),
   };
 
   const rowLeftVariants = {
-    hidden: { opacity: 0, x: -100 },
+    hidden: { opacity: 0, x: -100, scale: 0.95 },
     visible: {
       opacity: 1,
       x: 0,
-      transition: { duration: 1.4, ease: "linear" },
+      scale: 1,
+      transition: {
+        type: "spring",
+        stiffness: 80,
+        damping: 12,
+        delay: 0.2,
+        staggerChildren: 0.18,
+      },
     },
   };
 
   const rowRightVariants = {
-    hidden: { opacity: 0, x: 100 },
+    hidden: { opacity: 0, x: 100, scale: 0.95 },
     visible: {
       opacity: 1,
       x: 0,
-      transition: { duration: 1.4, ease: "linear" },
+      scale: 1,
+      transition: {
+        type: "spring",
+        stiffness: 80,
+        damping: 12,
+        delay: 0.4,
+        staggerChildren: 0.18,
+      },
     },
   };
 
@@ -192,7 +219,7 @@ const Info = () => {
         </p>
       </motion.div>
 
-      {/* ✅ Responsive layout for mobile & tablet */}
+      {/* Responsive layout for mobile & tablet */}
       <div className="flex flex-wrap justify-center gap-10 lg:hidden">
         {infoCards.map((card, i) => (
           <motion.div
@@ -201,13 +228,18 @@ const Info = () => {
             variants={cardVariants}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
+            whileHover={{
+              scale: 1.04,
+              rotate: 2,
+              boxShadow: "0 12px 40px 0 rgba(39,74,255,0.18)",
+            }}
           >
             <Card {...card} />
           </motion.div>
         ))}
       </div>
 
-      {/* ✅ Custom staggered layout only on large screens */}
+      {/* Custom staggered layout only on large screens */}
       <div className="hidden lg:flex flex-col gap-10">
         {/* Row 1 */}
         <motion.div
@@ -216,8 +248,20 @@ const Info = () => {
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
         >
-          <Card {...infoCards[0]} />
-          <Card {...infoCards[1]} />
+          <motion.div
+            custom={0}
+            variants={cardVariants}
+            whileHover={{ scale: 1.04, rotate: 2 }}
+          >
+            <Card {...infoCards[0]} />
+          </motion.div>
+          <motion.div
+            custom={1}
+            variants={cardVariants}
+            whileHover={{ scale: 1.04, rotate: 2 }}
+          >
+            <Card {...infoCards[1]} />
+          </motion.div>
           <div className="hidden xl:block w-[392.25px] h-[258.93px]"></div>
         </motion.div>
 
@@ -229,8 +273,20 @@ const Info = () => {
           animate={isInView ? "visible" : "hidden"}
         >
           <div className="hidden xl:block w-[392.25px] h-[258.93px]"></div>
-          <Card {...infoCards[2]} />
-          <Card {...infoCards[3]} />
+          <motion.div
+            custom={2}
+            variants={cardVariants}
+            whileHover={{ scale: 1.04, rotate: 2 }}
+          >
+            <Card {...infoCards[2]} />
+          </motion.div>
+          <motion.div
+            custom={3}
+            variants={cardVariants}
+            whileHover={{ scale: 1.04, rotate: 2 }}
+          >
+            <Card {...infoCards[3]} />
+          </motion.div>
         </motion.div>
       </div>
     </section>
