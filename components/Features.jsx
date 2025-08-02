@@ -18,20 +18,55 @@ const title = "Digital Marketing Website";
 const tags = ["UI/UX Design", "Web Design", "Wireframe"];
 
 const headerVariants = {
-  hidden: { y: -80, opacity: 0 },
+  hidden: {
+    y: -120,
+    opacity: 0,
+    scale: 0.7,
+    rotateX: 60,
+    filter: "blur(16px) hue-rotate(60deg)",
+    perspective: 800,
+  },
   visible: {
     y: 0,
     opacity: 1,
-    transition: { duration: 1.6, ease: [0.25, 0.8, 0.25, 1] },
+    scale: 1,
+    rotateX: 0,
+    filter: "blur(0px) hue-rotate(0deg)",
+    perspective: 800,
+    transition: {
+      duration: 1.2,
+      ease: [0.16, 1, 0.3, 1],
+      type: "spring",
+      bounce: 0.45,
+    },
   },
 };
 
 const galleryVariants = {
-  hidden: { y: 80, opacity: 0 },
+  hidden: {
+    y: 120,
+    opacity: 0,
+    scale: 0.7,
+    rotateY: -60,
+    filter: "blur(16px) hue-rotate(-60deg)",
+    perspective: 800,
+  },
   visible: {
     y: 0,
     opacity: 1,
-    transition: { duration: 1.6, ease: [0.25, 0.8, 0.25, 1], delay: 0.15 },
+    scale: 1,
+    rotateY: 0,
+    filter: "blur(0px) hue-rotate(0deg)",
+    perspective: 800,
+    transition: {
+      duration: 1.4,
+      ease: [0.16, 1, 0.3, 1],
+      delay: 0.1,
+      type: "spring",
+      bounce: 0.45,
+      when: "beforeChildren",
+      staggerChildren: 0.12,
+    },
   },
 };
 
