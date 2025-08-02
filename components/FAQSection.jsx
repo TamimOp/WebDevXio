@@ -57,20 +57,69 @@ export default function FAQSection() {
 
   // Animation variants with slower duration
   const leftVariants = {
-    hidden: { opacity: 0, x: -100 },
+    hidden: {
+      opacity: 0,
+      x: -120,
+      y: 40,
+      scale: 0.8,
+      rotateY: 45,
+      rotateX: 12,
+      skewY: 6,
+      filter: "blur(18px) hue-rotate(-60deg)",
+      perspective: 1200,
+    },
     visible: {
       opacity: 1,
       x: 0,
-      transition: { duration: 1.4, ease: "easeOut" },
+      y: 0,
+      scale: 1,
+      rotateY: 0,
+      rotateX: 0,
+      skewY: 0,
+      filter: "blur(0px) hue-rotate(0deg)",
+      perspective: 1200,
+      transition: {
+        duration: 1.6,
+        ease: [0.16, 1, 0.3, 1],
+        type: "spring",
+        bounce: 0.55,
+        when: "beforeChildren",
+        staggerChildren: 0.13,
+      },
     },
   };
 
   const rightVariants = {
-    hidden: { opacity: 0, x: 100 },
+    hidden: {
+      opacity: 0,
+      x: 120,
+      y: -40,
+      scale: 0.8,
+      rotateY: -45,
+      rotateX: -12,
+      skewY: -6,
+      filter: "blur(18px) hue-rotate(60deg)",
+      perspective: 1200,
+    },
     visible: {
       opacity: 1,
       x: 0,
-      transition: { duration: 1.4, ease: "easeOut" },
+      y: 0,
+      scale: 1,
+      rotateY: 0,
+      rotateX: 0,
+      skewY: 0,
+      filter: "blur(0px) hue-rotate(0deg)",
+      perspective: 1200,
+      transition: {
+        duration: 1.6,
+        ease: [0.16, 1, 0.3, 1],
+        type: "spring",
+        bounce: 0.55,
+        delay: 0.15,
+        when: "beforeChildren",
+        staggerChildren: 0.13,
+      },
     },
   };
 
