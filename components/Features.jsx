@@ -35,9 +35,10 @@ const headerVariants = {
     perspective: 800,
     transition: {
       duration: 1.2,
-      ease: [0.16, 1, 0.3, 1],
       type: "spring",
-      bounce: 0.45,
+      stiffness: 36,
+      damping: 22,
+      delay: 0.1,
     },
   },
 };
@@ -60,10 +61,10 @@ const galleryVariants = {
     perspective: 800,
     transition: {
       duration: 1.4,
-      ease: [0.16, 1, 0.3, 1],
-      delay: 0.1,
       type: "spring",
-      bounce: 0.45,
+      stiffness: 32,
+      damping: 20,
+      delay: 0.15,
       when: "beforeChildren",
       staggerChildren: 0.12,
     },

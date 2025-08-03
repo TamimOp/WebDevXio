@@ -55,7 +55,7 @@ export default function FAQSection() {
     },
   ];
 
-  // Animation variants with slower duration
+  // Animation variants with smoother, softer effect
   const leftVariants = {
     hidden: {
       opacity: 0,
@@ -65,7 +65,7 @@ export default function FAQSection() {
       rotateY: 45,
       rotateX: 12,
       skewY: 6,
-      filter: "blur(18px) hue-rotate(-60deg)",
+      filter: "blur(8px) hue-rotate(-60deg)", // reduced blur from 18px to 8px
       perspective: 1200,
     },
     visible: {
@@ -79,10 +79,11 @@ export default function FAQSection() {
       filter: "blur(0px) hue-rotate(0deg)",
       perspective: 1200,
       transition: {
-        duration: 1.6,
-        ease: [0.16, 1, 0.3, 1],
+        duration: 1.3,
         type: "spring",
-        bounce: 0.55,
+        stiffness: 32,
+        damping: 20,
+        delay: 0.05,
         when: "beforeChildren",
         staggerChildren: 0.13,
       },
@@ -98,7 +99,7 @@ export default function FAQSection() {
       rotateY: -45,
       rotateX: -12,
       skewY: -6,
-      filter: "blur(18px) hue-rotate(60deg)",
+      filter: "blur(8px) hue-rotate(60deg)", // reduced blur from 18px to 8px
       perspective: 1200,
     },
     visible: {
@@ -112,11 +113,11 @@ export default function FAQSection() {
       filter: "blur(0px) hue-rotate(0deg)",
       perspective: 1200,
       transition: {
-        duration: 1.6,
-        ease: [0.16, 1, 0.3, 1],
+        duration: 1.3,
         type: "spring",
-        bounce: 0.55,
-        delay: 0.15,
+        stiffness: 32,
+        damping: 20,
+        delay: 0.18,
         when: "beforeChildren",
         staggerChildren: 0.13,
       },

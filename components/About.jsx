@@ -18,34 +18,34 @@ const About = () => {
 
   // Unique animation variants
   const imageVariant = {
-    hidden: { opacity: 0, scale: 0.7, rotate: -15, filter: "blur(8px)" },
+    hidden: { opacity: 0, scale: 0.95, rotate: -8, filter: "blur(8px)" },
     visible: {
       opacity: 1,
       scale: 1,
       rotate: 0,
       filter: "blur(0px)",
-      transition: { type: "spring", stiffness: 120, damping: 10, duration: 1 },
+      transition: { type: "spring", stiffness: 40, damping: 22, duration: 1.1 },
     },
   };
 
   const contentVariant = {
-    hidden: { opacity: 0, x: 80, scale: 0.95 },
+    hidden: { opacity: 0, x: 40, scale: 0.98 },
     visible: {
       opacity: 1,
       x: 0,
       scale: 1,
       transition: {
         type: "spring",
-        stiffness: 80,
-        damping: 12,
-        delay: 0.2,
-        staggerChildren: 0.18,
+        stiffness: 36,
+        damping: 18,
+        delay: 0.18,
+        staggerChildren: 0.14,
       },
     },
   };
 
   const statVariant = {
-    hidden: { opacity: 0, y: 60, scale: 0.7, rotate: -10 },
+    hidden: { opacity: 0, y: 30, scale: 0.95, rotate: -4 },
     visible: (i) => ({
       opacity: 1,
       y: 0,
@@ -53,20 +53,21 @@ const About = () => {
       rotate: 0,
       transition: {
         type: "spring",
-        bounce: 0.7,
+        stiffness: 32,
+        damping: 16,
         duration: 0.7,
-        delay: 0.5 + i * 0.18,
+        delay: 0.4 + i * 0.14,
       },
     }),
   };
 
   const buttonVariant = {
-    hidden: { opacity: 0, scale: 0.5, rotate: -10 },
+    hidden: { opacity: 0, scale: 0.95, rotate: -4 },
     visible: {
       opacity: 1,
-      scale: 1.1,
+      scale: 1,
       rotate: 0,
-      transition: { type: "spring", stiffness: 200, damping: 8, delay: 1.2 },
+      transition: { type: "spring", stiffness: 40, damping: 18, delay: 1 },
     },
   };
 

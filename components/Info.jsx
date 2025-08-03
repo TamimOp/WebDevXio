@@ -139,17 +139,23 @@ const Info = () => {
 
   // Animation variants
   const headerVariants = {
-    hidden: { opacity: 0, scale: 0.8, y: -40 },
+    hidden: { opacity: 0, scale: 0.92, y: -32 },
     visible: {
       opacity: 1,
       scale: 1,
       y: 0,
-      transition: { duration: 1, type: "spring", stiffness: 120, delay: 0.1 },
+      transition: {
+        duration: 1.1,
+        type: "spring",
+        stiffness: 36,
+        damping: 22,
+        delay: 0.1,
+      },
     },
   };
 
   const cardVariants = {
-    hidden: { opacity: 0, scale: 0.7, rotate: -8, y: 60, boxShadow: "none" },
+    hidden: { opacity: 0, scale: 0.92, rotate: -4, y: 40, boxShadow: "none" },
     visible: (i) => ({
       opacity: 1,
       scale: 1,
@@ -158,23 +164,24 @@ const Info = () => {
       boxShadow: "0 8px 32px 0 rgba(39,74,255,0.12)",
       transition: {
         type: "spring",
-        stiffness: 120,
-        damping: 14,
+        stiffness: 36,
+        damping: 20,
+        duration: 0.9,
         delay: 0.3 + i * 0.18,
       },
     }),
   };
 
   const rowLeftVariants = {
-    hidden: { opacity: 0, x: -100, scale: 0.95 },
+    hidden: { opacity: 0, x: -60, scale: 0.97 },
     visible: {
       opacity: 1,
       x: 0,
       scale: 1,
       transition: {
         type: "spring",
-        stiffness: 80,
-        damping: 12,
+        stiffness: 32,
+        damping: 18,
         delay: 0.2,
         staggerChildren: 0.18,
       },
@@ -182,15 +189,15 @@ const Info = () => {
   };
 
   const rowRightVariants = {
-    hidden: { opacity: 0, x: 100, scale: 0.95 },
+    hidden: { opacity: 0, x: 60, scale: 0.97 },
     visible: {
       opacity: 1,
       x: 0,
       scale: 1,
       transition: {
         type: "spring",
-        stiffness: 80,
-        damping: 12,
+        stiffness: 32,
+        damping: 18,
         delay: 0.4,
         staggerChildren: 0.18,
       },

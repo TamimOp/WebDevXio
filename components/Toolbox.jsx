@@ -16,17 +16,23 @@ const tools = [
 ];
 
 const headerVariants = {
-  hidden: { opacity: 0, scale: 0.85, y: 40 },
+  hidden: { opacity: 0, scale: 0.92, y: 40 },
   visible: {
     opacity: 1,
     scale: 1,
     y: 0,
-    transition: { duration: 1, type: "spring", stiffness: 120, delay: 0.1 },
+    transition: {
+      duration: 1.1,
+      type: "spring",
+      stiffness: 36,
+      damping: 22,
+      delay: 0.1,
+    },
   },
 };
 
 const cardLeftVariants = {
-  hidden: { opacity: 0, scale: 0.7, rotate: -10, x: -100 },
+  hidden: { opacity: 0, scale: 0.92, rotate: -6, x: -60 },
   visible: (i) => ({
     opacity: 1,
     scale: 1,
@@ -34,15 +40,16 @@ const cardLeftVariants = {
     x: 0,
     transition: {
       type: "spring",
-      stiffness: 120,
-      damping: 14,
-      delay: 0.2 + i * 0.18,
+      stiffness: 32,
+      damping: 18,
+      duration: 0.9,
+      delay: 0.2 + i * 0.16,
     },
   }),
 };
 
 const cardRightVariants = {
-  hidden: { opacity: 0, scale: 0.7, rotate: 10, x: 100 },
+  hidden: { opacity: 0, scale: 0.92, rotate: 6, x: 60 },
   visible: (i) => ({
     opacity: 1,
     scale: 1,
@@ -50,9 +57,10 @@ const cardRightVariants = {
     x: 0,
     transition: {
       type: "spring",
-      stiffness: 120,
-      damping: 14,
-      delay: 0.4 + i * 0.18,
+      stiffness: 32,
+      damping: 18,
+      duration: 0.9,
+      delay: 0.4 + i * 0.16,
     },
   }),
 };
