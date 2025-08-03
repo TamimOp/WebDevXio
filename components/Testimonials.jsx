@@ -85,11 +85,28 @@ const headingVariants = {
 };
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 40 },
+  hidden: {
+    opacity: 0,
+    y: 80,
+    scale: 0.92,
+    rotate: -8,
+    filter: "blur(8px)",
+  },
   visible: (i) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 1.2, delay: i * 0.2, ease: "easeOut" },
+    scale: 1,
+    rotate: 0,
+    filter: "blur(0px)",
+    transition: {
+      type: "spring",
+      stiffness: 90,
+      damping: 18,
+      mass: 0.7,
+      delay: i * 0.18,
+      opacity: { duration: 0.5, delay: i * 0.18 },
+      filter: { duration: 0.7, delay: i * 0.18 },
+    },
   }),
 };
 
