@@ -23,7 +23,7 @@ const headerVariants = {
     opacity: 0,
     scale: 0.7,
     rotateX: 60,
-    filter: "blur(16px) hue-rotate(60deg)",
+    filter: "blur(6px) hue-rotate(60deg)",
     perspective: 800,
   },
   visible: {
@@ -49,7 +49,7 @@ const galleryVariants = {
     opacity: 0,
     scale: 0.7,
     rotateY: -60,
-    filter: "blur(16px) hue-rotate(-60deg)",
+    filter: "blur(6px) hue-rotate(-60deg)",
     perspective: 800,
   },
   visible: {

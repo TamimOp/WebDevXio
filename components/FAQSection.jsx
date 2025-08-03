@@ -65,7 +65,7 @@ export default function FAQSection() {
       rotateY: 45,
       rotateX: 12,
       skewY: 6,
-      filter: "blur(8px) hue-rotate(-60deg)", // reduced blur from 18px to 8px
+      filter: "blur(4px) hue-rotate(-60deg)", // reduced blur from 8px to 4px
       perspective: 1200,
     },
     visible: {
@@ -99,7 +99,7 @@ export default function FAQSection() {
       rotateY: -45,
       rotateX: -12,
       skewY: -6,
-      filter: "blur(8px) hue-rotate(60deg)", // reduced blur from 18px to 8px
+      filter: "blur(4px) hue-rotate(60deg)", // reduced blur from 8px to 4px
       perspective: 1200,
     },
     visible: {
