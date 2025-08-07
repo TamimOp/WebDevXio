@@ -88,7 +88,7 @@ const Toolbox = () => {
           <h2 className="text-[30px] sm:text-4xl md:text-5xl font-medium mb-4">
             Our <span className="text-[#274AFF]">Toolbox</span> For Excellence
           </h2>
-          <p className="text-[#222222] max-w-2xl mx-auto mb-8 text-[15px] sm:text-[16px] md:text-[22px]">
+          <p className="text-[#222222] max-w-2xl mx-auto mb-8 pb-4 text-[15px] sm:text-[16px] md:text-[22px]">
             We design and develop stunning, high-performing websites for SaaS
             products to maximize conversions.
           </p>
@@ -99,20 +99,35 @@ const Toolbox = () => {
           {tools.slice(0, 4).map((tool, index) => (
             <motion.div
               key={index}
-              className="rounded-2xl p-4 sm:p-5 flex items-center gap-3 sm:gap-4 shadow-xl hover:shadow-2xl transition-shadow duration-300"
+              className="rounded-2xl p-4 sm:p-5 flex items-center gap-3 sm:gap-4 transition-shadow duration-300"
               style={{
                 background:
                   "linear-gradient(180deg, rgba(255, 255, 255, 0.054) 0%, rgba(0, 61, 255, 0.0702) 100%)",
+                boxShadow: `
+      0px 4px 18.7px 0px #00000040,
+      -21.69px 21.69px 21.69px 0px #FFFFFF1A inset,
+      21.69px -21.69px 21.69px 0px #C2C2C21A inset
+    `,
+                backdropFilter: "blur(16px)",
+                WebkitBackdropFilter: "blur(16px)",
               }}
               custom={index}
               variants={cardLeftVariants}
               initial="hidden"
               animate={isInView ? "visible" : "hidden"}
               whileHover={{
-                scale: 1.08,
-                rotate: -2,
-                y: -8,
-                boxShadow: "0 16px 40px 0 rgba(39,74,255,0.18)",
+                scale: 1.05,
+                y: -12,
+                rotate: 0,
+                boxShadow: `
+    0px 4px 18.7px 0px #00000040,
+    -21.69px 21.69px 21.69px 0px #FFFFFF1A inset,
+    21.69px -21.69px 21.69px 0px #C2C2C21A inset,
+    0 20px 40px rgba(39,74,255,0.14)
+  `,
+                backdropFilter: "blur(16px)",
+                WebkitBackdropFilter: "blur(16px)",
+                transition: { duration: 0.4, ease: "easeOut" },
               }}
             >
               <div className="w-8 h-6 sm:w-12 sm:h-10 relative">
@@ -141,20 +156,35 @@ const Toolbox = () => {
           {tools.slice(4, 8).map((tool, index) => (
             <motion.div
               key={index + 4}
-              className="rounded-2xl p-4 sm:p-5 flex items-center gap-3 sm:gap-4 shadow-xl hover:shadow-2xl transition-shadow duration-300"
+              className="rounded-2xl p-4 sm:p-5 flex items-center gap-3 sm:gap-4 transition-shadow duration-300"
               style={{
                 background:
                   "linear-gradient(180deg, rgba(255, 255, 255, 0.054) 0%, rgba(0, 61, 255, 0.0702) 100%)",
+                boxShadow: `
+      0px 4px 18.7px 0px #00000040,
+      -21.69px 21.69px 21.69px 0px #FFFFFF1A inset,
+      21.69px -21.69px 21.69px 0px #C2C2C21A inset
+    `,
+                backdropFilter: "blur(16px)",
+                WebkitBackdropFilter: "blur(16px)",
               }}
               custom={index}
               variants={cardRightVariants}
               initial="hidden"
               animate={isInView ? "visible" : "hidden"}
               whileHover={{
-                scale: 1.08,
-                rotate: 2,
-                y: -8,
-                boxShadow: "0 16px 40px 0 rgba(39,74,255,0.18)",
+                scale: 1.05,
+                y: -12,
+                rotate: 0,
+                boxShadow: `
+    0px 4px 18.7px 0px #00000040,
+    -21.69px 21.69px 21.69px 0px #FFFFFF1A inset,
+    21.69px -21.69px 21.69px 0px #C2C2C21A inset,
+    0 20px 40px rgba(39,74,255,0.14)
+  `,
+                backdropFilter: "blur(16px)",
+                WebkitBackdropFilter: "blur(16px)",
+                transition: { duration: 0.4, ease: "easeOut" },
               }}
             >
               <div className="w-8 h-6 sm:w-12 sm:h-10 relative">
