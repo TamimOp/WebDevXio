@@ -74,6 +74,8 @@ const galleryVariants = {
 export default function Features() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [isHovering, setIsHovering] = useState(false);
+  const [hoveredIndex, setHoveredIndex] = useState(null);
 
   const headerRef = useRef(null);
   const galleryRef = useRef(null);
@@ -92,14 +94,14 @@ export default function Features() {
   }, []);
 
   useEffect(() => {
-    if (isMobile) return;
+    if (isMobile || isHovering) return;
 
     const interval = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % images.length);
     }, 3000);
 
     return () => clearInterval(interval);
-  }, [isMobile]);
+  }, [isMobile, isHovering]);
 
   return (
     <section className="p-6 sm:p-12 bg-[#F9F8FF]" id="work">
@@ -140,9 +142,18 @@ export default function Features() {
           className={`${
             isMobile ? "flex-col" : "md:flex-row"
           } flex gap-4 min-h-[400px] md:h-[500px]`}
+          onMouseEnter={() => setIsHovering(true)}
+          onMouseLeave={() => {
+            setIsHovering(false);
+            setHoveredIndex(null);
+          }}
         >
           {images.map((item, i) => {
             const isActive = activeIndex === i || isMobile;
+            const isHovered = hoveredIndex === i;
+            // Fix: Only show content when actually active (and not hovering over gallery) OR when specifically hovered
+            const shouldShowContent =
+              isMobile || (isActive && !isHovering) || isHovered;
 
             return (
               <motion.div
@@ -154,7 +165,7 @@ export default function Features() {
                   isMobile
                     ? {}
                     : {
-                        flex: isActive ? 3 : 1,
+                        flex: (isActive && !isHovering) || isHovered ? 3 : 1,
                         borderRadius: "24px",
                       }
                 }
@@ -166,6 +177,7 @@ export default function Features() {
                         borderRadius: { duration: 0.8, ease: "easeInOut" },
                       }
                 }
+                onMouseEnter={() => setHoveredIndex(i)}
               >
                 <div className="relative w-full aspect-[4/3] md:h-full">
                   <Image
@@ -183,8 +195,8 @@ export default function Features() {
                   className="absolute inset-0 p-4 sm:p-6 flex flex-col justify-end z-10 text-white bg-gradient-to-t from-black/80 via-transparent to-transparent"
                   initial={{ opacity: 0, x: -50 }}
                   animate={{
-                    opacity: isActive ? 1 : 0,
-                    x: isActive ? 0 : -50,
+                    opacity: shouldShowContent ? 1 : 0,
+                    x: shouldShowContent ? 0 : -50,
                   }}
                   transition={{ duration: 0.6, ease: "easeInOut" }}
                 >
@@ -194,8 +206,8 @@ export default function Features() {
                         className="text-base sm:text-[20px] font-light mb-2 sm:mb-4 text-gray-300"
                         initial={{ x: -50, opacity: 0 }}
                         animate={{
-                          x: isActive ? 0 : -50,
-                          opacity: isActive ? 1 : 0,
+                          x: shouldShowContent ? 0 : -50,
+                          opacity: shouldShowContent ? 1 : 0,
                         }}
                         transition={{
                           duration: 0.5,
@@ -210,8 +222,8 @@ export default function Features() {
                         className="flex gap-2 flex-wrap"
                         initial={{ x: -50, opacity: 0 }}
                         animate={{
-                          x: isActive ? 0 : -50,
-                          opacity: isActive ? 1 : 0,
+                          x: shouldShowContent ? 0 : -50,
+                          opacity: shouldShowContent ? 1 : 0,
                         }}
                         transition={{
                           duration: 0.5,
@@ -223,7 +235,7 @@ export default function Features() {
                           <span
                             key={idx}
                             className={`text-xs sm:text-sm px-3 py-1 rounded-full font-medium ${
-                              isActive
+                              isHovered
                                 ? "border-blue-600 border bg-blue-600/20 text-gray-50"
                                 : "border-white border text-gray-50"
                             }`}
@@ -236,12 +248,12 @@ export default function Features() {
 
                     <motion.div
                       className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center mb-2 sm:mb-6
-    ${isActive ? "bg-[#2e44ff]/60" : "bg-black/40"}
+    ${isHovered ? "bg-[#2e44ff]/60" : "bg-black/40"}
     backdrop-blur-md backdrop-saturate-150 bg-opacity-60`}
                       initial={{ x: 30, opacity: 0 }}
                       animate={{
-                        x: isActive ? 0 : 30,
-                        opacity: isActive ? 1 : 0,
+                        x: shouldShowContent ? 0 : 30,
+                        opacity: shouldShowContent ? 1 : 0,
                       }}
                       transition={{
                         duration: 0.4,
