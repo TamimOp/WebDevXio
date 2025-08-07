@@ -135,168 +135,245 @@ const Card = ({ title, description, icon, bg, isMain }) => {
 
 const Info = () => {
   const ref = useRef(null);
+  const topRowRef = useRef(null);
+  const bottomRowRef = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const topRowInView = useInView(topRowRef, { once: true, margin: "-100px" });
+  const bottomRowInView = useInView(bottomRowRef, {
+    once: true,
+    margin: "-100px",
+  });
 
-  // Animation variants
+  // Container animation
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: 0.3,
+        staggerChildren: 0.3,
+        delayChildren: 0.1,
+      },
+    },
+  };
+
   const headerVariants = {
-    hidden: { opacity: 0, scale: 0.92, y: -32 },
+    hidden: {
+      opacity: 0,
+      scale: 0.8,
+      y: 50,
+    },
     visible: {
       opacity: 1,
       scale: 1,
       y: 0,
       transition: {
-        duration: 1.1,
+        duration: 1,
+        ease: [0.23, 1, 0.32, 1],
         type: "spring",
-        stiffness: 36,
-        damping: 22,
-        delay: 0.1,
+        stiffness: 100,
+        damping: 15,
       },
     },
   };
 
+  // Row animations - top row from left, bottom row from right
+  const topRowVariants = {
+    hidden: { opacity: 0, x: -100 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 1.2,
+        ease: "easeOut",
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const bottomRowVariants = {
+    hidden: { opacity: 0, x: 100 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 1.2,
+        ease: "easeOut",
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  // Individual card variants for staggered effect within rows
   const cardVariants = {
-    hidden: { opacity: 0, scale: 0.92, rotate: -4, y: 40, boxShadow: "none" },
-    visible: (i) => ({
-      opacity: 1,
-      scale: 1,
-      rotate: 0,
-      y: 0,
-      boxShadow: "0 8px 32px 0 rgba(39,74,255,0.12)",
-      transition: {
-        type: "spring",
-        stiffness: 36,
-        damping: 20,
-        duration: 0.9,
-        delay: 0.3 + i * 0.18,
-      },
-    }),
-  };
-
-  const rowLeftVariants = {
-    hidden: { opacity: 0, x: -60, scale: 0.97 },
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
-      x: 0,
-      scale: 1,
+      y: 0,
       transition: {
-        type: "spring",
-        stiffness: 32,
-        damping: 18,
-        delay: 0.2,
-        staggerChildren: 0.18,
+        duration: 0.6,
+        ease: "easeOut",
       },
     },
   };
 
-  const rowRightVariants = {
-    hidden: { opacity: 0, x: 60, scale: 0.97 },
-    visible: {
-      opacity: 1,
-      x: 0,
+  const hoverVariants = {
+    rest: {
       scale: 1,
+      y: 0,
+      rotate: 0,
+      boxShadow: "0 8px 25px rgba(39, 74, 255, 0.08)",
       transition: {
-        type: "spring",
-        stiffness: 32,
-        damping: 18,
-        delay: 0.4,
-        staggerChildren: 0.18,
+        duration: 0.4,
+        ease: "easeOut",
+      },
+    },
+    hover: {
+      scale: 1.05,
+      y: -12,
+      rotate: 1,
+      boxShadow: "0 25px 50px rgba(39, 74, 255, 0.2)",
+      transition: {
+        duration: 0.4,
+        ease: "easeOut",
+      },
+    },
+  };
+
+  // Floating animation for main card
+  const floatingVariants = {
+    visible: {
+      y: [0, -8, 0],
+      transition: {
+        duration: 3,
+        repeat: Infinity,
+        ease: "easeInOut",
       },
     },
   };
 
   return (
-    <section
+    <motion.section
       ref={ref}
-      className="w-full py-16 bg-[#f7f7fb] flex flex-col items-center px-6 md:px-20"
+      className="w-full py-16 bg-[#f7f7fb] flex flex-col items-center px-6 md:px-20 overflow-hidden"
       id="services"
+      variants={containerVariants}
+      initial="hidden"
+      animate={isInView ? "visible" : "hidden"}
     >
-      {/* Header */}
+      {/* Header with unique entrance */}
       <motion.div
         className="flex flex-col items-center mb-6 gap-1"
         variants={headerVariants}
-        initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
       >
-        <h2 className="text-[26px] md:text-5xl font-medium mb-4 text-center">
+        <motion.h2
+          className="text-[26px] md:text-5xl font-medium mb-4 text-center"
+          initial={{ opacity: 0, letterSpacing: "0.2em" }}
+          animate={isInView ? { opacity: 1, letterSpacing: "0em" } : {}}
+          transition={{ duration: 1.2, delay: 0.3 }}
+        >
           What We Do
-        </h2>
-        <p className="text-sm md:text-[22px] text-gray-700 max-w-2xl text-center mb-12">
+        </motion.h2>
+        <motion.p
+          className="text-sm md:text-[22px] text-gray-700 max-w-2xl text-center mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.6 }}
+        >
           We design and develop stunning, high-performing websites for SaaS
           products to maximize conversions.
-        </p>
+        </motion.p>
       </motion.div>
 
       {/* Responsive layout for mobile & tablet */}
-      <div className="flex flex-wrap justify-center gap-10 lg:hidden">
+      <motion.div
+        className="flex flex-wrap justify-center gap-10 lg:hidden"
+        variants={topRowVariants}
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+      >
         {infoCards.map((card, i) => (
           <motion.div
             key={i}
-            custom={i}
             variants={cardVariants}
-            initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
-            whileHover={{
-              scale: 1.04,
-              rotate: 2,
-              boxShadow: "0 12px 40px 0 rgba(39,74,255,0.18)",
-            }}
+            whileHover="hover"
+            className="motion-card"
           >
-            <Card {...card} />
+            <motion.div
+              variants={hoverVariants}
+              animate={card.isMain && isInView ? floatingVariants : undefined}
+            >
+              <Card {...card} />
+            </motion.div>
           </motion.div>
         ))}
-      </div>
+      </motion.div>
 
       {/* Custom staggered layout only on large screens */}
       <div className="hidden lg:flex flex-col gap-10">
-        {/* Row 1 */}
+        {/* Row 1 - Cards slide in from left */}
         <motion.div
+          ref={topRowRef}
           className="flex flex-row gap-8 justify-between items-start"
-          variants={rowLeftVariants}
+          variants={topRowVariants}
           initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
+          animate={topRowInView ? "visible" : "hidden"}
         >
-          <motion.div
-            custom={0}
-            variants={cardVariants}
-            whileHover={{ scale: 1.04, rotate: 2 }}
-          >
-            <Card {...infoCards[0]} />
+          <motion.div variants={cardVariants} whileHover="hover">
+            <motion.div
+              variants={hoverVariants}
+              animate={
+                infoCards[0].isMain && isInView ? floatingVariants : undefined
+              }
+            >
+              <Card {...infoCards[0]} />
+            </motion.div>
           </motion.div>
-          <motion.div
-            custom={1}
-            variants={cardVariants}
-            whileHover={{ scale: 1.04, rotate: 2 }}
-          >
-            <Card {...infoCards[1]} />
+          <motion.div variants={cardVariants} whileHover="hover">
+            <motion.div
+              variants={hoverVariants}
+              animate={
+                infoCards[1].isMain && isInView ? floatingVariants : undefined
+              }
+            >
+              <Card {...infoCards[1]} />
+            </motion.div>
           </motion.div>
           <div className="hidden xl:block w-[392.25px] h-[258.93px]"></div>
         </motion.div>
 
-        {/* Row 2 */}
+        {/* Row 2 - Cards slide in from right */}
         <motion.div
+          ref={bottomRowRef}
           className="flex flex-row gap-8 justify-between items-end"
-          variants={rowRightVariants}
+          variants={bottomRowVariants}
           initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
+          animate={bottomRowInView ? "visible" : "hidden"}
         >
           <div className="hidden xl:block w-[392.25px] h-[258.93px]"></div>
-          <motion.div
-            custom={2}
-            variants={cardVariants}
-            whileHover={{ scale: 1.04, rotate: 2 }}
-          >
-            <Card {...infoCards[2]} />
+          <motion.div variants={cardVariants} whileHover="hover">
+            <motion.div
+              variants={hoverVariants}
+              animate={
+                infoCards[2].isMain && isInView ? floatingVariants : undefined
+              }
+            >
+              <Card {...infoCards[2]} />
+            </motion.div>
           </motion.div>
-          <motion.div
-            custom={3}
-            variants={cardVariants}
-            whileHover={{ scale: 1.04, rotate: 2 }}
-          >
-            <Card {...infoCards[3]} />
+          <motion.div variants={cardVariants} whileHover="hover">
+            <motion.div
+              variants={hoverVariants}
+              animate={
+                infoCards[3].isMain && isInView ? floatingVariants : undefined
+              }
+            >
+              <Card {...infoCards[3]} />
+            </motion.div>
           </motion.div>
         </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
