@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useDragControls } from "framer-motion";
 import { FaStar } from "react-icons/fa";
 import Image from "next/image";
 
@@ -112,6 +112,8 @@ const cardVariants = {
 
 const Testimonials = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isHovering, setIsHovering] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
   const scrollRef = useRef(null);
   const headingRef = useRef(null);
   const cardsRef = useRef(null);
@@ -122,24 +124,125 @@ const Testimonials = () => {
     margin: "-100px",
   });
 
+  // Define scroll positions for 3 pagination states
+  const scrollPositions = 3; // Only 3 pagination dots for 5 cards
+
   useEffect(() => {
+    // Only auto-slide if not hovering or dragging
+    if (isHovering || isDragging) return;
+
     const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % testimonials.length);
+      setActiveIndex((prev) => (prev + 1) % scrollPositions);
     }, 3000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [isHovering, isDragging, scrollPositions]);
 
   useEffect(() => {
     const container = scrollRef.current;
-    if (container) {
-      const cardWidth = container.firstChild?.offsetWidth || 300;
+    if (container && !isDragging) {
+      const containerWidth = container.offsetWidth;
+      const totalScrollWidth = container.scrollWidth;
+
+      // Calculate scroll position based on activeIndex
+      let scrollPosition = 0;
+      if (activeIndex === 0) {
+        scrollPosition = 0; // Show cards from beginning
+      } else if (activeIndex === 1) {
+        scrollPosition = (totalScrollWidth - containerWidth) / 2; // Show middle cards
+      } else if (activeIndex === 2) {
+        scrollPosition = totalScrollWidth - containerWidth; // Show cards from end
+      }
+
       container.scrollTo({
-        left: cardWidth * activeIndex,
+        left: scrollPosition,
         behavior: "smooth",
       });
     }
-  }, [activeIndex]);
+  }, [activeIndex, isDragging]);
+
+  const handlePaginationClick = (index) => {
+    setActiveIndex(index);
+  };
+
+  // Handle mouse drag for scrolling
+  const handleMouseDown = (e) => {
+    setIsDragging(true);
+    const container = scrollRef.current;
+    if (!container) return;
+
+    const startX = e.pageX - container.offsetLeft;
+    const scrollLeft = container.scrollLeft;
+
+    const handleMouseMove = (e) => {
+      const x = e.pageX - container.offsetLeft;
+      const walk = (x - startX) * 1; // Reduced from 2 to 1 for smoother drag
+      container.scrollLeft = scrollLeft - walk;
+    };
+
+    const handleMouseUp = () => {
+      setIsDragging(false);
+      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseup", handleMouseUp);
+
+      // Update active index based on scroll position
+      const containerWidth = container.offsetWidth;
+      const totalScrollWidth = container.scrollWidth;
+      const currentScroll = container.scrollLeft;
+
+      if (currentScroll < containerWidth * 0.3) {
+        setActiveIndex(0);
+      } else if (currentScroll > totalScrollWidth - containerWidth * 1.3) {
+        setActiveIndex(2);
+      } else {
+        setActiveIndex(1);
+      }
+    };
+
+    document.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener("mouseup", handleMouseUp);
+  };
+
+  // Handle touch drag for mobile
+  const handleTouchStart = (e) => {
+    setIsDragging(true);
+    const container = scrollRef.current;
+    if (!container) return;
+
+    const startX = e.touches[0].pageX - container.offsetLeft;
+    const scrollLeft = container.scrollLeft;
+
+    const handleTouchMove = (e) => {
+      e.preventDefault(); // Prevent default scrolling
+      const x = e.touches[0].pageX - container.offsetLeft;
+      const walk = (x - startX) * 1; // Reduced from 2 to 1 for smoother drag
+      container.scrollLeft = scrollLeft - walk;
+    };
+
+    const handleTouchEnd = () => {
+      setIsDragging(false);
+      document.removeEventListener("touchmove", handleTouchMove, {
+        passive: false,
+      });
+      document.removeEventListener("touchend", handleTouchEnd);
+
+      // Update active index based on scroll position
+      const containerWidth = container.offsetWidth;
+      const totalScrollWidth = container.scrollWidth;
+      const currentScroll = container.scrollLeft;
+
+      if (currentScroll < containerWidth * 0.3) {
+        setActiveIndex(0);
+      } else if (currentScroll > totalScrollWidth - containerWidth * 1.3) {
+        setActiveIndex(2);
+      } else {
+        setActiveIndex(1);
+      }
+    };
+
+    document.addEventListener("touchmove", handleTouchMove, { passive: false });
+    document.addEventListener("touchend", handleTouchEnd);
+  };
 
   return (
     <div className="bg-[#0B1C4A] text-white relative overflow-hidden">
@@ -174,7 +277,14 @@ const Testimonials = () => {
         {/* Testimonial Cards */}
         <div
           ref={scrollRef}
-          className="mt-8 sm:mt-10 flex justify-start gap-4 sm:gap-6 overflow-x-auto px-2 scroll-smooth scrollbar-hide"
+          className={`mt-8 sm:mt-10 flex justify-start gap-4 sm:gap-6 overflow-x-auto px-2 scrollbar-hide ${
+            isDragging ? "cursor-grabbing" : ""
+          }`}
+          style={{ scrollBehavior: isDragging ? "auto" : "smooth" }}
+          onMouseEnter={() => setIsHovering(true)}
+          onMouseLeave={() => setIsHovering(false)}
+          onMouseDown={handleMouseDown}
+          onTouchStart={handleTouchStart}
         >
           <div ref={cardsContainerRef} className="flex gap-4 sm:gap-6">
             {testimonials.map((item, index) => (
@@ -184,7 +294,7 @@ const Testimonials = () => {
                 variants={cardVariants}
                 initial="hidden"
                 animate={cardsInView ? "visible" : "hidden"}
-                className="bg-[#14275F] relative rounded-xl p-4 sm:p-6 w-full max-w-[490px] min-w-[280px] sm:min-w-[300px] h-auto shadow-xl text-left shrink-0"
+                className="bg-[#14275F] relative rounded-xl p-4 sm:p-6 w-full max-w-[490px] min-w-[280px] sm:min-w-[300px] h-auto shadow-xl text-left shrink-0 select-none pointer-events-none"
               >
                 <div className="absolute top-4 right-4 text-6xl text-[#4D6BFF]/30">
                   <Image
@@ -238,19 +348,25 @@ const Testimonials = () => {
           </div>
         </div>
 
-        {/* Pagination Dashes */}
-        <div className="flex justify-center gap-2 mt-6">
-          {testimonials.map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => setActiveIndex(idx)}
-              className={`text-2xl transition-colors ${
-                idx === activeIndex ? "text-[#4D6BFF]" : "text-white/30"
-              }`}
-            >
-              &ndash;
-            </button>
-          ))}
+        {/* Pagination Dashes - Only 3 dots for 5 cards */}
+        <div
+          className="flex justify-center gap-2 mt-6"
+          onMouseEnter={() => setIsHovering(true)}
+          onMouseLeave={() => setIsHovering(false)}
+        >
+          {Array(scrollPositions)
+            .fill(0)
+            .map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => handlePaginationClick(idx)}
+                className={`w-8 h-2 rounded-full transition-colors cursor-pointer hover:scale-110 ${
+                  idx === activeIndex
+                    ? "bg-[#4D6BFF]"
+                    : "bg-white/30 hover:bg-white/50"
+                }`}
+              ></button>
+            ))}
         </div>
       </div>
 
