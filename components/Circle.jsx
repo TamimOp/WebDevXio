@@ -1,8 +1,74 @@
 "use client";
-import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { CiCalendar } from "react-icons/ci";
 import Button from "@/components/Button";
+
+function WeavyText({ text }) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // Check on mount and on resize
+    const checkMobile = () => setIsMobile(window.innerWidth < 640);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  // On mobile, replace \n with space
+  const displayText = isMobile ? text.replace(/\n/g, " ") : text;
+
+  // Split into chars, keeping track of line breaks if not mobile
+  const chars = [];
+  displayText.split(isMobile ? "" : "\n").forEach((line, lineIdx, arr) => {
+    line.split("").forEach((char) => chars.push({ char, key: Math.random() }));
+    if (!isMobile && lineIdx < arr.length - 1)
+      chars.push({ char: "\n", key: `br-${lineIdx}` });
+  });
+
+  const container = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.012,
+      },
+    },
+  };
+  const child = {
+    hidden: { y: 16, opacity: 0 },
+    visible: {
+      y: [16, -8, 0],
+      opacity: 1,
+      transition: { duration: 0.25, ease: "easeOut" },
+    },
+    exit: { y: -16, opacity: 0, transition: { duration: 0.12 } },
+  };
+
+  return (
+    <motion.span
+      variants={container}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+      style={{ display: "inline-block" }}
+    >
+      {chars.map(({ char, key }, i) =>
+        char === "\n" ? (
+          // Only render <br /> on desktop
+          <br key={key} className="hidden sm:block" />
+        ) : (
+          <motion.span
+            key={key}
+            variants={child}
+            style={{ display: "inline-block" }}
+          >
+            {char === " " ? "\u00A0" : char}
+          </motion.span>
+        )
+      )}
+    </motion.span>
+  );
+}
 
 export default function Circle() {
   const [contentId, setContentId] = useState(0);
@@ -75,18 +141,21 @@ export default function Circle() {
           That Drive Growth
         </>
       ),
-      text: "We design and develop stunning, high-performing websites for SaaS products to maximize conversions.",
+      // <br/> before SaaS
+      text: "We design and develop stunning, high-performing websites for\nSaaS products to maximize conversions.",
       label: "SaaS",
     },
     {
       headline: "Pixel–Perfect UI/UX Design for a Seamless User Experience",
-      text: "We create stunning, user-friendly designs that enhance usability and boost conversions.",
+      // <br/> before and
+      text: "We create stunning, user-friendly designs that enhance usability\nand boost conversions.",
       label: "UI/UX",
     },
     {
       headline:
         "Custom WordPress Websites – Flexible, Scalable & SEO-Optimized",
-      text: "We build high-quality WordPress websites tailored for SaaS, startups, and businesses that need a powerful online presence.",
+      // <br/> before startups
+      text: "We build high-quality WordPress websites tailored for SaaS,\nstartups, and businesses that need a powerful online presence.",
       label: "WordPress",
     },
   ];
@@ -246,7 +315,7 @@ export default function Circle() {
             </AnimatePresence>
           </div>
 
-          <div className="min-h-[90px] sm:min-h-[80px] flex items-center justify-center">
+          <div className="min-h-[70px] sm:min-h-[80px] flex items-center justify-center px-2 sm:px-0 w-full">
             <AnimatePresence mode="wait">
               <motion.p
                 key={contents[contentId].text}
@@ -254,9 +323,9 @@ export default function Circle() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.5 }}
-                className="text-sm md:text-xl lg:text-[22px] text-[#222222] max-w-[700px] text-center font-medium"
+                className="text-sm sm:text-base md:text-xl lg:text-[22px] text-[#222222] w-full max-w-[700px] text-center font-medium leading-snug sm:leading-normal break-words whitespace-pre-line"
               >
-                {contents[contentId].text}
+                <WeavyText text={contents[contentId].text} />
               </motion.p>
             </AnimatePresence>
           </div>

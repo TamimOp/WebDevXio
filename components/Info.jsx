@@ -7,7 +7,7 @@ const infoCards = [
   {
     title: "Website De",
     description:
-      "Our web developers are experts in building highly interactive and deeply pleasant full-screen websites that work as flawlessly on smartphones as they do on desktops or any other device of your users’ choice.",
+      "Our web developers are experts in building highly interactive and deeply pleasant full-screen websites that work as flawlessly on smartphones as they do on desktops or any other device of your users' choice.",
     icon: "/assets/Figma.webp",
     bg: "/assets/FigmaBG.png",
     isMain: false,
@@ -23,7 +23,7 @@ const infoCards = [
   {
     title: "Website Development & Maintenance",
     description:
-      "Our web developers are experts in building highly interactive and deeply pleasant full-screen websites that work as flawlessly on smartphones as they do on desktops or any other device of your users’ choice.",
+      "Our web developers are experts in building highly interactive and deeply pleasant full-screen websites that work as flawlessly on smartphones as they do on desktops or any other device of your users' choice.",
     icon: "/assets/FramerMotion.webp",
     bg: "/assets/FramerBG.png",
     isMain: false,
@@ -31,12 +31,106 @@ const infoCards = [
   {
     title: "Wordpress website Design",
     description:
-      "Our web developers are experts in building highly interactive and deeply pleasant full-screen websites that work as flawlessly on smartphones as they do on desktops or any other device of your users’ choice.",
+      "Our web developers are experts in building highly interactive and deeply pleasant full-screen websites that work as flawlessly on smartphones as they do on desktops or any other device of your users' choice.",
     icon: "/assets/Wordpress.webp",
     bg: "/assets/WordpressBG.png",
     isMain: false,
   },
 ];
+
+// Component for animating individual characters
+const AnimatedText = ({
+  text,
+  className,
+  delay = 0,
+  isInView,
+  speed = "normal",
+}) => {
+  const characters = text.split("");
+
+  // Different speeds for different text elements
+  const charDelay = speed === "fast" ? 0.02 : 0.05;
+  const animDuration = speed === "fast" ? 0.5 : 0.8;
+
+  const characterVariants = {
+    hidden: {
+      opacity: 0,
+      y: 50,
+      rotateX: -90,
+      scale: 0.5,
+    },
+    visible: (i) => ({
+      opacity: 1,
+      y: 0,
+      rotateX: 0,
+      scale: 1,
+      transition: {
+        delay: delay + i * charDelay,
+        duration: animDuration,
+        ease: [0.23, 1, 0.32, 1],
+        type: "spring",
+        stiffness: 200,
+        damping: 20,
+      },
+    }),
+  };
+
+  const hoverVariants = {
+    rest: {},
+    hover: {
+      transition: {
+        staggerChildren: 0.02,
+      },
+    },
+  };
+
+  const characterHover = {
+    rest: {
+      scale: 1,
+      y: 0,
+      color: "inherit",
+    },
+    hover: {
+      scale: 1.1,
+      y: -3,
+      color: "#4563ff",
+      transition: {
+        duration: 0.2,
+        ease: "easeOut",
+      },
+    },
+  };
+
+  return (
+    <motion.div
+      className={`${className} inline-block cursor-default`}
+      variants={hoverVariants}
+      initial="rest"
+      whileHover="hover"
+    >
+      {characters.map((char, i) => (
+        <motion.span
+          key={i}
+          custom={i}
+          variants={characterVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          whileHover="hover"
+          className="inline-block"
+          style={{
+            transformOrigin: "center bottom",
+            display: char === " " ? "inline" : "inline-block",
+            minWidth: char === " " ? "0.3em" : "auto",
+          }}
+        >
+          <motion.span variants={characterHover} className="inline-block">
+            {char === " " ? "\u00A0" : char}
+          </motion.span>
+        </motion.span>
+      ))}
+    </motion.div>
+  );
+};
 
 const Card = ({ title, description, icon, bg, isMain }) => {
   const baseStyles =
@@ -157,26 +251,6 @@ const Info = () => {
     },
   };
 
-  const headerVariants = {
-    hidden: {
-      opacity: 0,
-      scale: 0.8,
-      y: 50,
-    },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      y: 0,
-      transition: {
-        duration: 1,
-        ease: [0.23, 1, 0.32, 1],
-        type: "spring",
-        stiffness: 100,
-        damping: 15,
-      },
-    },
-  };
-
   // Row animations - top row from left, bottom row from right
   const topRowVariants = {
     hidden: { opacity: 0, x: -100 },
@@ -262,28 +336,22 @@ const Info = () => {
       animate={isInView ? "visible" : "hidden"}
     >
       {/* Header with unique entrance */}
-      <motion.div
-        className="flex flex-col items-center mb-6 gap-1"
-        variants={headerVariants}
-      >
-        <motion.h2
+      <div className="flex flex-col items-center mb-6 gap-1">
+        <AnimatedText
+          text="What We Do"
           className="text-[26px] md:text-5xl font-medium mb-4 text-center"
-          initial={{ opacity: 0, letterSpacing: "0.2em" }}
-          animate={isInView ? { opacity: 1, letterSpacing: "0em" } : {}}
-          transition={{ duration: 1.2, delay: 0.3 }}
-        >
-          What We Do
-        </motion.h2>
-        <motion.p
+          delay={0.3}
+          isInView={isInView}
+          speed="normal"
+        />
+        <AnimatedText
+          text="We design and develop stunning, high-performing websites for SaaS products to maximize conversions."
           className="text-sm md:text-[22px] text-gray-700 max-w-2xl text-center mb-12"
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.6 }}
-        >
-          We design and develop stunning, high-performing websites for SaaS
-          products to maximize conversions.
-        </motion.p>
-      </motion.div>
+          delay={0.8}
+          isInView={isInView}
+          speed="fast"
+        />
+      </div>
 
       {/* Responsive layout for mobile & tablet */}
       <motion.div
