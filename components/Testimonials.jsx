@@ -59,7 +59,7 @@ const testimonials = [
   },
 ];
 
-// Component for animating individual characters
+// Component for typewriter animation (copied from Info.jsx)
 const AnimatedText = ({
   text,
   className,
@@ -67,87 +67,47 @@ const AnimatedText = ({
   isInView,
   speed = "normal",
 }) => {
-  const characters = text.split("");
+  const [displayedText, setDisplayedText] = useState("");
+  const [isComplete, setIsComplete] = useState(false);
 
-  const charDelay = speed === "fast" ? 0.02 : speed === "slow" ? 0.08 : 0.05;
-  const animDuration = speed === "fast" ? 0.5 : speed === "slow" ? 1.0 : 0.7;
+  // Faster speeds for typewriter effect
+  const typeSpeed = speed === "fast" ? 20 : 40; // Made speeds faster
 
-  const characterVariants = {
-    hidden: {
-      opacity: 0,
-      y: 50,
-      rotateX: -90,
-      scale: 0.5,
-    },
-    visible: (i) => ({
-      opacity: 1,
-      y: 0,
-      rotateX: 0,
-      scale: 1,
-      transition: {
-        delay: delay + i * charDelay,
-        duration: animDuration,
-        ease: [0.23, 1, 0.32, 1],
-        type: "spring",
-        stiffness: 200,
-        damping: 20,
-      },
-    }),
-  };
+  useEffect(() => {
+    if (!isInView) {
+      setDisplayedText("");
+      setIsComplete(false);
+      return;
+    }
 
-  const hoverVariants = {
-    rest: {},
-    hover: {
-      transition: {
-        staggerChildren: 0.02,
-      },
-    },
-  };
+    const startTimeout = setTimeout(() => {
+      let currentIndex = 0;
+      setDisplayedText("");
+      setIsComplete(false);
 
-  const characterHover = {
-    rest: {
-      scale: 1,
-      y: 0,
-      color: "inherit",
-    },
-    hover: {
-      scale: 1.1,
-      y: -3,
-      color: "#4D6BFF",
-      transition: {
-        duration: 0.2,
-        ease: "easeOut",
-      },
-    },
-  };
+      const typeInterval = setInterval(() => {
+        if (currentIndex < text.length) {
+          setDisplayedText(text.substring(0, currentIndex + 1));
+          currentIndex++;
+        } else {
+          clearInterval(typeInterval);
+          setIsComplete(true);
+        }
+      }, typeSpeed);
+
+      return () => clearInterval(typeInterval);
+    }, delay * 1000);
+
+    return () => clearTimeout(startTimeout);
+  }, [isInView, text, typeSpeed, delay]);
 
   return (
-    <motion.div
-      className={`${className} inline-block cursor-default`}
-      variants={hoverVariants}
-      initial="rest"
-      whileHover="hover"
-    >
-      {characters.map((char, i) => (
-        <motion.span
-          key={i}
-          custom={i}
-          variants={characterVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          className="inline-block"
-          style={{
-            transformOrigin: "center bottom",
-            display: char === " " ? "inline" : "inline-block",
-            minWidth: char === " " ? "0.3em" : "auto",
-          }}
-        >
-          <motion.span variants={characterHover} className="inline-block">
-            {char === " " ? "\u00A0" : char}
-          </motion.span>
-        </motion.span>
-      ))}
-    </motion.div>
+    <div className={className}>
+      <span className="inline-block min-h-[1em]">
+        {displayedText}
+        {!isComplete && <span className="animate-pulse">_</span>}
+      </span>
+    </div>
   );
 };
 
@@ -375,7 +335,7 @@ const Testimonials = () => {
           <AnimatedText
             text="—Testimonials"
             className="text-sm md:text-[22px] leading-[116%] font-bold text-[#FDFEFF] mb-2"
-            delay={0.2}
+            delay={0.1}
             isInView={headingInView}
             speed="normal"
           />
@@ -384,14 +344,14 @@ const Testimonials = () => {
             <AnimatedText
               text="Testimonials: "
               className="text-[22px] sm:text-[26px] md:text-5xl font-medium"
-              delay={0.4}
+              delay={0.7}
               isInView={headingInView}
               speed="normal"
             />
             <AnimatedText
               text="Trusted by Our Clients"
               className="text-[22px] sm:text-[26px] md:text-5xl font-medium text-[#4D6BFF]"
-              delay={0.8}
+              delay={1.4}
               isInView={headingInView}
               speed="normal"
             />
@@ -400,7 +360,7 @@ const Testimonials = () => {
           <AnimatedText
             text="At UX Recharge, we specialize in creating modern, user-friendly websites tailored for SaaS companies. Our designs are conversion-focused, fast, and fully optimized for mobile and SEO."
             className="max-w-2xl text-sm sm:text-[18px] md:text-[22px] mx-auto text-[#E9E9E9] mt-4"
-            delay={1.2}
+            delay={2.4}
             isInView={headingInView}
             speed="fast"
           />
