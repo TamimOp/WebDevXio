@@ -15,7 +15,7 @@ const tools = [
   { name: "Figma", desc: "we use figma", icon: "/assets/Figma.webp" },
 ];
 
-// Component for animating individual characters
+// Component for typewriter animation
 const AnimatedText = ({
   text,
   className,
@@ -23,87 +23,47 @@ const AnimatedText = ({
   isInView,
   speed = "normal",
 }) => {
-  const characters = text.split("");
+  const [displayedText, setDisplayedText] = React.useState("");
+  const [isComplete, setIsComplete] = React.useState(false);
 
-  const charDelay = speed === "fast" ? 0.015 : speed === "slow" ? 0.08 : 0.04;
-  const animDuration = speed === "fast" ? 0.4 : speed === "slow" ? 1.0 : 0.6;
+  // Faster speeds for typewriter effect
+  const typeSpeed = speed === "fast" ? 30 : 60; // milliseconds per character - made faster
 
-  const characterVariants = {
-    hidden: {
-      opacity: 0,
-      y: 60,
-      rotateX: -90,
-      scale: 0.3,
-    },
-    visible: (i) => ({
-      opacity: 1,
-      y: 0,
-      rotateX: 0,
-      scale: 1,
-      transition: {
-        delay: delay + i * charDelay,
-        duration: animDuration,
-        ease: [0.25, 0.46, 0.45, 0.94],
-        type: "spring",
-        stiffness: 180,
-        damping: 15,
-      },
-    }),
-  };
+  React.useEffect(() => {
+    if (!isInView) {
+      setDisplayedText("");
+      setIsComplete(false);
+      return;
+    }
 
-  const hoverVariants = {
-    rest: {},
-    hover: {
-      transition: {
-        staggerChildren: 0.015,
-      },
-    },
-  };
+    const startTimeout = setTimeout(() => {
+      let currentIndex = 0;
+      setDisplayedText("");
+      setIsComplete(false);
 
-  const characterHover = {
-    rest: {
-      scale: 1,
-      y: 0,
-      color: "inherit",
-    },
-    hover: {
-      scale: 1.15,
-      y: -5,
-      color: "#274AFF",
-      transition: {
-        duration: 0.25,
-        ease: "easeOut",
-      },
-    },
-  };
+      const typeInterval = setInterval(() => {
+        if (currentIndex < text.length) {
+          setDisplayedText(text.substring(0, currentIndex + 1));
+          currentIndex++;
+        } else {
+          clearInterval(typeInterval);
+          setIsComplete(true);
+        }
+      }, typeSpeed);
+
+      return () => clearInterval(typeInterval);
+    }, delay * 1000);
+
+    return () => clearTimeout(startTimeout);
+  }, [isInView, text, typeSpeed, delay]);
 
   return (
-    <motion.div
-      className={`${className} inline-block cursor-default`}
-      variants={hoverVariants}
-      initial="rest"
-      whileHover="hover"
-    >
-      {characters.map((char, i) => (
-        <motion.span
-          key={i}
-          custom={i}
-          variants={characterVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          className="inline-block"
-          style={{
-            transformOrigin: "center bottom",
-            display: char === " " ? "inline" : "inline-block",
-            minWidth: char === " " ? "0.3em" : "auto",
-          }}
-        >
-          <motion.span variants={characterHover} className="inline-block">
-            {char === " " ? "\u00A0" : char}
-          </motion.span>
-        </motion.span>
-      ))}
-    </motion.div>
+    <div className={className}>
+      <span className="inline-block min-h-[1em]">
+        {displayedText}
+        {!isComplete && <span className="animate-pulse">_</span>}
+      </span>
+    </div>
   );
 };
 
@@ -177,28 +137,14 @@ const Toolbox = () => {
           <AnimatedText
             text="Tools"
             className="text-[#274AFF] font-medium text-[15px] sm:text-[18px] md:text-[22px] mb-2"
-            delay={0.2}
+            delay={0.3}
             isInView={isInView}
             speed="normal"
           />
 
           <div className="mb-4">
             <AnimatedText
-              text="Our "
-              className="text-[30px] sm:text-4xl md:text-5xl font-medium"
-              delay={0.4}
-              isInView={isInView}
-              speed="normal"
-            />
-            <AnimatedText
-              text="Toolbox"
-              className="text-[30px] sm:text-4xl md:text-5xl font-medium text-[#274AFF]"
-              delay={0.6}
-              isInView={isInView}
-              speed="normal"
-            />
-            <AnimatedText
-              text=" For Excellence"
+              text="Our Toolbox For Excellence"
               className="text-[30px] sm:text-4xl md:text-5xl font-medium"
               delay={0.8}
               isInView={isInView}
@@ -209,7 +155,7 @@ const Toolbox = () => {
           <AnimatedText
             text="We design and develop stunning, high-performing websites for SaaS products to maximize conversions."
             className="text-[#222222] max-w-2xl mx-auto mb-8 pb-4 text-[15px] sm:text-[16px] md:text-[22px]"
-            delay={1.0}
+            delay={2.5}
             isInView={isInView}
             speed="fast"
           />

@@ -38,7 +38,7 @@ const infoCards = [
   },
 ];
 
-// Component for animating individual characters
+// Component for typewriter animation
 const AnimatedText = ({
   text,
   className,
@@ -46,89 +46,47 @@ const AnimatedText = ({
   isInView,
   speed = "normal",
 }) => {
-  const characters = text.split("");
+  const [displayedText, setDisplayedText] = React.useState("");
+  const [isComplete, setIsComplete] = React.useState(false);
 
-  // Different speeds for different text elements
-  const charDelay = speed === "fast" ? 0.02 : 0.05;
-  const animDuration = speed === "fast" ? 0.5 : 0.8;
+  // Faster speeds for typewriter effect
+  const typeSpeed = speed === "fast" ? 30 : 60; // milliseconds per character - made faster
 
-  const characterVariants = {
-    hidden: {
-      opacity: 0,
-      y: 50,
-      rotateX: -90,
-      scale: 0.5,
-    },
-    visible: (i) => ({
-      opacity: 1,
-      y: 0,
-      rotateX: 0,
-      scale: 1,
-      transition: {
-        delay: delay + i * charDelay,
-        duration: animDuration,
-        ease: [0.23, 1, 0.32, 1],
-        type: "spring",
-        stiffness: 200,
-        damping: 20,
-      },
-    }),
-  };
+  React.useEffect(() => {
+    if (!isInView) {
+      setDisplayedText("");
+      setIsComplete(false);
+      return;
+    }
 
-  const hoverVariants = {
-    rest: {},
-    hover: {
-      transition: {
-        staggerChildren: 0.02,
-      },
-    },
-  };
+    const startTimeout = setTimeout(() => {
+      let currentIndex = 0;
+      setDisplayedText("");
+      setIsComplete(false);
 
-  const characterHover = {
-    rest: {
-      scale: 1,
-      y: 0,
-      color: "inherit",
-    },
-    hover: {
-      scale: 1.1,
-      y: -3,
-      color: "#4563ff",
-      transition: {
-        duration: 0.2,
-        ease: "easeOut",
-      },
-    },
-  };
+      const typeInterval = setInterval(() => {
+        if (currentIndex < text.length) {
+          setDisplayedText(text.substring(0, currentIndex + 1));
+          currentIndex++;
+        } else {
+          clearInterval(typeInterval);
+          setIsComplete(true);
+        }
+      }, typeSpeed);
+
+      return () => clearInterval(typeInterval);
+    }, delay * 1000);
+
+    return () => clearTimeout(startTimeout);
+  }, [isInView, text, typeSpeed, delay]);
 
   return (
-    <motion.div
-      className={`${className} inline-block cursor-default`}
-      variants={hoverVariants}
-      initial="rest"
-      whileHover="hover"
-    >
-      {characters.map((char, i) => (
-        <motion.span
-          key={i}
-          custom={i}
-          variants={characterVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          whileHover="hover"
-          className="inline-block"
-          style={{
-            transformOrigin: "center bottom",
-            display: char === " " ? "inline" : "inline-block",
-            minWidth: char === " " ? "0.3em" : "auto",
-          }}
-        >
-          <motion.span variants={characterHover} className="inline-block">
-            {char === " " ? "\u00A0" : char}
-          </motion.span>
-        </motion.span>
-      ))}
-    </motion.div>
+    <div className={className}>
+      <span className="inline-block min-h-[1em]">
+        {displayedText}
+        {!isComplete && <span className="animate-pulse">_</span>}
+      </span>
+    </div>
   );
 };
 
@@ -347,7 +305,7 @@ const Info = () => {
         <AnimatedText
           text="We design and develop stunning, high-performing websites for SaaS products to maximize conversions."
           className="text-sm md:text-[22px] text-gray-700 max-w-2xl text-center mb-12"
-          delay={0.8}
+          delay={1.2} // Reduced delay since typing is faster now
           isInView={isInView}
           speed="fast"
         />

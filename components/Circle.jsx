@@ -6,6 +6,8 @@ import Button from "@/components/Button";
 
 function WeavyText({ text }) {
   const [isMobile, setIsMobile] = useState(false);
+  const [displayedText, setDisplayedText] = useState("");
+  const [isTyping, setIsTyping] = useState(false);
 
   useEffect(() => {
     // Check on mount and on resize
@@ -18,55 +20,34 @@ function WeavyText({ text }) {
   // On mobile, replace \n with space
   const displayText = isMobile ? text.replace(/\n/g, " ") : text;
 
-  // Split into chars, keeping track of line breaks if not mobile
-  const chars = [];
-  displayText.split(isMobile ? "" : "\n").forEach((line, lineIdx, arr) => {
-    line.split("").forEach((char) => chars.push({ char, key: Math.random() }));
-    if (!isMobile && lineIdx < arr.length - 1)
-      chars.push({ char: "\n", key: `br-${lineIdx}` });
-  });
+  // This effect runs every time the `displayText` prop changes
+  useEffect(() => {
+    setIsTyping(true);
+    setDisplayedText(""); // Clear previous text
 
-  const container = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.012,
-      },
-    },
-  };
-  const child = {
-    hidden: { y: 16, opacity: 0 },
-    visible: {
-      y: [16, -8, 0],
-      opacity: 1,
-      transition: { duration: 0.25, ease: "easeOut" },
-    },
-    exit: { y: -16, opacity: 0, transition: { duration: 0.12 } },
-  };
+    let currentIndex = 0;
+    const typeInterval = setInterval(() => {
+      if (currentIndex < displayText.length) {
+        // Use substring to build the text, which is more reliable
+        setDisplayedText(displayText.substring(0, currentIndex + 1));
+        currentIndex++;
+      } else {
+        clearInterval(typeInterval);
+        setIsTyping(false); // Typing is complete
+      }
+    }, 30); // 30ms typing speed per character
+
+    // Cleanup interval on component unmount or if text changes again
+    return () => clearInterval(typeInterval);
+  }, [displayText]);
 
   return (
-    <motion.span
-      variants={container}
-      initial="hidden"
-      animate="visible"
-      exit="exit"
-      style={{ display: "inline-block" }}
-    >
-      {chars.map(({ char, key }, i) =>
-        char === "\n" ? (
-          // Only render <br /> on desktop
-          <br key={key} className="hidden sm:block" />
-        ) : (
-          <motion.span
-            key={key}
-            variants={child}
-            style={{ display: "inline-block" }}
-          >
-            {char === " " ? "\u00A0" : char}
-          </motion.span>
-        )
-      )}
-    </motion.span>
+    <span style={{ display: "inline-block", minHeight: "1.2em" }}>
+      {/* Use whitespace-pre-line to respect \n characters from the original text on desktop */}
+      <span className="whitespace-pre-line">{displayedText}</span>
+      {/* Show a blinking cursor only while typing */}
+      {isTyping && <span className="animate-pulse">_</span>}
+    </span>
   );
 }
 
@@ -167,7 +148,7 @@ export default function Circle() {
       setIndex((prevIndex) => (prevIndex + 1) % path.length);
       setPosition((prev) => (prev + 1) % 4);
       setContentId(contentMap[index + 1]);
-    }, 2500);
+    }, 4500);
 
     return () => clearInterval(interval);
   }, [index, path]);
